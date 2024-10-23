@@ -1,0 +1,11 @@
+*.pyc
+*.egg-info
+
+# Виртуалка
+/venv
+
+# Конфиг
+/.env
+
+# Git
+/.idea
