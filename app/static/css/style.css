@@ -1,0 +1,63 @@
+@import url('fonts.css');
+@import url('var.css');
+
+html {
+    font-family: Exo2, sans-serif;
+    font-weight: 400;
+    color: var(--dark);
+}
+
+body {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.content {
+    margin: 0 auto;
+    padding: 40px 20px;
+    flex: 1 1 auto;
+}
+
+header, footer {
+    background: var(--dark);
+    color: var(--ultra-light);
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.logo__img {
+    display: block;
+    height: 48px;
+}
+
+.menu-header {
+    display: block;
+}
+
+.menu-header li{
+    display: inline-block;
+    padding-right: 16px;
+    line-height: 48px;
+}
+
+.link-header {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.link-header:hover {
+    text-decoration: underline;
+}

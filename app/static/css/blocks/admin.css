@@ -1,0 +1,37 @@
+/* Юзеры добавить */
+
+.form-add-user input{
+    display: block;
+    border: 1px solid;
+    margin: 12px auto;
+    border-radius: 8px;
+    padding: 8px;
+    width: 320px;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.05),
+        0 0 0 3px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.2);
+}
+
+.form-add-user input:focus{
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0),
+        0 0 0 3px rgb(0, 0, 0),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.2);
+}
+
+
+/* Юзеры, таблица */
+
+.table-users {
+    margin-top: 16px;
+}
+
+.table-users th {
+    border: 2px solid var(--dark);
+    padding: 8px 24px;
+    font-weight: bold;
+}
+
+.table-users td {
+    border: 1px dashed var(--dark);
+    padding: 4px 12px;
+}

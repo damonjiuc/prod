@@ -1,0 +1,14 @@
+/* FONTS Exo 2 */
+@font-face {
+    font-family: 'Exo2';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Exo2/Exo2-Regular.ttf')
+}
+
+@font-face {
+    font-family: 'Exo2';
+    font-style: bold;
+    font-weight: 600;
+    src: url('../fonts/Exo2/Exo2-Bold.ttf')
+}

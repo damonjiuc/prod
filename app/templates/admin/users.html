@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Партнеры{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+
+{% block content %}
+<table class="table-users">
+  <thead>
+    <tr>
+      <th>Карта</th>
+      <th>Имя</th>
+      <th>Мэйл</th>
+      <th>Роль</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.card }}</td>
+      <td>{{ user.surname }} {{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,7 @@
+<a class="logo" href="/">
+  <img class="logo__img" src="{{ url_for('static', filename='img/logo.svg') }}" alt="prod logo">
+</a>
+<ul class="menu-header">
+  <li><a class="link-header" href="{{ url_for('admin.add_user') }}">Add User</a></li>
+  <li><a class="link-header" href="{{ url_for('admin.all_users') }}">Users</a></li>
+</ul>

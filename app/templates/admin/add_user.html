@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Добавить партнера{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+
+{% block content %}
+<form class="form-add-user" method="post">
+  <input name="card" type="number" placeholder="Номер карты">
+  <input name="password" type="password" placeholder="Пароль">
+  <input name="surname" type="text" placeholder="Фамилия">
+  <input name="name" type="text" placeholder="Имя">
+  <input name="secname" type="text" placeholder="Отчество">
+  <input name="birthday" type="date" placeholder="Отчество">
+  <input name="email" type="email" placeholder="E-mail">
+  <input name="phone" type="tel" placeholder="8XXXxxxXXxx">
+  <div>Сайт</div>
+  <input name="active" type="number" placeholder="1 - active, 0 - off">
+  <input name="role" type="number" placeholder="1 - admin, 2 - dis">
+  <input name="lvl" type="number" placeholder="lvl №#">
+  <div>Реферал</div>
+  <input name="referer" type="number" placeholder="Номер пригласившего партнера">
+  <div>Реквизиты</div>
+  <input name="bankcard" type="number" placeholder="Номер банковской карты">
+  <input name="bankname" type="text" placeholder="Название банка">
+  <input name="cardholder" type="text" placeholder="Держатель карты">
+
+
+  <input value="Добавить" type="submit" class="btn btn-confirm">
+</form>
+{% endblock %}
