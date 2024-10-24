@@ -3,7 +3,6 @@ from .extensions import db, migrate
 from .config import Config
 
 from .routes.main import main
-from .routes.user import user
 from .routes.admin import admin
 
 
