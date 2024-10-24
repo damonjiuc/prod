@@ -37,6 +37,11 @@ table {
     border-collapse: collapse;
 }
 
+h1 {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
 .logo__img {
     display: block;
     height: 48px;

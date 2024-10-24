@@ -43,3 +43,41 @@ def add_user():
 
     else:
         return render_template('admin/add_user.html')
+
+
+@admin.route('/admin/edit_user/<int:id>', methods=['POST', 'GET'])
+def edit_user(id):
+    user = Users.query.get(id)
+    if request.method == 'POST':
+        user.card = request.form.get('card')
+        user.password = request.form.get('password')
+        user.surname = request.form.get('surname')
+        user.name = request.form.get('name')
+        user.secname = request.form.get('secname')
+        user.birthday = request.form.get('birthday')
+        user.email = request.form.get('email')
+        user.phone = request.form.get('phone')
+        user.referer = request.form.get('referer')
+        user.bankcard = request.form.get('bankcard')
+        user.bankname = request.form.get('bankname')
+        user.cardholder = request.form.get('cardholder')
+        user.active = request.form.get('active')
+        user.role = request.form.get('role')
+        user.lvl = request.form.get('lvl')
+        user.company = request.form.get('company')
+        user.city = request.form.get('city')
+        user.moneytomln = request.form.get('moneytomln')
+        user.totalmoney = request.form.get('totalmoney')
+        user.apptoken = request.form.get('apptoken')
+
+
+        try:
+            db.session.commit()
+            flash('Форма отправлена!')
+            return redirect('/')
+        except Exception as exc:
+            print(str(exc))
+            return str(exc)
+
+    else:
+        return render_template('admin/edit_user.html', user=user)

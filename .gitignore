@@ -6,6 +6,7 @@
 
 # Конфиг
 /.env
+/.env_off
 
 # Git
 /.idea

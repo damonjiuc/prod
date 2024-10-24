@@ -12,6 +12,7 @@
       <th>Имя</th>
       <th>Мэйл</th>
       <th>Роль</th>
+      <th>Действие</th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +22,10 @@
       <td>{{ user.surname }} {{ user.name }}</td>
       <td>{{ user.email }}</td>
       <td>{{ user.role }}</td>
+      <td>
+        <a class="btn" href="{{ url_for('admin.edit_user', id=user.id) }}">Редактировать</a>
+        <a class="btn" href="">Удалить</a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
