@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, flash, redirect
-# from datetime import datetime
 from ..extensions import db
 from ..models.users import Users
 
@@ -7,7 +6,7 @@ admin = Blueprint('admin', __name__)
 
 @admin.route('/admin/users', methods=['POST', 'GET'])
 def all_users():
-    users = Users.query.all()
+    users = Users.query.order_by(Users.id.desc()).all()
     return render_template('admin/users.html', users=users)
 
 @admin.route('/admin/add_user', methods=['POST', 'GET'])
@@ -81,3 +80,16 @@ def edit_user(id):
 
     else:
         return render_template('admin/edit_user.html', user=user)
+
+
+@admin.route('/admin/delete_user/<int:id>', methods=['POST', 'GET'])
+def delete_user(id):
+    user = Users.query.get(id)
+    try:
+        db.session.delete(user)
+        db.session.commit()
+        flash('Пользователь удален')
+        return redirect('/admin/users')
+    except Exception as exc:
+        print(str(exc))
+        return str(exc)

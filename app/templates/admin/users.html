@@ -24,7 +24,8 @@
       <td>{{ user.role }}</td>
       <td>
         <a class="btn" href="{{ url_for('admin.edit_user', id=user.id) }}">Редактировать</a>
-        <a class="btn" href="">Удалить</a>
+         /
+        <a class="btn" href="{{ url_for('admin.delete_user', id=user.id) }}">Удалить</a>
       </td>
     </tr>
     {% endfor %}
