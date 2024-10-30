@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Добавить партнера{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+
+{% block content %}
+    <form class="form-add-user" method="post" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        {{ form.id(placeholder="ID") }}
+        {{ form.phone(placeholder="Телефон") }}
+        {{ form.email(placeholder="E-Mail") }}
+        {{ form.birthday(placeholder="Дата рождения") }}
+        {{ form.password(placeholder="Пароль") }}
+        {{ form.confirm_password(placeholder="Подтвердите пароль") }}
+        {{ form.avatar(placeholder="Аватар") }}
+        {{ form.submit(placeholder="Изменить") }}
+
+    </form>
+
+
+{% endblock %}

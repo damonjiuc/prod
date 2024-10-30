@@ -8,11 +8,11 @@
 <form class="form-add-user" method="post">
   <div class="form-add-user-el">
     <label for="card">Номер карты</label>
-    <input id="card" name="card" type="number" placeholder="Номер карты" value="{{ user.card }}">
+    <input id="card" name="card" type="number" placeholder="Номер карты" value="{{ '%04d' % user.card }}">
   </div>
   <div class="form-add-user-el">
     <label for="password">Пароль</label>
-    <input id="password" name="password" type="password" placeholder="Пароль" value="{{ user.password }}">
+    <input id="password" name="password" type="password" placeholder="Пароль">
   </div>
   <div class="form-add-user-el">
     <label for="surname">Фамилия</label>
@@ -41,12 +41,12 @@
   <div class="form-add-user-group">Реферал</div>
   <div class="form-add-user-el">
     <label for="referer">Номер реферала</label>
-    <input id="referer" name="referer" type="number" placeholder="Номер пригласившего партнера" value="{{ user.referer }}">
+    <input id="referer" name="referer" type="number" placeholder="Номер пригласившего партнера" value="{{ '%04d' % user.referer }}">
   </div>
   <div class="form-add-user-group">Реквизиты</div>
   <div class="form-add-user-el">
     <label for="bankcard">Номер банковской карты</label>
-    <input id="bankcard" name="bankcard" type="number" placeholder="Номер банковской карты" value="{{ user.bankcard }}">
+    <input id="bankcard" name="bankcard" type="number" placeholder="Номер банковской карты" value="{{ '%16d' % user.bankcard }}">
   </div>
   <div class="form-add-user-el">
     <label for="bankname">Название банка</label>
@@ -80,11 +80,11 @@
   </div>
   <div class="form-add-user-el">
     <label for="moneytomln">Денег до миллиона</label>
-    <input id="moneytomln" name="moneytomln" type="number" placeholder="Денег до миллиона" value="{{ user.moneytomln }}">
+    <input id="moneytomln" name="moneytomln" type="number" step=0.01 placeholder="Денег до миллиона" value="{{ user.moneytomln }}">
   </div>
   <div class="form-add-user-el">
     <label for="totalmoney">Всего купил на</label>
-    <input id="totalmoney" name="totalmoney" type="number" placeholder="Всего купил на" value="{{ user.totalmoney }}">
+    <input id="totalmoney" name="totalmoney" type="number" step=0.01 placeholder="Всего купил на" value="{{ user.totalmoney }}">
   </div>
   <div class="form-add-user-el">
     <label for="apptoken">App Token</label>

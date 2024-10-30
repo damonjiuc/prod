@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect
-from ..extensions import db
+from ..extensions import db, bcrypt
 from ..models.users import Users
 
 admin = Blueprint('admin', __name__)
@@ -14,6 +14,7 @@ def add_user():
     if request.method == 'POST':
         card = request.form.get('card')
         password = request.form.get('password')
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         surname = request.form.get('surname')
         name = request.form.get('name')
         secname = request.form.get('secname')
@@ -28,7 +29,7 @@ def add_user():
         role = request.form.get('role')
         lvl = request.form.get('lvl')
 
-        user = Users(card=card, password=password, surname=surname, name=name, secname=secname, birthday=birthday, email=email, phone=phone,
+        user = Users(card=card, password=hashed_password, surname=surname, name=name, secname=secname, birthday=birthday, email=email, phone=phone,
                      referer=referer, bankcard=bankcard, bankname=bankname, cardholder=cardholder, active=active, role=role, lvl=lvl)
 
         try:
@@ -49,7 +50,8 @@ def edit_user(id):
     user = Users.query.get(id)
     if request.method == 'POST':
         user.card = request.form.get('card')
-        user.password = request.form.get('password')
+        password = request.form.get('password')
+        user.password = bcrypt.generate_password_hash(password).decode('utf-8')
         user.surname = request.form.get('surname')
         user.name = request.form.get('name')
         user.secname = request.form.get('secname')

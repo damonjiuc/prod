@@ -18,7 +18,7 @@
   <tbody>
     {% for user in users %}
     <tr>
-      <td>{{ user.card }}</td>
+      <td>{{ '%04d' % user.card }}</td>
       <td>{{ user.surname }} {{ user.name }}</td>
       <td>{{ user.email }}</td>
       <td>{{ user.role }}</td>

@@ -1,9 +1,14 @@
 from datetime import datetime
+from flask_login import UserMixin
+from ..extensions import db, login_manager
 
-from ..extensions import db
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Users.query.get(int(user_id))
 
 
-class Users(db.Model):
+class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     card = db.Column(db.Integer, nullable=False)
     surname = db.Column(db.String(31))

@@ -2,6 +2,12 @@ import os
 
 
 class Config(object):
+    APPNAME = 'app'
+    ROOT = os.path.abspath(APPNAME)
+    UPLOAD_PATH = '/static/upload/'
+    UPLOAD_PATH_FULL = ROOT + UPLOAD_PATH
+
+
     USER = os.environ.get('MYSQL_USER', 'quicksteps_tests')
     PASSWORD = os.environ.get('MYSQL_PASSWORD', 'tests')
     HOST = os.environ.get('MYSQL_HOST', 'vh368.timeweb.ru')
