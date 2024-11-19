@@ -1,9 +1,21 @@
 import os.path
 import secrets
 from PIL import Image
+from flask import current_app, abort
 
-from flask import current_app
+from functools import wraps
+from flask_login import current_user
 
+
+def role_required(*roles):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if not (current_user.role in roles):
+                abort(403)  # HTTP Forbidden
+            return fn(*args, **kwargs)
+        return decorated_view
+    return wrapper
 
 def save_picture(picture):
     random_hex = secrets.token_hex(16)

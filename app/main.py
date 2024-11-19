@@ -11,10 +11,10 @@ def transform_date(date_str):
 
 def read_goods(goods_xlsx, orders_to_check):
     """
-    Выбираем из выгрузки эксель те товыры которые привязаны к заказам (ключ словаря orders_to_check)
-    Добавляем в них id заказов к которым они привязаны
-    Убираем из БД все строки прявязанные к этим заказам
-    Возвращаем словарь со списками товаров привязанных к заказам
+    Выбираем из выгрузки эксель те товыры, которые привязаны к заказам (ключ словаря orders_to_check).
+    Добавляем в них id заказов к которым они привязаны.
+    Убираем из БД все строки прявязанные к этим заказам.
+    Возвращаем словарь со списками товаров привязанных к заказам.
     """
     if len(orders_to_check) == 0:
         return {}
@@ -23,6 +23,10 @@ def read_goods(goods_xlsx, orders_to_check):
     sheet = wb.active
     goods_by_order = {}
     orders_ids = {}
+
+    # alch_orders_ids = {}
+    # for order in orders_to_check:
+
 
     sql = f"SELECT ORDER_ID, ORDER_NUM FROM orders WHERE ORDER_NUM IN ('{"', '".join(orders_to_check)}');"
     cursor.execute(sql)
@@ -157,7 +161,10 @@ def process_one_direction(orders_table, items_table):
     """
     print(f'Processin {orders_table}, {items_table}')
 
-    cur_orders = read_deals(orders_table, 7)
+    cur_orders = read_deals(orders_table, 9999)
+
+    if len(cur_orders.keys()) == 0:
+        return None
 
     check_goods = process_orders(cur_orders)
 
@@ -174,18 +181,74 @@ def process_one_direction(orders_table, items_table):
 
     print()
 
+def process_users_vars():
+    """ Функция для расчета сумм, которые потратили дизайнеры и и уровня партнерки """
+    # Получаем из БД инфо о юзерах и кладем в словарь, ключ - номер карты
+    cursor.execute(f"SELECT ID, CARD, LVL, MONEYTOMLN, TOTALMONEY FROM users")
+    db_users_w_money = cursor.fetchall()
+    users_w_money_dict = {}
+    for user in db_users_w_money:
+        users_w_money_dict[str(user[1])] = user
+
+    # Выгружаем из БД заказы, привязаные к юзерам
+    cursor.execute(
+        f"SELECT ORDER_ID, ORDER_DATE, ORDER_SUM, CARD_NUM FROM orders WHERE CARD_NUM IN ('{"', '".join(users_w_money_dict.keys())}');")
+    db_orders_w_sum = cursor.fetchall()
+
+    # Создаем словарь, где ключ - номер карты юзера, а значение - список [Сумма заказов до 23г, Сумма заказов после 23г, Сумма за текущий год]
+    # Проходим циклом по всем заказам и плюсуем сумму в нужную переменную
+    users_orders = {}
+
+    for order in db_orders_w_sum:
+        cur_user_orders = users_orders.get(order[3], [0, 0, 0])
+        if order[1] < datetime.date(2023, 1, 1):
+            cur_user_orders[0] += int(order[2])
+        else:
+            cur_user_orders[1] += int(order[2])
+            if order[1] > datetime.date(2024, 1, 1):
+                cur_user_orders[2] += int(order[2])
+
+        users_orders[order[3]] = cur_user_orders
+
+    # Добавляем в список сумм каждого юзера общую сумму заказов (до и после 23г)
+    for user in users_orders.keys():
+        users_orders[user].append(users_orders[user][0] + users_orders[user][1])
+
+    # Расчет и запись в БД
+    for user, money in users_orders.items():
+        total_money = money[-1]
+        money_this_year = money[-2]
+        lvl_a = int(money[0] // 500000)  # уровень до 23г
+        money_after = money[1] + money[0] % 500000  # потрачено после 23г с учетом остатка до 23г
+        lvl_b = int(money_after // 1000000)  # уровень накопленный после 23г
+        lvl = lvl_a + lvl_b  # уровень суммарный
+        if lvl > 10:  # проверка, что уровень не больше 10
+            lvl = 10
+        money_to_lvl = money_after % 1000000
+        total_money_db = int(users_w_money_dict[str(user)][-1])
+        lvl_db = int(users_w_money_dict[str(user)][2])
+        tickets = int(money_this_year // 500000)
+        print(
+            f'\nUser {user}: уровней до 23 - {lvl_a}, уровней после 23 - {lvl_b}, \nвсего потрачено {total_money} / {money_this_year} в этом году, \nнакоплено для повышения уровня {money_to_lvl}')
+        # если рассчитанные значения уровня и суммы заказов не такие, как в БД - перезаписываем БД
+        if total_money != total_money_db or lvl != lvl_db:
+            sql = f"UPDATE users SET LVL='{lvl}', MONEYTOMLN='{money_to_lvl}', TOTALMONEY='{total_money}', MONEYTHISYEAR='{money_this_year}', TICKETS='{tickets}' WHERE CARD='{user}'"
+            cursor.execute(sql)
+
 if __name__ == '__main__':
     db = mysql.connector.connect(
         host="vh368.timeweb.ru",
-        user="quicksteps_new",
-        password="gtW91BGp",
-        database="quicksteps_new"
+        user="quicksteps_tests",
+        password="tests",
+        database="quicksteps_tests"
     )
     cursor = db.cursor()
 
     process_one_direction('xls/Dveri diz zakazy (XLSX).xlsx', 'xls/Dveri diz tovary (XLSX).xlsx')
     process_one_direction('xls/Keramika diz zakazy (XLSX).xlsx', 'xls/Keramika diz tovary (XLSX).xlsx')
     process_one_direction('xls/Parket diz zakazy (XLSX).xlsx', 'xls/Parket diz tovary (XLSX).xlsx')
+
+    process_users_vars()
 
     db.commit()
     db.close()

@@ -19,6 +19,7 @@ body {
     margin: 0 auto;
     padding: 40px 20px;
     flex: 1 1 auto;
+    width: 1366px;
 }
 
 header, footer {
@@ -32,6 +33,20 @@ header {
     justify-content: space-between;
 }
 
+.flash {
+    padding: 16px;
+    border-radius: 12px;
+    max-width: 800px;
+}
+
+.flash-success {
+    background: darkseagreen;
+}
+
+.flash-error {
+    background: lightcoral;
+}
+
 table {
     border-spacing: 0px;
     border-collapse: collapse;
@@ -40,6 +55,13 @@ table {
 h1 {
     font-size: 1.6em;
     font-weight: bold;
+}
+
+h2 {
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+    margin: 48px 0 16px;
 }
 
 .logo__img {

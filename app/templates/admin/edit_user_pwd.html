@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Изменить пароль партнера #{{ user.card }} ({{ user.surname }} {{ user.name }}) {% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+
+{% block content %}
+<form class="form-add-user" method="post">
+  <div class="form-add-user-el">
+    <label for="password">Пароль</label>
+    <input id="password" name="password" type="password" placeholder="Пароль">
+  </div>
+  <input value="Изменить пароль" type="submit" class="btn btn-confirm">
+</form>
+{% endblock %}

@@ -1,22 +1,181 @@
 {% extends 'main/base.html' %}
 
-{% block title %}Добавить партнера{% endblock %}
+{% block title %}Здравствуйте, {{ current_user.name }}{% endblock %}
 
-{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
+{% endblock %}
 
 {% block content %}
     <form class="form-add-user" method="post" enctype="multipart/form-data">
-        {{ form.csrf_token }}
-        {{ form.id(placeholder="ID") }}
-        {{ form.phone(placeholder="Телефон") }}
-        {{ form.email(placeholder="E-Mail") }}
-        {{ form.birthday(placeholder="Дата рождения") }}
-        {{ form.password(placeholder="Пароль") }}
-        {{ form.confirm_password(placeholder="Подтвердите пароль") }}
-        {{ form.avatar(placeholder="Аватар") }}
-        {{ form.submit(placeholder="Изменить") }}
+            {{ form.csrf_token }}
+        <div class="form-add-user-el">
+            {{ form.id.label }}
+            {{ form.id(placeholder="ID") }}
+        </div>
+        <div class="form-add-user-el">
+            {{ form.phone.label }}
+            {{ form.phone(placeholder="Телефон") }}
+        </div>
+        <div class="form-add-user-el">
+            {{ form.email.label }}
+            {{ form.email(placeholder="E-Mail") }}
+        </div>
+        <div class="form-add-user-el">
+            {{ form.birthday.label }}
+            {{ form.birthday(placeholder="Дата рождения") }}
+        </div>
+        <div class="form-add-user-el">
+            {{ form.password.label }}
+            {{ form.password(placeholder="Пароль") }}
+        </div>
+        <div class="form-add-user-el">
+            {{ form.confirm_password.label }}
+            {{ form.confirm_password(placeholder="Подтвердите пароль") }}
+        </div>
+        <div class="form-add-user-el">
+            {{ form.avatar.label }}
+            {{ form.avatar(placeholder="Аватар") }}
+        </div>
+            {{ form.submit(placeholder="Изменить") }}
 
     </form>
 
+    <h2>Статистика</h2>
+    <div>
+        <div>Кол-во заказов: {{ stats['orders_count'] }}</div>
+        <div>Ожидает выплаты: {{ stats['bonus_to_pay'] }}</div>
+        <div>Заработали: {{ stats['money_earned'] }}</div>
+        <div>Ваша реф. ссылка: https://prod.ru/?r={{  '%04d' % current_user.card }}</div>
+    </div>
+
+    <h2>Наши магазины</h2>
+    <div class="our-stores">
+        <div class="our-stores-store">
+            <div class="our-stores-img-cont">
+                <img src="{{ url_for('static', filename='img/stores/slonparket.svg') }}">
+            </div>
+            <div class="our-stores-txt">
+                Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений  для отделки пола
+            </div>
+        </div>
+        <div class="our-stores-store">
+            <div class="our-stores-img-cont">
+                <img src="{{ url_for('static', filename='img/stores/cp1.svg') }}">
+            </div>
+            <div class="our-stores-txt">
+                Огромный выбор качественного напольного покрытия
+            </div>
+        </div>
+        <div class="our-stores-store">
+            <div class="our-stores-img-cont">
+                <img src="{{ url_for('static', filename='img/stores/parket1703.svg') }}">
+            </div>
+            <div class="our-stores-txt">
+                Новая сеть салонов напольных покрытий, отвечающая нашим высочайшим стандартам качества сервиса и продукции.
+            </div>
+        </div>
+        <div class="our-stores-store">
+            <div class="our-stores-img-cont">
+                <img src="{{ url_for('static', filename='img/stores/lp.svg') }}">
+            </div>
+            <div class="our-stores-txt">
+                В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене
+            </div>
+        </div>
+        <div class="our-stores-store">
+            <div class="our-stores-img-cont">
+                <img src="{{ url_for('static', filename='img/stores/pd.svg') }}">
+            </div>
+            <div class="our-stores-txt">
+                Широкий выбор дверей из экошпона и алюминия
+            </div>
+        </div>
+        <div class="our-stores-store">
+            <div class="our-stores-img-cont">
+                <img src="{{ url_for('static', filename='img/stores/rd.svg') }}">
+            </div>
+            <div class="our-stores-txt">
+                Большой ассортимент межкомнатных дверей  с разными покрытиями: шпон, эмаль, массив
+            </div>
+        </div>
+    </div>
+
+    <h2>Бонусная программа</h2>
+    <div class="progress-container">
+        <div class="progress" id="progress"> </div>
+        <div class="circle active">10%</div>
+        <div class="circle">10.5</div>
+        <div class="circle">11%</div>
+        <div class="circle">11.5</div>
+        <div class="circle">12%</div>
+        <div class="circle">12.5</div>
+        <div class="circle">13%</div>
+        <div class="circle">13.5</div>
+        <div class="circle">14%</div>
+        <div class="circle">14.5</div>
+        <div class="circle">15%</div>
+    </div>
+
+<script>
+
+const progress = document.getElementById("progress");
+const stepCircles = document.querySelectorAll(".circle");
+let currentActive = 1;
+
+//NOTE CHANGE HERE TO 1-4
+//1=25%
+//2=50%
+//3=75%
+//4=100%
+update({{ current_user.lvl + 1 }});
+
+function update(currentActive) {
+  stepCircles.forEach((circle, i) => {
+    if (i < currentActive) {
+      circle.classList.add("active");
+    } else {
+      circle.classList.remove("active");
+    }
+  });
+
+  const activeCircles = document.querySelectorAll(".active");
+  progress.style.width =
+    ((activeCircles.length - 1) / (stepCircles.length - 1)) * 100 + "%";
+
+
+}
+</script>
+
+<div class="animated-progress">
+    <span style="width: {{ current_user.moneytomln / 10000 }}%">{{ current_user.moneytomln }}₽ / 1000000.0₽</span>
+</div>
+
+
+<h2>Заказы</h2>
+
+<div class="orders-tbl">
+    <div class="orders-tbl-section orders-tbl-header">
+        <div class="orders-tbl-el tbl-order-num">№ Заказа</div>
+        <div class="orders-tbl-el tbl-order-fio">ФИО Клиента</div>
+        <div class="orders-tbl-el tbl-order-address">Адрес</div>
+        <div class="orders-tbl-el tbl-order-date">Дата заказа</div>
+        <div class="orders-tbl-el tbl-order-del-date">Отгрузка</div>
+        <div class="orders-tbl-el tbl-order-sum">Сумма</div>
+        <div class="orders-tbl-el tbl-order-bonus">Бонус</div>
+    </div>
+    {% for order in orders %}
+    <div class="orders-tbl-section">
+      <div class="orders-tbl-el tbl-order-num"><a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a></div>
+      <div class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</div>
+      <div class="orders-tbl-el tbl-order-address">{{ order.address }}</div>
+      <div class="orders-tbl-el tbl-order-date">{{ order.order_date }}</div>
+      <div class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</div>
+      <div class="orders-tbl-el tbl-order-sum">{{ order.order_sum }}</div>
+      <div class="orders-tbl-el tbl-order-bonus">{{ order.bonus }}</div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

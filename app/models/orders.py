@@ -2,7 +2,7 @@ from ..extensions import db
 
 
 class Orders(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    order_id = db.Column(db.Integer, primary_key=True)
     order_name = db.Column(db.String(64))
     order_num = db.Column(db.String(11), nullable=False)
     order_date = db.Column(db.Date)

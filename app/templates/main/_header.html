@@ -2,9 +2,9 @@
   <img class="logo__img" src="{{ url_for('static', filename='img/logo.svg') }}" alt="prod logo">
 </a>
 <ul class="menu-header">
+  {% if current_user.is_authenticated %}
   <li><a class="link-header" href="{{ url_for('admin.add_user') }}">Add User</a></li>
   <li><a class="link-header" href="{{ url_for('admin.all_users') }}">Users</a></li>
-  {% if current_user.is_authenticated %}
   <li>{{ '%04d' % current_user.card }} <a class="link-header" href="{{ url_for('user.user_logout') }}">Logout</a></li>
   {% else %}
   <li><a class="link-header" href="{{ url_for('user.user_login') }}">Login</a></li>

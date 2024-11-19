@@ -2,13 +2,14 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
 from wtforms import PasswordField, SubmitField, TelField, EmailField, DateField, FileField, IntegerField, StringField, BooleanField
 from wtforms.validators import DataRequired, Length, EqualTo
+from flask_login import current_user
 
 
 class UserEditForm(FlaskForm):
-    id = IntegerField('ID', validators=[DataRequired()])
-    phone = TelField('Телефон', validators=[DataRequired()])
-    email = EmailField('E-mail', validators=[DataRequired()])
-    birthday = DateField('Дата рождения', validators=[DataRequired()])
+    id = IntegerField('ID', validators=[DataRequired()], default=lambda: current_user.id)
+    phone = TelField('Телефон', validators=[DataRequired()], default=lambda: current_user.phone)
+    email = EmailField('E-mail', validators=[DataRequired()], default=lambda: current_user.email)
+    birthday = DateField('Дата рождения', validators=[DataRequired()], default=lambda: current_user.birthday)
     password = PasswordField('Пароль', validators=[DataRequired()])
     confirm_password = PasswordField('Подтвердите пароль', validators=[DataRequired(), EqualTo('password')])
     avatar = FileField('Загрузите аватар', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])

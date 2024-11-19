@@ -1,10 +1,12 @@
 /* Юзеры добавить */
 
-.form-add-user {
+.form-add-user, .sales-data {
     min-width: 560px;
+    max-width: 720px;
+    margin: auto;
 }
 
-.form-add-user input{
+.form-add-user input, .user-info-data{
     display: block;
     border: 1px solid;
     margin: 12px auto;
@@ -26,7 +28,7 @@
     margin: 16px;
 }
 
-.form-add-user label {
+.form-add-user label, .user-info-label {
     display: block;
     border: 1px solid;
     margin: 12px auto;
@@ -35,8 +37,25 @@
     width: 210px;
 }
 
-.form-add-user-el {
+.form-add-user-el, .user-info {
     display: flex;
+}
+
+.sales-data {
+    margin-top: 72px;
+}
+
+.btn-confirm {
+    display: block;
+    border: 1px solid;
+    margin: 12px auto;
+    border-radius: 8px;
+    padding: 8px;
+    width: 320px;
+    text-align: center;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.05),
+        0 0 0 3px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.2);
 }
 
 /* Юзеры, таблица */

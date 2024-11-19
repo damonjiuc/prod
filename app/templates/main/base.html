@@ -8,12 +8,13 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-<header>{% include 'main/_header.html' %}</header>
-<main class="content">
-    <h1>{{ self.title() }}</h1>
-    {% block content %}{% endblock %}
-</main>
-<footer>{% include 'main/_footer.html' %}</footer>
+    <header>{% include 'main/_header.html' %}</header>
+    <main class="content">
+        {% include 'main/_flash.html' %}
+        <h1>{{ self.title() }}</h1>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>{% include 'main/_footer.html' %}</footer>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>

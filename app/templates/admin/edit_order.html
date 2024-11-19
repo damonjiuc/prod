@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Изменить данные заказа {{ order.order_num }} {% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+
+{% block content %}
+<table class="table-users">
+  <thead>
+    <tr>
+      <th>Наименование</th>
+      <th>Кол-во</th>
+      <th>Ед. измерения</th>
+      <th>Цена</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.amount }}</td>
+      <td>{{ item.amount_type }}</td>
+      <td>{{ item.price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
