@@ -47,10 +47,10 @@ def add_user():
         try:
             db.session.add(user)
             db.session.commit()
-            flash('Форма отправлена!', 'success')
-            return redirect('/')
+            flash('Пользователь добавлен!', category='success')
+            return redirect(url_for('admin.users'))
         except Exception as exc:
-            flash('Некорректно введены данные!')
+            flash('Некорректно введены данные!', category='error')
             print(str(exc))
             # return str(exc)
 
@@ -85,7 +85,7 @@ def edit_user(id):
 
         try:
             db.session.commit()
-            flash('Форма отправлена!')
+            flash('Форма отправлена!', category='success')
             return redirect('/')
         except Exception as exc:
             print(str(exc))
@@ -104,7 +104,7 @@ def edit_user_pwd(id):
         user.password = bcrypt.generate_password_hash(password).decode('utf-8')
         try:
             db.session.commit()
-            flash('Форма отправлена!')
+            flash('Форма отправлена!', category='success')
             return redirect(url_for('admin.edit_user', id=user.id))
         except Exception as exc:
             print(str(exc))
@@ -121,7 +121,7 @@ def delete_user(id):
     try:
         db.session.delete(user)
         db.session.commit()
-        flash('Пользователь удален')
+        flash('Пользователь удален', category='success')
         return redirect('/admin/users')
     except Exception as exc:
         print(str(exc))

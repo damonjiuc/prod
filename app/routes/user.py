@@ -21,13 +21,15 @@ def user_login():
                 user = Users.query.filter_by(phone=login).first()
         else:
             user = Users.query.filter_by(email=login).first()
+        if user.active == 0:
+            flash('Ваш доступ в личный кабинет заблокирован', category='error')
+            return redirect(url_for('main.index'))
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-        return redirect(next_page) if next_page else redirect(url_for('user.user_edit_profile'))
-    else:
-        # flash('Некорректные данные')
-        print('Некорректные данные')
+            return redirect(next_page) if next_page else redirect(url_for('user.user_edit_profile'))
+        else:
+            flash('Некорректные данные', category='error')
     return render_template('user/login.html', form=form)
 
 @user.route('/user/edit', methods=['POST', 'GET'])
@@ -62,10 +64,8 @@ def user_edit_profile():
             db.session.commit()
         except Exception as exc:
             print(str(exc))
+            flash('Некорректные данные', category='error')
         return redirect(url_for('user.user_login'))
-    else:
-        # flash('Некорректные данные')
-        print('Некорректные данные') # flash
     return render_template('user/edit.html', form=form, orders=orders, stats=stats)
 
 @user.route('/user/logout', methods =['POST', 'GET'])
