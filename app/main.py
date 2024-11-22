@@ -28,7 +28,8 @@ def read_goods(goods_xlsx, orders_to_check):
     # for order in orders_to_check:
 
 
-    sql = f"SELECT ORDER_ID, ORDER_NUM FROM orders WHERE ORDER_NUM IN ('{"', '".join(orders_to_check)}');"
+    orders_to_check_str = "', '".join(orders_to_check)
+    sql = f"SELECT ORDER_ID, ORDER_NUM FROM orders WHERE ORDER_NUM IN ('{orders_to_check_str}');"
     cursor.execute(sql)
     db_orders_ids = cursor.fetchall()
 
@@ -191,8 +192,9 @@ def process_users_vars():
         users_w_money_dict[str(user[1])] = user
 
     # Выгружаем из БД заказы, привязаные к юзерам
+    sql_users_w_money = "', '".join(users_w_money_dict.keys())
     cursor.execute(
-        f"SELECT ORDER_ID, ORDER_DATE, ORDER_SUM, CARD_NUM FROM orders WHERE CARD_NUM IN ('{"', '".join(users_w_money_dict.keys())}');")
+        f"SELECT ORDER_ID, ORDER_DATE, ORDER_SUM, CARD_NUM FROM orders WHERE CARD_NUM IN ('{sql_users_w_money}');")
     db_orders_w_sum = cursor.fetchall()
 
     # Создаем словарь, где ключ - номер карты юзера, а значение - список [Сумма заказов до 23г, Сумма заказов после 23г, Сумма за текущий год]
@@ -237,7 +239,7 @@ def process_users_vars():
 
 if __name__ == '__main__':
     db = mysql.connector.connect(
-        host="vh368.timeweb.ru",
+        host="vh436.timeweb.ru",
         user="quicksteps_tests",
         password="tests",
         database="quicksteps_tests"

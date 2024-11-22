@@ -10,7 +10,7 @@ class Config(object):
 
     USER = os.environ.get('MYSQL_USER', 'quicksteps_tests')
     PASSWORD = os.environ.get('MYSQL_PASSWORD', 'tests')
-    HOST = os.environ.get('MYSQL_HOST', 'vh368.timeweb.ru')
+    HOST = os.environ.get('MYSQL_HOST', 'vh436.timeweb.ru')
     PORT = os.environ.get('MYSQL_PORT', '3306')
     DB = os.environ.get('MYSQL_DB', 'quicksteps_tests')
 
