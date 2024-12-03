@@ -1,7 +1,45 @@
-<a class="logo" href="/">
+<nav>
+  <div class="logo">
+    <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="PRO Дизайн Logo" />
+  </div>
+  <ul class="menu">
+    <li><a href="#">ГЛАВНАЯ</a></li>
+    <li><a href="#">ПАРТНЕРСТВО</a></li>
+    <li><a href="#">РОЗЫГРЫШИ</a></li>
+    <li><a href="#">ОПТ</a></li>
+    <li><a href="#">FAQ</a></li>
+    <li><a href="#">КОНТАКТЫ</a></li>
+  </ul>
+  <div class="contact-info">
+    <span class="phone">+7 (812) 213 - 03 - 00</span>
+    <a href="#" class="login-btn"
+      >Вход для партнеров
+      <div class="logo">
+        <img src="{{ url_for('static', filename='img/icon_login.svg') }}" />
+      </div>
+    </a>
+  </div>
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+<ul class="mobile-menu">
+  <li><a href="#">Главная</a></li>
+  <li><a href="#">Партнерство</a></li>
+  <li><a href="#">Розыгрыши</a></li>
+  <li><a href="#">Оптовое направление</a></li>
+  <li><a href="#">FAQ</a></li>
+  <li><a href="#">Контакты</a></li>
+</ul>
+
+<!--
+<div>
+  <a class="logo" href="/">
   <img class="logo__img" src="{{ url_for('static', filename='img/logo.svg') }}" alt="prod logo">
-</a>
-<ul class="menu-header">
+  </a>
+  <ul class="menu-header">
   {% if current_user.is_authenticated %}
   <li><a class="link-header" href="{{ url_for('admin.add_user') }}">Add User</a></li>
   <li><a class="link-header" href="{{ url_for('admin.all_users') }}">Users</a></li>
@@ -9,4 +47,7 @@
   {% else %}
   <li><a class="link-header" href="{{ url_for('user.user_login') }}">Login</a></li>
   {% endif %}
-</ul>
+  </ul>
+</div>
+-->
+

@@ -1,3 +1,165 @@
 {% extends 'main/base.html' %}
 
 {% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="banner-group">
+    <div class="banner-group-banner">
+      <img src="{{ url_for('static', filename='img/imgs/ban.jpg') }}"/>
+    </div>
+    <div class="banner-group-dirs">
+        <div class="banner-group-dir dir-dark">
+            <div class="banner">
+                <div class="content-block">
+                    <h1>Самая крупная сеть салонов<br/>отделочных материалов</h1>
+                    <p>Напольные покрытия, двери, плитка</p>
+                    <a href="#">Адреса магазинов</a>
+                </div>
+                <div class="arrow">
+                    <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                </div>
+            </div>
+        </div>
+        <div class="banner-group-dir dir-white">
+            <div class="banner">
+                <div class="content-block">
+                    <h1>Лучшая партнерская программа</h1>
+                    <p>Для дизайнеров <br>и строителей</p>
+                </div>
+                <div class="arrow">
+                    <img src="{{ url_for('static', filename='img/icon_arrow_rt_red.svg') }}"/>
+                </div>
+            </div>
+        </div>
+        <div class="banner-group-dir dir-red">
+            <div class="banner">
+                <div class="content-block">
+                    <h1> Производство<br/>и оптовое направление  </h1>
+                    <p>Union, Decospan<br>другие бренды</p>
+                </div>
+                <div class="arrow">
+                    <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Основной контент -->
+<section class="content">
+    <div style="width: 600px; text-align: left;">
+        <h2 style="margin-top: 17px">Наши салоны оформлены<br/>в современном стиле и<br/>предлагают посетителям<br/>тысячи образцов.</h2>
+        <p>Мы предлагаем лучший сервис и широкий выбор сопутствующих товаров и услуг, предлагая полный цикл обслуживания клиента.</p>
+        <div class="button-container">
+            <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r.svg') }}" alt="Icon"/></button>
+        </div>
+    </div>
+    <div style="text-align: left">
+        <div class="decor-block">
+            <img src="{{ url_for('static', filename='img/imgs/salon1.jpg') }}" />
+            <h3 class="decor-text">Деревяные напольные<br />покрытия</h3>
+            <h3 class="decor-about"> паркет, ламинат,<br />кварц-виниловая плитка,<br />массивная доска и др.</h3>
+        </div>
+    </div>
+    <div style="text-align: left">
+        <div class="decor-block">
+            <img src="{{ url_for('static', filename='img/imgs/salon2.jpg') }}" />
+            <h3 class="decor-text">Керамическая плитка<br />и керамогранит</h3>
+        </div>
+    </div>
+    <div style="text-align: left">
+        <div class="decor-block">
+            <img src="{{ url_for('static', filename='img/imgs/salon3.jpg') }}" />
+            <h3 class="decor-text">Межкомнатные <br />и входные двери</h3>
+            <h3 class="decor-about">серийные и под заказ</h3>
+        </div>
+    </div>
+</section>
+<!-- end Основной контент -->
+
+<!-- Раздел брендов -->
+<section class="brands">
+<div class="info">
+    <h4>Мы гарантируем самую низкую цену на весь предлагаемый ассортимент и будем рады видеть вас в наших салонах.</h4>
+</div>
+<h3>Наши бренды</h3>
+<div class="brand-list">
+    <div class="brand">
+        <img src="{{ url_for('static', filename='img/stores/parket1703.svg') }}" />
+        <h4>Большой выбор напольных покрытий квартир, так и для частных домов</h4>
+        <p>parket1703.ru</p>
+    </div>
+    <div class="brand">
+        <img src="{{ url_for('static', filename='img/stores/rd.svg') }}" />
+        <h4>Большой ассортимент межкомнатных<br> дверей с разными покрытиями: шпон, эмаль, массив</h4>
+        <p>realdoor.ru</p>
+    </div>
+    <div class="brand" style="border-right: none;">
+        <img src="{{ url_for('static', filename='img/stores/slonparket.svg') }}" />
+        <h4>Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений для отделки пола</h4>
+        <p>slonparket.ru</p>
+    </div>
+    <div class="brand" style="border-bottom: none;">
+        <img src="{{ url_for('static', filename='img/stores/lp.svg') }}" />
+        <h4>В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене.</h4>
+        <p>lenplitka.ru</p>
+    </div>
+    <div class="brand" style="border-bottom: none;">
+        <img style="width: 130px" src="{{ url_for('static', filename='img/stores/pd.svg') }}" />
+        <h4>Широкий выбор дверей из экошпона и алюминия.</h4>
+        <p>profildoors.sale</p>
+    </div>
+    <div class="brand" style="border-right: none; border-bottom: none;">
+        <img src="{{ url_for('static', filename='img/stores/cp1.svg') }}" />
+        <h4>Огромный выбор качественного напольного покрытия.</h4>
+        <p>cp1.ru</p>
+    </div>
+</div>
+</section>
+
+<!-- end Раздел брендов -->
+<!-- Раздел партнеров -->
+<section class="partners">
+<div>
+  <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
+  <p>Узнайте о лучших условиях для партнеров</p>
+  <div class="button-container">
+    <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
+  </div>
+</div>
+<div>
+  <img class="partners-people" src="{{ url_for('static', filename='img/imgs/ban2.png') }}" />
+</div>
+</section>
+<!-- end Раздел партнеров -->
+<section class="our-advantages">
+    <h3>Наши преимущества</h3>
+    <div class="advantages-flex">
+        <div class="advantages-block">
+            <div>
+                <img src="{{ url_for('static', filename='img/imgs/adv1.jpg') }}" alt="" />
+            </div>
+            <div>
+                <h5>Бонусы за партнера</h5>
+                <p>Бонусы за приглашённых<br />вами партнёров.</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <div><img src="{{ url_for('static', filename='img/imgs/adv2.jpg') }}" alt="" /></div>
+            <div>
+                <h5>20+ Салонов</h5>
+                <p>Мы крупнейшая сеть<br />в Санкт-Петербурге.</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <div><img src="{{ url_for('static', filename='img/imgs/adv3.jpg') }}" alt="" /></div>
+            <div>
+                <h5>Бонусы</h5>
+                <p>Бонус при заказе до 15%. <br />Рост процента бонуса <br />с объёмом продаж.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
