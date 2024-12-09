@@ -1,38 +1,50 @@
-<nav>
-  <div class="logo">
-    <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="PRO Дизайн Logo" />
-  </div>
-  <ul class="menu">
-    <li><a href="#">ГЛАВНАЯ</a></li>
-    <li><a href="#">ПАРТНЕРСТВО</a></li>
-    <li><a href="#">РОЗЫГРЫШИ</a></li>
-    <li><a href="#">ОПТ</a></li>
-    <li><a href="#">FAQ</a></li>
-    <li><a href="#">КОНТАКТЫ</a></li>
-  </ul>
-  <div class="contact-info">
-    <span class="phone">+7 (812) 213 - 03 - 00</span>
-    <a href="#" class="login-btn"
-      >Вход для партнеров
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-xl-2">
       <div class="logo">
-        <img src="{{ url_for('static', filename='img/icon_login.svg') }}" />
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="PRO Дизайн Logo" />
       </div>
-    </a>
+    </div>
+    <div class="col-12 col-xl-6">
+      <nav>
+        <ul class="menu">
+          <li><a href="#">ГЛАВНАЯ</a></li>
+          <li><a href="#">ПАРТНЕРСТВО</a></li>
+          <li><a href="#">РОЗЫГРЫШИ</a></li>
+          <li><a href="#">ОПТ</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">КОНТАКТЫ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-12 col-xl-2">
+      <div class="contact-info phone">
+        +7 (812) 213 - 03 - 00
+      </div>
+    </div>
+    <div class="col-12 col-xl-2">
+        <a href="#" class="login-btn"
+          >Вход для партнеров
+          <div class="">
+            <img src="{{ url_for('static', filename='img/icon_login.svg') }}" />
+          </div>
+        </a>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="mobile-menu">
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Партнерство</a></li>
+        <li><a href="#">Розыгрыши</a></li>
+        <li><a href="#">Оптовое направление</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Контакты</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</nav>
-<ul class="mobile-menu">
-  <li><a href="#">Главная</a></li>
-  <li><a href="#">Партнерство</a></li>
-  <li><a href="#">Розыгрыши</a></li>
-  <li><a href="#">Оптовое направление</a></li>
-  <li><a href="#">FAQ</a></li>
-  <li><a href="#">Контакты</a></li>
-</ul>
+</div>
 
 <!--
 <div>
