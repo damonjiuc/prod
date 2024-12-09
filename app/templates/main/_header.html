@@ -1,46 +1,65 @@
 <div class="container">
+  {% if current_user.is_authenticated and current_user.role == 1 %}
+  <div style="position: absolute; top: 0;">
+    <ul class="menu">
+        <li><a href="{{ url_for('admin.add_user') }}">Добавить партнера</a></li>
+        <li><a href="{{ url_for('admin.all_users') }}">Партнеры</a></li>
+    </ul>
+  </div>
+  {% endif %}
   <div class="row">
     <div class="col-12 col-xl-2">
       <div class="logo">
-        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="PRO Дизайн Logo" />
+        <a href="{{ url_for('main.index') }}">
+          <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="PRO Дизайн Logo" />
+        </a>
       </div>
     </div>
     <div class="col-12 col-xl-6">
       <nav>
         <ul class="menu">
-          <li><a href="#">ГЛАВНАЯ</a></li>
-          <li><a href="#">ПАРТНЕРСТВО</a></li>
-          <li><a href="#">РОЗЫГРЫШИ</a></li>
-          <li><a href="#">ОПТ</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">КОНТАКТЫ</a></li>
+          <li><a href="{{ url_for('main.index') }}">ГЛАВНАЯ</a></li>
+          <li><a href="{{ url_for('main.retail') }}">МАГАЗИНЫ</a></li>
+          <li><a href="{{ url_for('main.partners') }}">ПАРТНЕРСТВО</a></li>
+          <li><a href="{{ url_for('main.trading') }}">ОПТ</a></li>
+          <li><a href="{{ url_for('main.contacts') }}">КОНТАКТЫ</a></li>
         </ul>
       </nav>
     </div>
     <div class="col-12 col-xl-2">
       <div class="contact-info phone">
-        +7 (812) 213 - 03 - 00
+        <a href="tel:88122130300">+7(812)213-03-00</a>
       </div>
     </div>
     <div class="col-12 col-xl-2">
-        <a href="#" class="login-btn"
-          >Вход для партнеров
-          <div class="">
-            <img src="{{ url_for('static', filename='img/icon_login.svg') }}" />
-          </div>
-        </a>
+      <div class="login-btn">
+        {% if current_user.is_authenticated %}
+          <a href="{{ url_for('user.user_profile') }}">
+            {{ '%04d' % current_user.card }} Личный кабинет
+          </a>
+          <a href="{{ url_for('user.user_logout') }}">
+            <div class="" style="padding-left: 6px;"><img src="{{ url_for('static', filename='img/icon_cross.svg') }}" /></div>
+          </a>
+        {% else %}
+          <a href="{{ url_for('user.user_login') }}">
+            Вход для партнеров
+          </a>
+          <a href="{{ url_for('user.user_login') }}">
+            <div class=""><img src="{{ url_for('static', filename='img/icon_login.svg') }}" /></div>
+          </a>
+        {% endif %}
+      </div>
       <div class="hamburger">
         <span></span>
         <span></span>
         <span></span>
       </div>
       <ul class="mobile-menu">
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Партнерство</a></li>
-        <li><a href="#">Розыгрыши</a></li>
-        <li><a href="#">Оптовое направление</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Контакты</a></li>
+        <li><a href="{{ url_for('main.index') }}">ГЛАВНАЯ</a></li>
+        <li><a href="{{ url_for('main.retail') }}">МАГАЗИНЫ</a></li>
+        <li><a href="{{ url_for('main.partners') }}">ПАРТНЕРСТВО</a></li>
+        <li><a href="{{ url_for('main.trading') }}">ОПТ</a></li>
+        <li><a href="{{ url_for('main.contacts') }}">КОНТАКТЫ</a></li>
       </ul>
     </div>
   </div>

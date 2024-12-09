@@ -34,3 +34,4 @@ class Users(db.Model, UserMixin):
     totalmoney = db.Column(db.Integer)
     moneythisyear = db.Column(db.Integer)
     tickets = db.Column(db.Integer)
+    comment = db.Column(db.String)

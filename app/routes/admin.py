@@ -6,6 +6,7 @@ from ..models.users import Users
 from ..models.orders import Orders
 from ..models.items import Items
 from ..functions import role_required
+from app.email import send_registration_email, bonus_paid
 
 admin = Blueprint('admin', __name__)
 
@@ -39,15 +40,18 @@ def add_user():
         active = request.form.get('active')
         role = request.form.get('role')
         lvl = request.form.get('lvl')
+        comment = request.form.get('comment')
 
         user = Users(card=card, password=hashed_password, surname=surname, name=name, secname=secname, birthday=birthday,
                      email=email, phone=phone, referer=referer, bankcard=bankcard, bankname=bankname, cardholder=cardholder,
-                     city=city, company=company, active=active, role=role, lvl=lvl)
+                     city=city, company=company, active=active, role=role, lvl=lvl, comment=comment)
 
         try:
             db.session.add(user)
             db.session.commit()
             flash('Пользователь добавлен!', category='success')
+            if name and email and phone and card and password:
+                send_registration_email(name, email, phone, card, password)
             return redirect(url_for('admin.users'))
         except Exception as exc:
             flash('Некорректно введены данные!', category='error')
@@ -81,12 +85,13 @@ def edit_user(id):
         user.lvl = request.form.get('lvl')
         user.company = request.form.get('company')
         user.city = request.form.get('city')
+        user.comment = request.form.get('comment')
 
 
         try:
             db.session.commit()
-            flash('Форма отправлена!', category='success')
-            return redirect('/')
+            flash('Данные пользователя изменены!', category='success')
+            return redirect(f'/admin/edit_user/{user.id}')
         except Exception as exc:
             print(str(exc))
             return str(exc)
@@ -133,4 +138,16 @@ def delete_user(id):
 def edit_order(order_id):
     order = Orders.query.get(order_id)
     items = Items.query.filter_by(order_id=order_id).all()
+    if request.method == 'POST':
+        order.bonus_paid = int(request.form.get('bonus_paid'))
+        try:
+            db.session.commit()
+            if order.bonus_paid == 1:
+                user = Users.query.filter(Users.card.contains(order.card_num)).first()
+                email = user.email
+                bonus_paid(email=email, order_num=order.order_num, bonus=order.bonus)
+            return redirect(url_for('admin.edit_order', order_id=order.order_id))
+        except Exception as exc:
+            print(str(exc))
+            return str(exc)
     return render_template('admin/edit_order.html', items=items, order=order)

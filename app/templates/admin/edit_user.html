@@ -34,6 +34,10 @@
     <label for="phone">Телефон</label>
     <input id="phone" name="phone" type="tel" placeholder="8XXXxxxXXxx" value="{{ user.phone }}">
   </div>
+  <div class="form-add-user-el">
+    <label for="comment">Комментарий</label>
+    <input id="comment" name="comment" type="text" placeholder="Комментарий" value="{{ user.comment }}">
+  </div>
   <div class="form-add-user-group">Реферал</div>
   <div class="form-add-user-el">
     <label for="referer">Номер реферала</label>
@@ -131,7 +135,7 @@
 <table class="table-users">
   <thead>
     <tr>
-      <th>№ Заказа</th>
+      <th style="width: 145px;">№ Заказа</th>
       <th>ФИО Клиента</th>
       <th>Адрес</th>
       <th>Дата заказа</th>
@@ -143,7 +147,10 @@
   <tbody>
     {% for order in orders %}
     <tr>
-      <td><a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a></td>
+      <td>
+        {% if order.bonus_paid %}<span class="green">✔</span>{% else %}<span class="red">✘</span>{% endif %}
+        <a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a>
+      </td>
       <td>{{ order.customer_name }}</td>
       <td style="max-width: 500px;">{{ order.address }}</td>
       <td>{{ order.order_date }}</td>
