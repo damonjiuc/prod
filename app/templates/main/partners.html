@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Партнерство{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+
+{% block content %}
+
+    <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
+        {{ form.csrf_token }}
+        {{ form.name(placeholder="Имя") }}
+        {{ form.phone(placeholder="Телефон") }}
+        {{ form.ref(placeholder="Реферал") }}
+        {{ form.submit(placeholder="Подать заявку") }}
+
+    </form>
+
+
+{% endblock %}

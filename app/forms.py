@@ -5,6 +5,14 @@ from wtforms.validators import DataRequired, Length, EqualTo
 from flask_login import current_user
 
 
+class Partnership(FlaskForm):
+    """ Заявка на партнерство """
+    name = StringField('Имя', validators=[DataRequired()])
+    phone = TelField('Телефон', validators=[DataRequired()])
+    ref = StringField('Реф') #, default=lambda: current_user.birthday
+    submit = SubmitField('Подать заявку')
+
+
 class UserEditForm(FlaskForm):
     id = IntegerField('ID', validators=[DataRequired()], default=lambda: current_user.id)
     phone = TelField('Телефон', validators=[DataRequired()], default=lambda: current_user.phone)
