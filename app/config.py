@@ -9,23 +9,22 @@ class Config(object):
 
 
 # DB
-    USER = os.environ.get('MYSQL_USER', 'quicksteps_tests')
-    PASSWORD = os.environ.get('MYSQL_PASSWORD', 'tests')
-    HOST = os.environ.get('MYSQL_HOST', 'vh436.timeweb.ru')
-    PORT = os.environ.get('MYSQL_PORT', '3306')
-    DB = os.environ.get('MYSQL_DB', 'quicksteps_tests')
+    USER = os.environ.get('MYSQL_USER')
+    PASSWORD = os.environ.get('MYSQL_PASSWORD')
+    HOST = os.environ.get('MYSQL_HOST')
+    PORT = os.environ.get('MYSQL_PORT')
+    DB = os.environ.get('MYSQL_DB')
 
     SQLALCHEMY_DATABASE_URI = f'mysql+mysqlconnector://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB}'
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'hklfkjtgoidfv3456546nfdg5645df6456zfsj')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 # end DB
 
 # mail
-    MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.mail.ru')
-    MAIL_PORT = int(os.environ.get('MAIL_PORT', 465))
-    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', False)
-    MAIL_USE_SSL = os.environ.get('MAIL_USE_SSL', True)
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME', 'no-reply@prod.ru')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', 'r7aWEXfN4B5WwFkb4Du4')
-    ADMINS = ['damonjiuc@gmail.com']
+    MAIL_SERVER = os.environ.get('MAIL_SERVER')
+    MAIL_PORT = int(os.environ.get('MAIL_PORT'))
+    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS')
+    MAIL_USE_SSL = os.environ.get('MAIL_USE_SSL')
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 # end mail
