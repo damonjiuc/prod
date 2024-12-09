@@ -28,10 +28,15 @@ def partners():
 
 
 @main.route('/trading')
-def opt():
-    pass
+def trading():
+    return render_template('main/trading.html')
+
+
+@main.route('/retail')
+def retail():
+    return render_template('main/retail.html')
 
 
 @main.route('/contacts')
 def contacts():
-    pass
+    return render_template('main/retail.html')

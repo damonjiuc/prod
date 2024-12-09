@@ -15,3 +15,4 @@ class Orders(db.Model):
     card_was_given = db.Column(db.Date)
     address = db.Column(db.String(128))
     shop = db.Column(db.String(128))
+    bonus_paid = db.Column(db.Integer)

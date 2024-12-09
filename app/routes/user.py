@@ -27,14 +27,14 @@ def user_login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('user.user_edit_profile'))
+            return redirect(next_page) if next_page else redirect(url_for('user.user_profile'))
         else:
             flash('Некорректные данные', category='error')
     return render_template('user/login.html', form=form)
 
 @user.route('/user/edit', methods=['POST', 'GET'])
 @login_required
-def user_edit_profile():
+def user_profile():
     form = UserEditForm()
     orders = Orders.query.order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all() # .limit(6)
     stats = {'orders_count': 0, 'bonus_to_pay': 0, 'money_earned': 0}
