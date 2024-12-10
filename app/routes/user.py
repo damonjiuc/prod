@@ -38,6 +38,7 @@ def user_profile():
     form = UserEditForm()
     orders = Orders.query.order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all() # .limit(6)
     stats = {'orders_count': 0, 'bonus_to_pay': 0, 'money_earned': 0}
+    user_in_lk = True if request.base_url.endswith('/user/edit') else False
 
     for order in orders:
         stats['orders_count'] += 1
@@ -66,7 +67,7 @@ def user_profile():
             print(str(exc))
             flash('Некорректные данные', category='error')
         return redirect(url_for('user.user_login'))
-    return render_template('user/edit.html', form=form, orders=orders, stats=stats)
+    return render_template('user/edit.html', form=form, orders=orders, stats=stats, user_in_lk=user_in_lk)
 
 @user.route('/user/logout', methods =['POST', 'GET'])
 @login_required

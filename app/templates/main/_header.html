@@ -33,12 +33,13 @@
     </div>
     <div class="col-12 col-xl-2">
       <div class="login-btn">
-        {% if current_user.is_authenticated %}
-          <a href="{{ url_for('user.user_profile') }}">
-            {{ '%04d' % current_user.card }} Личный кабинет
-          </a>
+        {% if current_user.is_authenticated and user_in_lk %}
           <a href="{{ url_for('user.user_logout') }}">
-            <div class="" style="padding-left: 6px;"><img src="{{ url_for('static', filename='img/icon_cross.svg') }}" /></div>
+            {{ '%04d' % current_user.card }} / Выход
+          </a>
+        {% elif current_user.is_authenticated %}
+          <a href="{{ url_for('user.user_profile') }}">
+            {{ '%04d' % current_user.card }} / Личный кабинет
           </a>
         {% else %}
           <a href="{{ url_for('user.user_login') }}">

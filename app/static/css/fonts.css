@@ -1,14 +1,34 @@
-/* FONTS Exo 2 */
 @font-face {
-    font-family: 'Exo2';
+    font-family: 'Gilroy';
     font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/Exo2/Exo2-Regular.ttf')
+    font-weight: Normal;
+    src: url('../fonts/Gilroy.ttf')
 }
 
 @font-face {
-    font-family: 'Exo2';
-    font-style: bold;
-    font-weight: 600;
-    src: url('../fonts/Exo2/Exo2-Bold.ttf')
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: Bold;
+    src: url('../fonts/Gilroy-Bold.ttf')
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: Light;
+    src: url('../fonts/Gilroy-Light.ttf')
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: Medium;
+    src: url('../fonts/Gilroy-Medium.ttf')
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: SemiBold;
+    src: url('../fonts/Gilroy-SemiBold.ttf')
 }
