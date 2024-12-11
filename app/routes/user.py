@@ -3,6 +3,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from ..extensions import db, bcrypt
 from ..models.users import Users
 from ..models.orders import Orders
+from ..models.items import Items
 from ..forms import UserEditForm, UserLogin
 from ..functions import save_picture
 
@@ -41,6 +42,7 @@ def user_profile():
     user_in_lk = True if request.base_url.endswith('/user/edit') else False
 
     for order in orders:
+        order.order_items = Items.query.filter_by(order_id=order.order_id).all()
         stats['orders_count'] += 1
         if order.payment_date is not None:
             stats['money_earned'] += order.bonus

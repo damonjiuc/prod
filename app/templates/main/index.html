@@ -11,46 +11,52 @@
     <div class="col-7">
         <div class="row">
             <div class="col-12">
-                <div class="banner-group-dir dir-dark">
-                    <div class="banner">
-                        <div class="content-block">
-                            <h1>Самая крупная сеть салонов<br/>отделочных материалов</h1>
-                            <p>Напольные покрытия, двери, плитка</p>
-                            <a href="#">Адреса магазинов</a>
-                        </div>
-                        <div class="arrow">
-                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                <a href="{{ url_for('main.retail') }}">
+                    <div class="banner-group-dir dir-dark">
+                        <div class="banner">
+                            <div class="content-block">
+                                <h1>Самая крупная сеть салонов<br/>отделочных материалов</h1>
+                                <p>Напольные покрытия, двери, плитка</p>
+                                <a href="#">Адреса магазинов</a>
+                            </div>
+                            <div class="arrow">
+                                <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-xl-6">
-                <div class="banner-group-dir dir-white">
-                    <div class="banner">
-                        <div class="content-block">
-                            <h1>Лучшая партнерская программа</h1>
-                            <p>Для дизайнеров <br>и строителей</p>
-                        </div>
-                        <div class="arrow">
-                            <img src="{{ url_for('static', filename='img/icon_arrow_rt_red.svg') }}"/>
+                <a href="{{ url_for('main.partners') }}">
+                    <div class="banner-group-dir dir-white">
+                        <div class="banner">
+                            <div class="content-block">
+                                <h1>Лучшая партнерская программа</h1>
+                                <p>Для дизайнеров <br>и строителей</p>
+                            </div>
+                            <div class="arrow">
+                                <img src="{{ url_for('static', filename='img/icon_arrow_rt_red.svg') }}"/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-xl-6">
-                <div class="banner-group-dir dir-red">
-                    <div class="banner">
-                        <div class="content-block">
-                            <h1> Производство<br/>и оптовое направление  </h1>
-                            <p>Union, Decospan<br>другие бренды</p>
-                        </div>
-                        <div class="arrow">
-                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                <a href="{{ url_for('main.trading') }}">
+                    <div class="banner-group-dir dir-red">
+                        <div class="banner">
+                            <div class="content-block">
+                                <h1> Производство<br/>и оптовое направление  </h1>
+                                <p>Union, Decospan<br>другие бренды</p>
+                            </div>
+                            <div class="arrow">
+                                <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>

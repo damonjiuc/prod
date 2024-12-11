@@ -106,6 +106,8 @@
   padding-right: 5px;
 }
 
+/* Данные о заказах */
+
 .orders-tbl-section {
     display: flex;
     justify-content: space-between;
@@ -152,4 +154,28 @@
 
 .tbl-order-bonus {
     width: 80px;
+}
+
+.orders-tbl-items-header, .orders-tbl-items-section {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background-color: var(--white);
+}
+
+.orders-tbl-items-el {
+    padding: 8px;
+}
+
+.orders-tbl-items-header {
+    font-weight: bold;
+}
+
+.tbl-items-name {
+    width: 800px;
+}
+
+.tbl-items-price, .tbl-items-amount, .tbl-items-total {
+    width: 100px;
 }
