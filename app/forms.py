@@ -13,6 +13,16 @@ class Partnership(FlaskForm):
     submit = SubmitField('Подать заявку')
 
 
+class Contacts(FlaskForm):
+    """ Форма в контактах """
+    name = StringField('Имя', validators=[DataRequired()])
+    phone = TelField('Телефон', validators=[DataRequired()])
+    email = EmailField('E-mail', default=lambda: current_user.email)
+    message = StringField('Сообщение')
+    ref = StringField('Реф') #, default=lambda: current_user.birthday
+    submit = SubmitField('Связаться')
+
+
 class UserEditForm(FlaskForm):
     id = IntegerField('ID', validators=[DataRequired()], default=lambda: current_user.id)
     phone = TelField('Телефон', validators=[DataRequired()], default=lambda: current_user.phone)

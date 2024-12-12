@@ -5,7 +5,28 @@
 {% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
 
 {% block content %}
+    <div>
+        <div>
+            <h4>Главный офис</h4>
+            <p>г. Санкт-Петербург, пр. Ленинский, д. 140А</p>
+            <p>С 10:00 до 19:00</p>
+            <p><a href="tel:+7(812)213-03-00" target="_blank">+7(812)213-03-00</a></p>
+        </div>
+        <div>
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A75e39e246a62b3833a2929c9a6da44088fa2f8d0a62feade50b353383e062cd8&amp;width=100%25&amp;height=350&amp;lang=ru_RU&amp;scroll=true"></script>
+        </div>
+    </div>
 
+    <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
+        {{ form.csrf_token }}
+        {{ form.name(placeholder="Имя") }}
+        {{ form.phone(placeholder="Телефон") }}
+        {{ form.email(placeholder="E-mail") }}
+        {{ form.message(placeholder="Сообщение") }}
+        {{ form.ref(placeholder="Реферал") }}
+        {{ form.submit(placeholder="Подать заявку") }}
+
+    </form>
 
 
 {% endblock %}

@@ -17,6 +17,15 @@ def send_partnership_email(name, phone, ref):
                html_body=render_template('email/partners_reg.html',
                                          name=name, phone=phone, ref=ref))
 
+def send_contacts_email(name, phone, email, message, ref):
+    send_email('[prod.ru] New Contacts Message',
+               sender='no-reply@prod.ru',
+               recipients=['damonjiuc@gmail.com', 'partners@prod.ru'],
+               text_body=render_template('email/contacts.txt',
+                                         name=name, phone=phone, email=email, message=message, ref=ref),
+               html_body=render_template('email/contacts.html',
+                                         name=name, phone=phone, email=email, message=message, ref=ref))
+
 def send_registration_email(name, email, phone, card, password):
     send_email('[prod.ru] Ваш личный кабинет партнера успешно создан',
                sender='no-reply@prod.ru',

@@ -5,7 +5,118 @@
 {% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
 
 {% block content %}
+<section class="row banner-group">
+    <div class="col-5">
+        <div class="banner-group-banner">
+            <img src="{{ url_for('static', filename='img/imgs/trading-slide-1.png') }}"/>
+        </div>
+    </div>
+    <div class="col-7">
+        <div class="row">
+            <div class="col-12">
+                <div class="banner-group-dir dir-dark">
+                    <div class="banner">
+                        <div class="content-block">
+                            <h1>Наше оптовое направление</h1>
+                            <p>Оптовые поставки популярных и эксклюзивных моделей</p>
+                            <ul>
+                                <li>Оптовая торговля по новым правилам</li>
+                                <li>Лучший дистрибьютор для 37 брендов</li>
+                                <li>Строгое соблюдение сроков поставки</li>
+                            </ul>
+                            <a href="#">Сотрудничать</a>
+                        </div>
+                        <div class="arrow">
+                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section>
+    <h2>О нашем оптовом направлении</h2>
+    <div>
+        <p>
+            Мы предлагаем превосходные условия для оптовых партнеров и индивидуальные скидки для постоянных покупателей. Мы рады предложить широкий ассортимент продукции на специальных условиях:
+        </p>
+        <ul>
+            <li>Ламинат, Паркет, Массив, инженерная доска и другие напольные покрытия</li>
+            <li>Межкомнатные и входные двери</li>
+            <li>Керамическая плитка, керамогранит</li>
+        </ul>
+        <p>
+            Оптовая торговля напольными покрытиями, дверьми и керамической плиткой является приоритетным направлением деятельности нашей компании.
+        </p>
+        <p>
+            Приглашаем к сотрудничеству компании любого размера из всех регионов России.
+        </p>
+    </div>
+    <div>
+        <img src="{{ url_for('static', filename='img/imgs/trading1.png') }}">
+    </div>
+</section>
+<section class="brands">
+    <h3>Мы являемся дистрибьютерами</h3>
+    <div class="brand-list">
+        <div class="brand">
+            <img src="{{ url_for('static', filename='img/dist/amorim.png') }}" />
+            <h4>Amorim</h4>
+        </div>
+        <div class="brand">
+            <img src="{{ url_for('static', filename='img/dist/arbiton.png') }}" />
+            <h4>Arbiton</h4>
+        </div>
+        <div class="brand" style="border-right: none;">
+            <img src="{{ url_for('static', filename='img/dist/boonkeel.png') }}" />
+            <h4>AQUA</h4>
+        </div>
+        <div class="brand" style="border-bottom: none;">
+            <img src="{{ url_for('static', filename='img/dist/parky.svg') }}" />
+            <h4>Parky</h4>
+        </div>
+        <div class="brand" style="border-bottom: none;">
+            <img style="width: 130px" src="{{ url_for('static', filename='img/dist/profitex.png') }}" />
+            <h4>Profitex</h4>
+        </div>
+        <div class="brand" style="border-right: none; border-bottom: none;">
+            <img src="{{ url_for('static', filename='img/dist/union.svg') }}" />
+            <h4>Union</h4>
+        </div>
+    </div>
+</section>
+<section>
+    <h3>Преимущества сотрудничества с нами</h3>
+    <div>
+        <div>
+            <h4>Бонусы за партнера</h4>
+            <p>Бонусы за приглашённых вами партнёров.</p>
+        </div>
+        <div>
+            <h4>Цена</h4>
+            <p>У нас гарантированно лучшие цены</p>
+        </div>
+        <div>
+            <h4>Бонусы</h4>
+            <p>Бонус при заказе до 15%</p>
+        </div>
+        <div>
+            <h4>Рост % Бонуса</h4>
+            <p>Рост процента бонуса с объёмом продаж.</p>
+        </div>
+    </div>
+</section>
+<section>
+    <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
+        {{ form.csrf_token }}
+        {{ form.name(placeholder="Имя") }}
+        {{ form.phone(placeholder="Телефон") }}
+        {{ form.ref(placeholder="Реферал") }}
+        {{ form.submit(placeholder="Подать заявку") }}
 
+    </form>
+</section>
 
 {% endblock %}
