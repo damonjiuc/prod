@@ -20,7 +20,7 @@ body {
 }
 
 a:hover {
-    color: var(--accent) !important;
+    color: var(--accent);
 }
 
 .content {
@@ -132,11 +132,14 @@ header .menu {
 header .menu li a {
     color: var(--light);
     font-family: 'Gilroy';
-    font-weight: SemiBold;
+    font-weight: 600;
     font-size: 12px;
-    transition: 500ms
-    font-weight: bold;
+    transition: 500ms;
     letter-spacing: 2px;
+}
+
+header .menu li a:hover {
+    color: var(--accent);
 }
 
 header .contact-info {
@@ -149,15 +152,18 @@ header .phone {
     display: block;
     color: var(--ultra-light);
     font-family: 'Gilroy';
-    font-weight: Bold;
+    font-weight: 700;
     font-size: 16px;
-    font-weight: bold;
     line-height: 20px;
     text-align: right;
 }
 
+header .login {
+    text-align: right;
+}
+
 header .login-btn {
-    display: flex;
+    display: inline;
     align-items: center;
     background-color: #bb2434;
     border-radius: 8px;
@@ -167,16 +173,26 @@ header .login-btn {
     font-weight: 500;
     height: 37px;
     padding: 10px 10px;
+    width: auto;
 }
 
-header .login-btn img {
+header .login-btn a img {
     height: 23px;
+}
+
+header .login-btn a:hover {
+    color: #000;
+}
+
+header .login-btn a:hover img {
+    path: #000;
 }
 
 
 header .hamburger {
     display: none;
     flex-direction: column;
+    float: right;
     gap: 4px;
     cursor: pointer;
 }
@@ -184,14 +200,16 @@ header .hamburger {
 header .mobile-menu {
     display: none;
     flex-direction: column;
-    gap: 10px;
-    background-color: var(--dark);
     padding: 20px;
-    position: absolute;
-    top: 133px;
-    left: 0;
     right: 0;
-    border-radius: 0 0 16px 16px;
+    z-index: 99;
+    background: #000;
+    width: 60%;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    margin: 0 0 0 40%;
+    border-radius: 0;
 }
 /* end header */
 
@@ -232,6 +250,7 @@ section.content p {
 }
 
 .banner-group .banner-group-banner {
+    height: 100%;
     width: 100%;
 }
 
@@ -239,6 +258,15 @@ section.content p {
     border-radius: 10px;
     max-height: 597px;
     width: 100%;
+}
+
+.banner-group .banner-group-banner video {
+    border-radius: 10px;
+    max-height: 597px;
+    object-fit: cover;
+    width: auto;
+    height: 100%;
+    max-width: 100%;
 }
 
 .banner-group .banner-group-dirs {
@@ -281,7 +309,7 @@ section.content p {
     z-index: 1;
     opacity: 0.141;
     font-size: 360px;
-    letter-spacing: 25px;
+    letter-spacing: 15px;
     line-height: 668px;
     text-transform: uppercase;
     color: var(--black);
@@ -491,7 +519,6 @@ section.content p {
     height: 55px;
     width: auto;
     margin: 0 auto 35px;
-    filter: grayscale(100%);
 }
 
 .brands .brand-list .brand h4 {
@@ -648,42 +675,67 @@ section.content p {
 }
 
 .map .tab {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .map .tab > input[type="radio"] {
-  display: none;
+    display: none;
 }
 
 .map .tab-content {
-  display: none;
-  width: 100%;
-  margin-top: 1rem;
+    display: none;
+    width: 100%;
+    margin-top: 1rem;
 }
 
-.map #tab-btn-1:checked~#content-1,
-.map #tab-btn-2:checked~#content-2,
-.map #tab-btn-3:checked~#content-3 {
-  display: block;
+.map #tab-btn-1:checked~#content-sp,
+.map #tab-btn-2:checked~#content-rd,
+.map #tab-btn-3:checked~#content-lp,
+.map #tab-btn-4:checked~#content-cp,
+.map #tab-btn-5:checked~#content-pd,
+.map #tab-btn-6:checked~#content-pa {
+    display: block;
 }
 
 .map .tab > label {
-  display: block;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
-  text-decoration: none;
-  color: #0d6efd;
-  border: 0;
-  border-radius: 0.375rem;
-  background: 0 0;
+    display: flex;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    text-decoration: none;
+    color: #0d6efd;
+    border: 0;
+    border-radius: 0.375rem;
+    background: 0 0;
+    flex: 0 0 auto;
+    text-align: center;
+    width: 16.66666667%;
+}
+
+.map .tab > label img {
+    filter: grayscale(100%);
+    margin: 0 auto;
+    max-height: 43px;
 }
 
 .map .tab > input[type="radio"]:checked + label {
-  cursor: default;
-  color: #fff;
-  background-color: #0d6efd;
+    cursor: default;
+    color: #fff;
+}
+
+.map .tab > input[type="radio"]:checked + label img {
+    filter: none;
+}
+
+.map .tab .shop {
+    color: var(--light);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.ymap {
+    width: 100%; height: 100%; padding: 0; margin: 0;
 }
 
 /* end index */
@@ -772,6 +824,7 @@ footer a {
     display: flex;
     align-items: center;
     gap: 8px;
+    text-align: left;
 }
 
 .footer-icon{
@@ -783,7 +836,7 @@ footer a {
     color: var(--light);
 }
 
-.number {
+footer .number {
     font-size: 26px;
     line-height: 24px;
     font-weight: 300;
@@ -802,7 +855,6 @@ footer .footer-button {
     border: none;
     font-size: 14px;
     letter-spacing: 1px;
-    color: var(--white);
     font-weight: 500;
     padding: 2px 2px 2px 27px;
     cursor: pointer;
@@ -811,6 +863,7 @@ footer .footer-button {
     text-align: left;
     background: var(--white);
     color: var(--dark);
+    max-width: 100%;
 }
 footer .footer-button:hover {
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.7);
@@ -829,3 +882,99 @@ footer .footer-button img {
     bottom: 3px;
 }
 /* end footer */
+
+
+/** Media **/
+@media screen and (max-width: 1366px) {
+
+}
+
+@media screen and (max-width: 1200px) {
+    .salons .decor-about {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    header nav {
+        display: none;
+    }
+    header .login-btn {
+        display: none;
+    }
+
+    header .hamburger {
+        display: block;
+        position: relative;
+        width: 32px;
+    }
+    header .hamburger span {
+        display: block;
+        height: 2px;
+        margin-bottom: 8px;
+        width: 100%;
+        background-color: #FEFEFF;
+    }
+    header .mobile-menu {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: var(--dark);
+        padding: 20px;
+        position: absolute;
+        top: 133px;
+        left: 0;
+        right: 0;
+        border-radius: 0 0 16px 16px;
+    }
+
+    .banner-group .banner h1 {
+        font-size: 1.5em;
+    }
+    .banner-group .dir-dark .after,.banner-group .dir-white .after, .banner-group .dir-red .after {
+        font-size: 18em;
+        right: -50px;
+    }
+
+    .salons h2 {
+        font-size: 1.6em;
+    }
+
+    .salons .decor-text {
+        font-size: 0.8em;
+    }
+    .salons .decor-about {
+        font-size: 0.6em;
+    }
+
+    .brands .info {
+        width: 50%;
+    }
+
+    .brands .brand-list .brand {
+        padding: 20px 30px;
+    }
+    .brands .brand-list .brand p {
+        bottom: 20px;
+    }
+
+    .our-advantages .advantages-block {
+        width: 42%;
+    }
+
+    footer .number {
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 480px) {
+
+}
+
+@media screen and (max-width: 320px) {
+
+}

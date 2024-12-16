@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Заказы, {{ current_user.name }}{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Заказы</h2>
+
+    <div class="orders-tbl">
+        <div class="orders-tbl-section orders-tbl-header">
+            <div class="orders-tbl-el tbl-order-num">№ Заказа</div>
+            <div class="orders-tbl-el tbl-order-fio">ФИО Клиента</div>
+            <div class="orders-tbl-el tbl-order-address">Адрес</div>
+            <div class="orders-tbl-el tbl-order-date">Дата заказа</div>
+            <div class="orders-tbl-el tbl-order-del-date">Отгрузка</div>
+            <div class="orders-tbl-el tbl-order-sum">Сумма</div>
+            <div class="orders-tbl-el tbl-order-bonus">Бонус</div>
+        </div>
+        {% for order in orders %}
+        <div class="orders-tbl-order">
+        <div class="orders-tbl-section">
+          <div class="orders-tbl-el tbl-order-num"><a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a></div>
+          <div class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</div>
+          <div class="orders-tbl-el tbl-order-address">{{ order.address }}</div>
+          <div class="orders-tbl-el tbl-order-date">{{ order.order_date }}</div>
+          <div class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</div>
+          <div class="orders-tbl-el tbl-order-sum">{{ order.order_sum }}</div>
+          <div class="orders-tbl-el tbl-order-bonus">{{ order.bonus }}</div>
+        </div>
+        <div class="orders-tbl-items">
+        <div class="orders-tbl-items-header">
+            <div class="orders-tbl-items-el tbl-items-name">Наименование</div>
+            <div class="orders-tbl-items-el tbl-items-amount">Количество</div>
+            <div class="orders-tbl-items-el tbl-items-price">Цена</div>
+            <div class="orders-tbl-items-el tbl-items-total">Стоимость</div>
+        </div>
+        {% for item in order.order_items %}
+        <div class="orders-tbl-items-section">
+            <div class="orders-tbl-items-el tbl-items-name">{{ item.name }}</div>
+            <div class="orders-tbl-items-el tbl-items-amount">{{ '%0.2f' % item.amount }}</div>
+            <div class="orders-tbl-items-el tbl-items-price">{{ '%0.2f' % item.price }}</div>
+            <div class="orders-tbl-items-el tbl-items-total">{{ '%0.2f' % (item.amount * item.price) }}</div>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div><a href="{{ url_for('user.user_orders') }}">Все заказы</a></div>
+</section>
+
+{% endblock %}

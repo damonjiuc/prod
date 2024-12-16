@@ -102,6 +102,7 @@ def edit_user(id):
 
 @admin.route('/admin/edit_user_pwd/<int:id>', methods=['POST', 'GET'])
 @login_required
+@role_required(1)
 def edit_user_pwd(id):
     user = Users.query.get(id)
     if request.method == 'POST':
@@ -121,6 +122,7 @@ def edit_user_pwd(id):
 
 @admin.route('/admin/delete_user/<int:id>', methods=['POST', 'GET'])
 @login_required
+@role_required(1)
 def delete_user(id):
     user = Users.query.get(id)
     try:
@@ -135,6 +137,7 @@ def delete_user(id):
 
 @admin.route('/admin/edit_order/<int:order_id>', methods=['POST', 'GET'])
 @login_required
+@role_required(1)
 def edit_order(order_id):
     order = Orders.query.get(order_id)
     items = Items.query.filter_by(order_id=order_id).all()

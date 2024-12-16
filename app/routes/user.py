@@ -71,6 +71,15 @@ def user_profile():
         return redirect(url_for('user.user_login'))
     return render_template('user/edit.html', form=form, orders=orders, stats=stats, user_in_lk=user_in_lk)
 
+
+@user.route('/user/orders')
+@login_required
+def user_orders():
+    orders = Orders.query.order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all()
+    for order in orders:
+        order.order_items = Items.query.filter_by(order_id=order.order_id).all()
+    return render_template('user/orders.html', orders=orders)
+
 @user.route('/user/logout', methods =['POST', 'GET'])
 @login_required
 def user_logout():

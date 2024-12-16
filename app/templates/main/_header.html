@@ -8,14 +8,14 @@
   </div>
   {% endif %}
   <div class="row">
-    <div class="col-12 col-xl-2">
+    <div class="col-12 col-lg-2 col-xl-2">
       <div class="logo">
         <a href="{{ url_for('main.index') }}">
           <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="PRO Дизайн Logo" />
         </a>
       </div>
     </div>
-    <div class="col-12 col-xl-6">
+    <div class="col-12 col-lg-1 col-xl-6">
       <nav>
         <ul class="menu">
           <li><a href="{{ url_for('main.index') }}">ГЛАВНАЯ</a></li>
@@ -26,12 +26,12 @@
         </ul>
       </nav>
     </div>
-    <div class="col-12 col-xl-2">
+    <div class="col-12 col-lg-3 col-xl-2">
       <div class="contact-info phone">
-        <a href="tel:88122130300">+7(812)213-03-00</a>
+        <a href="tel:88122130300">+7 (812) 213-03-00</a>
       </div>
     </div>
-    <div class="col-12 col-xl-2">
+    <div class="col-12 col-lg-2 col-xl-2 login">
       <div class="login-btn">
         {% if current_user.is_authenticated and user_in_lk %}
           <a href="{{ url_for('user.user_logout') }}">
@@ -39,14 +39,11 @@
           </a>
         {% elif current_user.is_authenticated %}
           <a href="{{ url_for('user.user_profile') }}">
-            {{ '%04d' % current_user.card }} / Личный кабинет
+            {{ '%04d' % current_user.card }} / Личный кабинет 
           </a>
         {% else %}
           <a href="{{ url_for('user.user_login') }}">
-            Вход для партнеров
-          </a>
-          <a href="{{ url_for('user.user_login') }}">
-            <div class=""><img src="{{ url_for('static', filename='img/icon_login.svg') }}" /></div>
+            Вход в ЛК <img src="/static/img/icon_login.svg" />
           </a>
         {% endif %}
       </div>
@@ -55,31 +52,34 @@
         <span></span>
         <span></span>
       </div>
-      <ul class="mobile-menu">
-        <li><a href="{{ url_for('main.index') }}">ГЛАВНАЯ</a></li>
-        <li><a href="{{ url_for('main.retail') }}">МАГАЗИНЫ</a></li>
-        <li><a href="{{ url_for('main.partners') }}">ПАРТНЕРСТВО</a></li>
-        <li><a href="{{ url_for('main.trading') }}">ОПТ</a></li>
-        <li><a href="{{ url_for('main.contacts') }}">КОНТАКТЫ</a></li>
-      </ul>
+      <div class="mobile-menu">
+        <ul class="">
+          <li><a href="{{ url_for('main.index') }}">ГЛАВНАЯ</a></li>
+          <li><a href="{{ url_for('main.retail') }}">МАГАЗИНЫ</a></li>
+          <li><a href="{{ url_for('main.partners') }}">ПАРТНЕРСТВО</a></li>
+          <li><a href="{{ url_for('main.trading') }}">ОПТ</a></li>
+          <li><a href="{{ url_for('main.contacts') }}">КОНТАКТЫ</a></li>
+        </ul>
+        <div class="contact-info phone2">
+          <a href="tel:88122130300">+7 (812) 213-03-00</a>
+        </div>
+        <div class="login-btn">
+          {% if current_user.is_authenticated and user_in_lk %}
+            <a href="{{ url_for('user.user_logout') }}">
+              {{ '%04d' % current_user.card }} / Выход
+            </a>
+          {% elif current_user.is_authenticated %}
+            <a href="{{ url_for('user.user_profile') }}">
+              {{ '%04d' % current_user.card }} / Личный кабинет 
+            </a>
+          {% else %}
+            <a href="{{ url_for('user.user_login') }}">
+              Вход в ЛК <img src="/static/img/icon_login.svg" />
+            </a>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<!--
-<div>
-  <a class="logo" href="/">
-  <img class="logo__img" src="{{ url_for('static', filename='img/logo.svg') }}" alt="prod logo">
-  </a>
-  <ul class="menu-header">
-  {% if current_user.is_authenticated %}
-  <li><a class="link-header" href="{{ url_for('admin.add_user') }}">Add User</a></li>
-  <li><a class="link-header" href="{{ url_for('admin.all_users') }}">Users</a></li>
-  <li>{{ '%04d' % current_user.card }} <a class="link-header" href="{{ url_for('user.user_logout') }}">Logout</a></li>
-  {% else %}
-  <li><a class="link-header" href="{{ url_for('user.user_login') }}">Login</a></li>
-  {% endif %}
-  </ul>
-</div>
--->
 

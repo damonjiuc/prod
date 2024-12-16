@@ -17,7 +17,7 @@ class Contacts(FlaskForm):
     """ Форма в контактах """
     name = StringField('Имя', validators=[DataRequired()])
     phone = TelField('Телефон', validators=[DataRequired()])
-    email = EmailField('E-mail', default=lambda: current_user.email)
+    email = EmailField('E-mail')
     message = StringField('Сообщение')
     ref = StringField('Реф') #, default=lambda: current_user.birthday
     submit = SubmitField('Связаться')

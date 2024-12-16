@@ -5,7 +5,10 @@
 <div class="row banner-group">
     <div class="col-5">
         <div class="banner-group-banner">
-            <img src="{{ url_for('static', filename='img/imgs/ban.jpg') }}"/>
+            <video id="vid-desk-2" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" class="home-main--video vid-home vid-desk" style="opacity: 0.648521;">
+                <source type="video/mp4" src="https://prod.ru/wp-content/uploads/2022/12/whole.mp4">
+              </video>
+            <!--<img src="{{ url_for('static', filename='img/imgs/ban.jpg') }}"/>-->
         </div>
     </div>
     <div class="col-7">
@@ -29,7 +32,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-xl-6">
+            <div class="col-12 col-md-6  col-xl-6">
                 <div class="banner-group-dir dir-white">
                     <div class="after">
                         02
@@ -45,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-6">
+            <div class="col-12 col-md-6  col-xl-6">
                 <div class="banner-group-dir dir-red">
                     <div class="after">
                         03
@@ -110,32 +113,32 @@
         <h3>Наши бренды</h3>
     <div class="brand-list">
         <div class="brand">
-            <img src="{{ url_for('static', filename='img/stores/slonparket.svg') }}" />
+            <img src="/static/img/stores/slonparket-gs.svg" />
             <h4>Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений для отделки пола</h4>
             <p>slonparket.ru</p>
         </div>
         <div class="brand">
-            <img src="{{ url_for('static', filename='img/stores/rd.svg') }}" />
+            <img src="/static/img/stores/rd-gs.svg" />
             <h4>Большой ассортимент межкомнатных<br> дверей с разными покрытиями: шпон, эмаль, массив</h4>
             <p>realdoor.ru</p>
         </div>
         <div class="brand" style="border-right: none;">
-            <img src="{{ url_for('static', filename='img/stores/lp.svg') }}" />
+            <img src="/static/img/stores/lp-gs.svg" />
             <h4>В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене.</h4>
             <p>lenplitka.ru</p>
         </div>
         <div class="brand" style="border-bottom: none;">
-            <img src="{{ url_for('static', filename='img/stores/cp1.svg') }}" />
+            <img src="/static/img/stores/cp1-gs.svg" />
             <h4>Огромный выбор качественного напольного покрытия.</h4>
             <p>cp1.ru</p>
         </div>
         <div class="brand" style="border-bottom: none;">
-            <img style="width: 130px" src="{{ url_for('static', filename='img/stores/pd.svg') }}" />
+            <img src="/static/img/stores/pd-gs.svg" />
             <h4>Широкий выбор дверей из экошпона и алюминия.</h4>
             <p>profildoors.sale</p>
         </div>
         <div class="brand" style="border-right: none; border-bottom: none;">
-            <img src="{{ url_for('static', filename='img/stores/parket1703.svg') }}" />
+            <img src="/static/img/stores/parket1703-gs.svg" />
             <h4>Большой выбор напольных покрытий квартир, так и для частных домов</h4>
             <p>parket1703.ru</p>
         </div>
@@ -209,24 +212,126 @@
 
 <section class="map">
     <h3>Наши магазины</h3>
+            <!--<img src="/static/img/stores/slonparket.svg" />
+            <img src="/static/img/stores/rd.svg" />
+            <img src="/static/img/stores/lp.svg" />
+            <img src="/static/img/stores/cp1.svg" />
+            <img src="/static/img/stores/pd.svg" />
+            <img src="/static/img/stores/parket1703.svg" />-->
     <div class="tab">
         <input checked id="tab-btn-1" name="tab-btn" type="radio" value="">
-        <label for="tab-btn-1">Вкладка 1</label>
+        <label for="tab-btn-1"><img src="/static/img/stores/slonparket.svg" /></label>
         <input id="tab-btn-2" name="tab-btn" type="radio" value="">
-        <label for="tab-btn-2">Вкладка 2</label>
+        <label for="tab-btn-2"><img src="/static/img/stores/rd.svg" /></label>
         <input id="tab-btn-3" name="tab-btn" type="radio" value="">
-        <label for="tab-btn-3">Вкладка 3</label>
-        <div class="tab-content" id="content-1">
-        Содержимое 1...
+        <label for="tab-btn-3"><img src="/static/img/stores/lp.svg" /></label>
+        <input id="tab-btn-4" name="tab-btn" type="radio" value="">
+        <label for="tab-btn-4"><img src="/static/img/stores/cp1.svg" /></label>
+        <input id="tab-btn-5" name="tab-btn" type="radio" value="">
+        <label for="tab-btn-5"><img src="/static/img/stores/pd.svg" /></label>
+        <input id="tab-btn-6" name="tab-btn" type="radio" value="">
+        <label for="tab-btn-6"><img src="/static/img/stores/parket1703.svg" /></label>
+
+        <div class="tab-content" id="content-sp">
+            <div class="row">
+                <div class="col-12 col-xl-3">
+                    <div class="shop">
+                        Ленинский проспект, дом 140А,
+                        <br>
+                        ТЦ «Загородный дом 2», 16 модуль
+                    </div>
+                    <div class="shop">
+                        Фучика улица, дом 9,
+                        <br>
+                        ТК «Кубатура», 1 этаж, секция 1.72
+                    </div>
+                    <div class="shop">
+                        Энгельса проспект, дом 48,
+                        <br>
+                        Слонпаркет
+                    </div>
+                    <div class="shop">
+                        Гражданский проспект, дом 15, к. 1
+                        <br>
+                        Слонпаркет
+                    </div>
+                    <div class="shop">
+                        Студенческая улица, дом 10,
+                        <br>
+                        ТК «Ланской», секция 20
+                    </div>
+                    <div class="shop">
+                        Железноводская улица, дом 3,
+                        <br>
+                        ТК «Василеостровский», 1 этаж, секция 20
+                    </div>
+                    <div class="shop">
+                        Полевая Сабировская улица, дом 54,
+                        <br>
+                        ТК "Интерио", 2 этаж, секция 213
+                    </div>
+                </div>
+                <div class="col-12 col-xl-9">
+                    <div class="ymap" id="map_sp"></div>
+                </div>
+            </div>
         </div>
-        <div class="tab-content" id="content-2">
-        Содержимое 2...
+        <div class="tab-content" id="content-rd">
+            <div class="row">
+                <div class="col-12 col-xl-3">
+                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
+                <div class="col-12 col-xl-9">
+                    <div class="ymap" id="map_rd"></div>
+                </div>
+            </div>
         </div>
-        <div class="tab-content" id="content-3">
-        Содержимое 3...
+        <div class="tab-content" id="content-lp">
+            <div class="row">
+                <div class="col-12 col-xl-3">
+                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
+                <div class="col-12 col-xl-9">
+                    <div class="ymap" id="map_lp"></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="content-cp">
+            <div class="row">
+                <div class="col-12 col-xl-3">
+                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
+                <div class="col-12 col-xl-9">
+                    <div class="ymap" id="map_cp"></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="content-pd">
+            <div class="row">
+                <div class="col-12 col-xl-3">
+                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
+                <div class="col-12 col-xl-9">
+                    <div class="ymap" id="map_pd"></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="content-pa">
+            <div class="row">
+                <div class="col-12 col-xl-3">
+                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
+                <div class="col-12 col-xl-9">
+                    <div class="ymap" id="map_pa"></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
+{% endblock %}
 
+{% block js %}
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=longlat;apikey=7e29b517-febf-4789-9368-769cf7e911eb" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}

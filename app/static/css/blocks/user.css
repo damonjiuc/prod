@@ -179,3 +179,8 @@
 .tbl-items-price, .tbl-items-amount, .tbl-items-total {
     width: 100px;
 }
+
+/* Призы */
+.prizes-img-cont img {
+    max-height: 60px;
+}

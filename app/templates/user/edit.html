@@ -8,6 +8,13 @@
 {% endblock %}
 
 {% block content %}
+    <div>
+        {% if current_user.avatar %}
+            <img src="/static/upload/{{ current_user.avatar }}">
+        {% else %}
+            <img src="/static/img/imgs/avatar.png">
+        {% endif %}
+    </div>
     <form class="form-add-user" method="post" enctype="multipart/form-data">
             {{ form.csrf_token }}
         <div class="form-add-user-el">
@@ -47,7 +54,7 @@
         <div>Кол-во заказов: {{ stats['orders_count'] }}</div>
         <div>Ожидает выплаты: {{ stats['bonus_to_pay'] }}</div>
         <div>Заработали: {{ stats['money_earned'] }}</div>
-        <div>Ваша реф. ссылка: https://prod.ru/?r={{  '%04d' % current_user.card }}</div>
+        <div>Ваша реф. ссылка: <span id="ref_link" onclick="copyRefLink(document.getElementById('ref_link').innerHTML)">https://prod.ru/?r={{  '%04d' % current_user.card }}</span></div>
     </div>
 
     <h2>Наши магазины</h2>
@@ -97,7 +104,7 @@
                 <img src="{{ url_for('static', filename='img/stores/rd.svg') }}">
             </div>
             <div class="our-stores-txt">
-                Большой ассортимент межкомнатных дверей  с разными покрытиями: шпон, эмаль, массив
+                Большой ассортимент межкомнатных дверей с разными покрытиями: шпон, эмаль, массив
             </div>
         </div>
     </div>
@@ -119,7 +126,7 @@
     </div>
 
 <script>
-
+/* шкала прогресса реф программы */
 const progress = document.getElementById("progress");
 const stepCircles = document.querySelectorAll(".circle");
 let currentActive = 1;
@@ -140,56 +147,104 @@ function update(currentActive) {
     }
   });
 
-  const activeCircles = document.querySelectorAll(".active");
-  progress.style.width =
-    ((activeCircles.length - 1) / (stepCircles.length - 1)) * 100 + "%";
-
-
+const activeCircles = document.querySelectorAll(".active");
+progress.style.width = ((activeCircles.length - 1) / (stepCircles.length - 1)) * 100 + "%";
 }
+/* end шкала прогресса реф программы */
 </script>
 
 <div class="animated-progress">
     <span style="width: {{ current_user.moneytomln / 10000 }}%">{{ current_user.moneytomln }}₽ / 1000000.0₽</span>
 </div>
 
+<section>
+    <h2>Выигранные призы</h2>
+    <div class="prizes">
+        <div class="prize">
+            <div class="prizes-img-cont">
+                <img src="{{ url_for('static', filename='img/prizes/1-alisa.png') }}">
+            </div>
+            <div class="prizes-txt">Яндекс станция с Алисой</div>
+        </div>
+        <div class="prize">
+            <div class="prizes-img-cont">
+                <img src="{{ url_for('static', filename='img/prizes/2-ipad.png') }}">
+            </div>
+            <div class="prizes-txt">iPad</div>
+        </div>
+        <div class="prize">
+            <div class="prizes-img-cont">
+                <img src="{{ url_for('static', filename='img/prizes/3-macbook.png') }}">
+            </div>
+            <div class="prizes-txt">MacBook Air</div>
+        </div>
+        <div class="prize">
+            <div class="prizes-img-cont">
+                <img src="{{ url_for('static', filename='img/prizes/4-coswick.jpg') }}">
+            </div>
+            <div class="prizes-txt">Поездка на фабрику Coswick</div>
+        </div>
+        <div class="prize">
+            <div class="prizes-img-cont">
+                <img src="{{ url_for('static', filename='img/prizes/5-maldives.jpg') }}">
+            </div>
+            <div class="prizes-txt">Поездка на Мальдивы</div>
+        </div>
+        <div class="prize">
+            <div class="prizes-img-cont">
+                <img src="{{ url_for('static', filename='img/prizes/6-kia.png') }}">
+            </div>
+            <div class="prizes-txt">Автомобиль Kia Soul</div>
+        </div>
+    </div>
+</section>
 
-<h2>Заказы</h2>
+<section>
+    <h2>Заказы</h2>
 
-<div class="orders-tbl">
-    <div class="orders-tbl-section orders-tbl-header">
-        <div class="orders-tbl-el tbl-order-num">№ Заказа</div>
-        <div class="orders-tbl-el tbl-order-fio">ФИО Клиента</div>
-        <div class="orders-tbl-el tbl-order-address">Адрес</div>
-        <div class="orders-tbl-el tbl-order-date">Дата заказа</div>
-        <div class="orders-tbl-el tbl-order-del-date">Отгрузка</div>
-        <div class="orders-tbl-el tbl-order-sum">Сумма</div>
-        <div class="orders-tbl-el tbl-order-bonus">Бонус</div>
+    <div class="orders-tbl">
+        <div class="orders-tbl-section orders-tbl-header">
+            <div class="orders-tbl-el tbl-order-num">№ Заказа</div>
+            <div class="orders-tbl-el tbl-order-fio">ФИО Клиента</div>
+            <div class="orders-tbl-el tbl-order-address">Адрес</div>
+            <div class="orders-tbl-el tbl-order-date">Дата заказа</div>
+            <div class="orders-tbl-el tbl-order-del-date">Отгрузка</div>
+            <div class="orders-tbl-el tbl-order-sum">Сумма</div>
+            <div class="orders-tbl-el tbl-order-bonus">Бонус</div>
+        </div>
+        {% for order in orders %}
+        <div class="orders-tbl-order">
+        <div class="orders-tbl-section">
+          <div class="orders-tbl-el tbl-order-num"><a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a></div>
+          <div class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</div>
+          <div class="orders-tbl-el tbl-order-address">{{ order.address }}</div>
+          <div class="orders-tbl-el tbl-order-date">{{ order.order_date }}</div>
+          <div class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</div>
+          <div class="orders-tbl-el tbl-order-sum">{{ order.order_sum }}</div>
+          <div class="orders-tbl-el tbl-order-bonus">{{ order.bonus }}</div>
+        </div>
+        <div class="orders-tbl-items">
+        <div class="orders-tbl-items-header">
+            <div class="orders-tbl-items-el tbl-items-name">Наименование</div>
+            <div class="orders-tbl-items-el tbl-items-amount">Количество</div>
+            <div class="orders-tbl-items-el tbl-items-price">Цена</div>
+            <div class="orders-tbl-items-el tbl-items-total">Стоимость</div>
+        </div>
+        {% for item in order.order_items %}
+        <div class="orders-tbl-items-section">
+            <div class="orders-tbl-items-el tbl-items-name">{{ item.name }}</div>
+            <div class="orders-tbl-items-el tbl-items-amount">{{ '%0.2f' % item.amount }}</div>
+            <div class="orders-tbl-items-el tbl-items-price">{{ '%0.2f' % item.price }}</div>
+            <div class="orders-tbl-items-el tbl-items-total">{{ '%0.2f' % (item.amount * item.price) }}</div>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+        {% endfor %}
     </div>
-    {% for order in orders %}
-    <div class="orders-tbl-section">
-      <div class="orders-tbl-el tbl-order-num"><a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a></div>
-      <div class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</div>
-      <div class="orders-tbl-el tbl-order-address">{{ order.address }}</div>
-      <div class="orders-tbl-el tbl-order-date">{{ order.order_date }}</div>
-      <div class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</div>
-      <div class="orders-tbl-el tbl-order-sum">{{ order.order_sum }}</div>
-      <div class="orders-tbl-el tbl-order-bonus">{{ order.bonus }}</div>
-    </div>
-    <div class="orders-tbl-items-header">
-        <div class="orders-tbl-items-el tbl-items-name">Наименование</div>
-        <div class="orders-tbl-items-el tbl-items-amount">Количество</div>
-        <div class="orders-tbl-items-el tbl-items-price">Цена</div>
-        <div class="orders-tbl-items-el tbl-items-total">Стоимость</div>
-    </div>
-    {% for item in order.order_items %}
-    <div class="orders-tbl-items-section">
-        <div class="orders-tbl-items-el tbl-items-name">{{ item.name }}</div>
-        <div class="orders-tbl-items-el tbl-items-amount">{{ '%0.2f' % item.amount }}</div>
-        <div class="orders-tbl-items-el tbl-items-price">{{ '%0.2f' % item.price }}</div>
-        <div class="orders-tbl-items-el tbl-items-total">{{ '%0.2f' % (item.amount * item.price) }}</div>
-    </div>
-    {% endfor %}
-    {% endfor %}
-</div>
+    <div><a href="{{ url_for('user.user_orders') }}">Все заказы</a></div>
+</section>
 
 {% endblock %}
+
+{% block js %}<script src="{{ url_for('static', filename='js/user.js') }}"></script>{% endblock %}
