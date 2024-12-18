@@ -4,6 +4,7 @@ from ..extensions import db, bcrypt
 from ..models.users import Users
 from ..models.orders import Orders
 from ..models.items import Items
+from ..models.prizes import Prizes
 from ..forms import UserEditForm, UserLogin
 from ..functions import save_picture
 
@@ -38,6 +39,10 @@ def user_login():
 def user_profile():
     form = UserEditForm()
     orders = Orders.query.order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all() # .limit(6)
+    prizes = Prizes.query.filter_by(user_id=current_user.id).all()
+    user_prizes = set()
+    for prize in prizes:
+        user_prizes.add(prize.type)
     stats = {'orders_count': 0, 'bonus_to_pay': 0, 'money_earned': 0}
     user_in_lk = True if request.base_url.endswith('/user/edit') else False
 
@@ -69,7 +74,7 @@ def user_profile():
             print(str(exc))
             flash('Некорректные данные', category='error')
         return redirect(url_for('user.user_login'))
-    return render_template('user/edit.html', form=form, orders=orders, stats=stats, user_in_lk=user_in_lk)
+    return render_template('user/edit.html', form=form, orders=orders, stats=stats, user_in_lk=user_in_lk, prizes=user_prizes)
 
 
 @user.route('/user/orders')

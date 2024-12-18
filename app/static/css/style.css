@@ -211,6 +211,10 @@ header .mobile-menu {
     margin: 0 0 0 40%;
     border-radius: 0;
 }
+
+header .mobile-menu.active {
+    display: block;
+}
 /* end header */
 
 
@@ -968,7 +972,9 @@ footer .footer-button img {
 }
 
 @media screen and (max-width: 768px) {
-
+    .content {
+        max-width: 98%;
+    }
 }
 
 @media screen and (max-width: 480px) {

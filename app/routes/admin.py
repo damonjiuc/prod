@@ -5,6 +5,7 @@ from ..extensions import db, bcrypt
 from ..models.users import Users
 from ..models.orders import Orders
 from ..models.items import Items
+from ..models.prizes import Prizes
 from ..functions import role_required
 from app.email import send_registration_email, bonus_paid
 
@@ -87,7 +88,6 @@ def edit_user(id):
         user.city = request.form.get('city')
         user.comment = request.form.get('comment')
 
-
         try:
             db.session.commit()
             flash('Данные пользователя изменены!', category='success')
@@ -118,6 +118,34 @@ def edit_user_pwd(id):
 
     else:
         return render_template('admin/edit_user_pwd.html', user=user)
+
+
+@admin.route('/admin/add_prize/<int:id>', methods=['POST', 'GET'])
+@login_required
+@role_required(1)
+def add_prize(id):
+    user = Users.query.get(id)
+    user_card = user.card
+    if request.method == 'POST':
+        user_id = request.form.get('user_id')
+        type = request.form.get('type')
+        date = request.form.get('date')
+
+        prize = Prizes(user_id=user_id, type=type, date=date)
+        print(prize)
+
+        try:
+            db.session.add(prize)
+            db.session.commit()
+            flash('Приз добавлен!', category='success')
+            return redirect(url_for('admin.edit_user', id=id))
+        except Exception as exc:
+            flash('Некорректно введены данные!', category='error')
+            print(str(exc))
+            print('беда')
+
+    else:
+        return render_template('admin/add_prize.html', id=id, user_card=user_card)
 
 
 @admin.route('/admin/delete_user/<int:id>', methods=['POST', 'GET'])

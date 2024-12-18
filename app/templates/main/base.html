@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -9,6 +10,7 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    {% block modal %}{% endblock %}
     <header>{% include 'main/_header.html' %}</header>
     <main class="container content">
         {% include 'main/_flash.html' %}

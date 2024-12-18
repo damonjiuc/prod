@@ -47,13 +47,14 @@
           </a>
         {% endif %}
       </div>
-      <div class="hamburger">
+      <div class="hamburger" id="hamburger-btn">
         <span></span>
         <span></span>
         <span></span>
       </div>
-      <div class="mobile-menu">
+      <div class="mobile-menu" id="hamburger-menu">
         <ul class="">
+          <li><span id="close-menu">Закрыть меню</span></li>
           <li><a href="{{ url_for('main.index') }}">ГЛАВНАЯ</a></li>
           <li><a href="{{ url_for('main.retail') }}">МАГАЗИНЫ</a></li>
           <li><a href="{{ url_for('main.partners') }}">ПАРТНЕРСТВО</a></li>

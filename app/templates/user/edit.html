@@ -7,6 +7,169 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
 {% endblock %}
 
+{% block modal %}
+<!-- Callback -->
+<div class="modal fade" id="modal-callback" tabindex="-1" aria-labelledby="ModalCallbackLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalCallbackLabel">Заказать обратный звонок</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Callback -->
+<div class="modal fade" id="modal-order" tabindex="-1" aria-labelledby="ModalOrderLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalOrderLabel">Оформить заказ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Feedback -->
+<div class="modal fade" id="modal-feedback" tabindex="-1" aria-labelledby="ModalFeedbackLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalFeedbackLabel">Оставить отзыв/пожелание</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Reminder -->
+<div class="modal fade" id="modal-reminder" tabindex="-1" aria-labelledby="ModalReminderLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalReminderLabel">Памятка партнера</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-text"><b>Работа с менеджерами</b>
+                - Для начисления бонуса до оформления заказа необходимо уведомить менеджера магазина, что Вы партнер группы компаний PRO Дизайн.
+                - В том случае если Вы не с клиентом, необходимо предупредить менеджера о том, что Ваш клиент придет в магазин.
+
+                <b>Сроки выплаты бонуса</b>
+                - Выплаты бонуса партнерам происходят 3 раза в месяц, не ранее, чем через 14 дней с момента отгрузки товара клиенту.
+                - Даты выплат: 10-15, 20-25, 30-4 число каждого месяца
+                - Если дата выплаты выпадает на выходной день, то выплата происходит в ближайший рабочий день.
+
+                <b>Бонус наличными</b>
+                - Если Вы хотите забрать бонус наличными, необходимо не позднее, чем за 3 рабочих дня предупредить менеджера по работе с партнерами о том, что Вы приедете за выплатой, чтобы мы успели подготовить сумму.
+                - Если партнер не приезжает в указанную дату для выплаты бонуса, мы переводим сумму на карту (заранее уведомив об этом партнера) или получение бонуса переносится на следующую дату.
+
+                <b>Размер бонуса</b>
+                - Процент бонуса рассчитывается от суммы проданного товара по рекомендованным розничным ценам.
+                - В случае предоставления скидки клиенту, процент бонуса снижается на размер предоставленной скидки.
+                - Каждый раз, когда сумма ваших заказов достигает 1 000 000 ₽, размер вашего бонуса увеличивается на 0,5% - Повышенный бонус распространяется только на товары производителей, указанных в личном кабинете. На товары производителей, не включенных в список, распространяется стандартный % бонуса - 10%.
+                - Максимальный размер бонуса 15%
+
+                <b>Реферальная программа</b>
+                - Реферал засчитывается партнеру в момент, когда он совершает покупку в наших салонах, оформив ранее клубную карту партнера PRO Дизайн.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- News -->
+<div class="modal fade" id="modal-news" tabindex="-1" aria-labelledby="ModalNewsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalNewsLabel">Журнал новостей</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reminder -->
+<div class="modal fade" id="modal-goods" tabindex="-1" aria-labelledby="ModalGoodsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalGoodsLabel">Список высокомаржинальных товаров</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2>Направление "Напольные покрытия"</h2>
+                <p class="modal-text"><b>Ламинат</b>
+
+                - Kronotex
+                - My Floor
+                - My Step
+                - Villeroy&amp;Boch
+                - Clix Floor (коллекции Charm, Excellent, Flame)
+
+                <b>Кварцвинил (ПВХ плитка)</b>
+
+                - Union
+                - Norland
+                - Tulesna
+                - Bonkeel
+                - Art East
+                - My Step Aqua(коллекции AQUA 5, AQUA 6)
+
+                <b>Паркетная доска</b>
+
+                - Barlinek
+                - Decospan
+                - Karelia
+
+                <b>Инженерная доска</b>
+
+                - Koen
+                - Coswick
+                - Spil
+                - Esta</p>
+                <h2>Направление "Двери"</h2>
+                <p class="modal-text"><b>Межкомнатные двери</b>
+                - Двери DeFance
+                - Двери "Массив дуба"
+
+                <b>Входные двери</b>
+
+                - Двери Стальная Линия
+                - Двери Дива
+
+                <b>Фурнитура</b>
+
+                - Morelli
+                - System
+                </p>
+                <h2>Направление "Керамика"</h2>
+                <p class="modal-text">
+                <b>с 01.10.2024</b>
+                - Azario
+                - Alma ceramica
+                - Buono Ceramic
+                - Maimoon
+                - NT Ceramic
+                </p>
+                <br />
+                <p class="modal-text grey">Повышенный % бонуса действует только на материалы производителей из списка с даты внесения производителя в список. На бренды, не указанные в списке, а также на акционные позиции, подложку, плинтус и химию - действует стандартный % бонуса.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
     <div>
         {% if current_user.avatar %}
@@ -14,6 +177,23 @@
         {% else %}
             <img src="/static/img/imgs/avatar.png">
         {% endif %}
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary" id="modal-btn-callback" data-bs-toggle="modal" data-bs-target="#modal-callback">
+            Заказать обратный звонок
+        </button>
+        <button type="button" class="btn btn-primary" id="modal-btn-order" data-bs-toggle="modal" data-bs-target="#modal-order">
+            Оформить заказ
+        </button>
+        <button type="button" class="btn btn-primary" id="modal-btn-feedback" data-bs-toggle="modal" data-bs-target="#modal-feedback">
+            Оставить отзыв/пожелание
+        </button>
+        <button type="button" class="btn btn-primary" id="modal-btn-reminder" data-bs-toggle="modal" data-bs-target="#modal-reminder">
+            Памятка партнера
+        </button>
+        <button type="button" class="btn btn-primary" id="modal-btn-news" data-bs-toggle="modal" data-bs-target="#modal-news">
+            Журнал новостей
+        </button>
     </div>
     <form class="form-add-user" method="post" enctype="multipart/form-data">
             {{ form.csrf_token }}
@@ -110,6 +290,12 @@
     </div>
 
     <h2>Бонусная программа</h2>
+    <div>
+        Повышая объемы продаж, Вы увеличиваете свой уровень, за который получаете бонусы. Повышенный % бонуса действует на материалы из списка.
+        <button type="button" class="btn btn-primary" id="modal-btn-goods" data-bs-toggle="modal" data-bs-target="#modal-goods">
+            Список высокомаржинальных товаров
+        </button>
+    </div>
     <div class="progress-container">
         <div class="progress" id="progress"> </div>
         <div class="circle active">10%</div>
@@ -161,37 +347,61 @@ progress.style.width = ((activeCircles.length - 1) / (stepCircles.length - 1)) *
     <h2>Выигранные призы</h2>
     <div class="prizes">
         <div class="prize">
+            {% if 'alisa' in prizes %}
+            <div class="prizes-img-cont active">
+            {% else %}
             <div class="prizes-img-cont">
+            {% endif %}
                 <img src="{{ url_for('static', filename='img/prizes/1-alisa.png') }}">
             </div>
             <div class="prizes-txt">Яндекс станция с Алисой</div>
         </div>
         <div class="prize">
+            {% if 'ipad' in prizes %}
+            <div class="prizes-img-cont active">
+            {% else %}
             <div class="prizes-img-cont">
+            {% endif %}
                 <img src="{{ url_for('static', filename='img/prizes/2-ipad.png') }}">
             </div>
             <div class="prizes-txt">iPad</div>
         </div>
         <div class="prize">
+            {% if 'macbook' in prizes %}
+            <div class="prizes-img-cont active">
+            {% else %}
             <div class="prizes-img-cont">
+            {% endif %}
                 <img src="{{ url_for('static', filename='img/prizes/3-macbook.png') }}">
             </div>
             <div class="prizes-txt">MacBook Air</div>
         </div>
         <div class="prize">
+            {% if 'coswick' in prizes %}
+            <div class="prizes-img-cont active">
+            {% else %}
             <div class="prizes-img-cont">
+            {% endif %}
                 <img src="{{ url_for('static', filename='img/prizes/4-coswick.jpg') }}">
             </div>
             <div class="prizes-txt">Поездка на фабрику Coswick</div>
         </div>
         <div class="prize">
+            {% if 'maldives' in prizes %}
+            <div class="prizes-img-cont active">
+            {% else %}
             <div class="prizes-img-cont">
+            {% endif %}
                 <img src="{{ url_for('static', filename='img/prizes/5-maldives.jpg') }}">
             </div>
             <div class="prizes-txt">Поездка на Мальдивы</div>
         </div>
         <div class="prize">
+            {% if 'kia' in prizes %}
+            <div class="prizes-img-cont active">
+            {% else %}
             <div class="prizes-img-cont">
+            {% endif %}
                 <img src="{{ url_for('static', filename='img/prizes/6-kia.png') }}">
             </div>
             <div class="prizes-txt">Автомобиль Kia Soul</div>
@@ -215,7 +425,7 @@ progress.style.width = ((activeCircles.length - 1) / (stepCircles.length - 1)) *
         {% for order in orders %}
         <div class="orders-tbl-order">
         <div class="orders-tbl-section">
-          <div class="orders-tbl-el tbl-order-num"><a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a></div>
+          <div class="orders-tbl-el tbl-order-num">{{ order.order_num }}</div>
           <div class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</div>
           <div class="orders-tbl-el tbl-order-address">{{ order.address }}</div>
           <div class="orders-tbl-el tbl-order-date">{{ order.order_date }}</div>
@@ -247,4 +457,7 @@ progress.style.width = ((activeCircles.length - 1) / (stepCircles.length - 1)) *
 
 {% endblock %}
 
-{% block js %}<script src="{{ url_for('static', filename='js/user.js') }}"></script>{% endblock %}
+{% block js %}
+    <script src="{{ url_for('static', filename='js/user.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+{% endblock %}
