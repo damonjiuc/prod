@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row banner-group">
-    <div class="col-5">
+    <div class="col-12 col-sm-5 col-md-5">
         <div class="banner-group-banner">
             <video id="vid-desk-2" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" class="home-main--video vid-home vid-desk" style="opacity: 0.648521;">
                 <source type="video/mp4" src="https://prod.ru/wp-content/uploads/2022/12/whole.mp4">
@@ -11,7 +11,7 @@
             <!--<img src="{{ url_for('static', filename='img/imgs/ban.jpg') }}"/>-->
         </div>
     </div>
-    <div class="col-7">
+    <div class="col-12 col-sm-7 col-md-7">
         <div class="row">
             <div class="col-12">
                 <div class="banner-group-dir dir-dark">
@@ -70,34 +70,35 @@
 
 <section class="salons">
     <div class="row">
-        <div class="col-5">
-            <div style="text-align: left;">
-                <h2 style="margin-top: 17px">Наши салоны оформлены<br/>в современном стиле и<br/>предлагают посетителям<br/>тысячи образцов.</h2>
+        <div class="col-12 col-sm-6 col-md-5">
+            <div class="inform" style="text-align: left;">
+                <h2 style="margin-top: 17px">Наши салоны оформлены в современном стиле и предлагают посетителям тысячи образцов.</h2>
                 <p>Мы предлагаем лучший сервис и широкий выбор сопутствующих товаров и услуг, предлагая полный цикл обслуживания клиента.</p>
                 <div class="button-container">
                     <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r.svg') }}" alt="Icon"/></button>
                 </div>
             </div>
         </div>
-        <div class="col-7">
-            <div class="row">
-                <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-7">
+            <div class="row napr">
+                <div class="col-12 col-md-4">
                     <div class="decor-block">
                         <img src="{{ url_for('static', filename='img/imgs/salon1.jpg') }}" />
-                        <h3 class="decor-text">Деревяные напольные<br />покрытия</h3>
-                        <p class="decor-about"> паркет, ламинат,<br />кварц-виниловая плитка,<br />массивная доска и др.</p>
+                        <h3 class="decor-text">Деревяные напольные покрытия</h3>
+                        <p class="decor-about"> паркет, ламинат, кварц-виниловая плитка, массивная доска и др.</p>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <div class="decor-block">
                         <img src="{{ url_for('static', filename='img/imgs/salon2.jpg') }}" />
-                        <h3 class="decor-text">Керамическая плитка<br />и керамогранит</h3>
+                        <h3 class="decor-text">Керамическая плитка и керамогранит</h3>
+                        <p class="decor-about"></p>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <div class="decor-block">
                         <img src="{{ url_for('static', filename='img/imgs/salon3.jpg') }}" />
-                        <h3 class="decor-text">Межкомнатные <br />и входные двери</h3>
+                        <h3 class="decor-text">Межкомнатные и входные двери</h3>
                         <p class="decor-about">серийные и под заказ</p>
                     </div>
                 </div>
@@ -110,7 +111,7 @@
     <div class="info">
         <h4>Мы гарантируем самую низкую цену на весь предлагаемый ассортимент и будем рады видеть вас в наших салонах.</h4>
     </div>
-        <h3>Наши бренды</h3>
+    <h3>Наши бренды</h3>
     <div class="brand-list">
         <div class="brand">
             <img src="/static/img/stores/slonparket-gs.svg" />
@@ -146,15 +147,26 @@
 </section>
 
 <section class="partners">
-    <div>
-    <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
-    <p>Узнайте о лучших условиях для партнеров</p>
-    <div class="button-container">
-        <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
+    <div class="partners-text">
+        <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
+        <p>Узнайте о лучших условиях для партнеров</p>
+        <div class="button-container">
+            <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
+        </div>
     </div>
+    <div class="partners-image">
+        <img class="partners-people" src="{{ url_for('static', filename='img/imgs/ban2.png') }}" />
     </div>
-    <div>
-    <img class="partners-people" src="{{ url_for('static', filename='img/imgs/ban2.png') }}" />
+</section>
+
+<section class="partners-mob">
+    <div class="partners-text">
+        <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
+        
+        <p>Узнайте о лучших условиях для партнеров</p>
+        <div class="button-container">
+            <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
+        </div>
     </div>
 </section>
 
@@ -234,7 +246,7 @@
 
         <div class="tab-content" id="content-sp">
             <div class="row">
-                <div class="col-12 col-xl-3">
+                <div class="col-12 col-md-4 col-xl-3">
                     <div class="shop">
                         Ленинский проспект, дом 140А,
                         <br>
@@ -271,7 +283,7 @@
                         ТК "Интерио", 2 этаж, секция 213
                     </div>
                 </div>
-                <div class="col-12 col-xl-9">
+                <div class="col-12 col-md-8 col-xl-9">
                     <div class="ymap" id="map_sp"></div>
                 </div>
             </div>

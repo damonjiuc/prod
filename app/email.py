@@ -43,3 +43,30 @@ def bonus_paid(email, order_num, bonus):
                                          order_num=order_num, bonus=bonus),
                html_body=render_template('email/bonus_paid.html',
                                          order_num=order_num, bonus=bonus))
+
+def user_callback_email(card, name, phone):
+    send_email(f'[prod.ru] Пользователь {card} запрашивает обратный звонок',
+               sender='no-reply@prod.ru',
+               recipients=['damonjiuc@gmail.com', 'partners@prod.ru'],
+               text_body=render_template('email/user_callback.txt',
+                                         card=card, name=name, phone=phone),
+               html_body=render_template('email/user_callback.html',
+                                         card=card, name=name, phone=phone))
+
+def user_feedback_email(card, name, text):
+    send_email(f'[prod.ru] Пользователь {card} оставил рекомендацию по сайту',
+               sender='no-reply@prod.ru',
+               recipients=['damonjiuc@gmail.com', 'i.pavlov@prod.ru'],
+               text_body=render_template('email/user_feedback.txt',
+                                         card=card, name=name, text=text),
+               html_body=render_template('email/user_feedback.html',
+                                         card=card, name=name, text=text))
+
+def user_make_order_email(card, name, phone, text):
+    send_email(f'[prod.ru] Пользователь {card} запрашивает заказ',
+               sender='no-reply@prod.ru',
+               recipients=['damonjiuc@gmail.com', 'partners@prod.ru'],
+               text_body=render_template('email/user_make_order.txt',
+                                         card=card, name=name, phone=phone, text=text),
+               html_body=render_template('email/user_make_order.html',
+                                         card=card, name=name, phone=phone, text=text))

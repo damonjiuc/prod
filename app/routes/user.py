@@ -5,8 +5,9 @@ from ..models.users import Users
 from ..models.orders import Orders
 from ..models.items import Items
 from ..models.prizes import Prizes
-from ..forms import UserEditForm, UserLogin
+from ..forms import UserEditForm, UserLogin, Callback, MakeOrder, Feedback
 from ..functions import save_picture
+from app.email import user_callback_email, user_feedback_email, user_make_order_email
 
 
 user = Blueprint('user', __name__)
@@ -37,14 +38,17 @@ def user_login():
 @user.route('/user/edit', methods=['POST', 'GET'])
 @login_required
 def user_profile():
+    user_in_lk = True if request.base_url.endswith('/user/edit') else False
     form = UserEditForm()
-    orders = Orders.query.order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all() # .limit(6)
+    form_callback = Callback()
+    form_make_order = MakeOrder()
+    form_feedback = Feedback()
     prizes = Prizes.query.filter_by(user_id=current_user.id).all()
     user_prizes = set()
     for prize in prizes:
         user_prizes.add(prize.type)
+    orders = Orders.query.order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all() # .limit(6)
     stats = {'orders_count': 0, 'bonus_to_pay': 0, 'money_earned': 0}
-    user_in_lk = True if request.base_url.endswith('/user/edit') else False
 
     for order in orders:
         order.order_items = Items.query.filter_by(order_id=order.order_id).all()
@@ -74,7 +78,22 @@ def user_profile():
             print(str(exc))
             flash('Некорректные данные', category='error')
         return redirect(url_for('user.user_login'))
-    return render_template('user/edit.html', form=form, orders=orders, stats=stats, user_in_lk=user_in_lk, prizes=user_prizes)
+    if form_callback.validate_on_submit():
+        name = form_callback.callback_name.data
+        phone = form_callback.callback_phone.data
+        user_callback_email(current_user.card, name, phone)
+    if form_feedback.validate_on_submit():
+        name = form_feedback.feedback_name.data
+        text = form_feedback.feedback_text.data
+        user_feedback_email(current_user.card, name, text)
+    if form_make_order.validate_on_submit():
+        name = form_make_order.make_order_name.data
+        phone = form_make_order.make_order_phone.data
+        text = form_make_order.make_order_phone.data
+        user_make_order_email(current_user.card, name, phone, text)
+
+    return render_template('user/edit.html', form=form, orders=orders, stats=stats, user_in_lk=user_in_lk, prizes=user_prizes,
+                           form_callback=form_callback, form_make_order=form_make_order, form_feedback=form_feedback)
 
 
 @user.route('/user/orders')

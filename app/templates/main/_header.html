@@ -8,14 +8,14 @@
   </div>
   {% endif %}
   <div class="row">
-    <div class="col-12 col-lg-2 col-xl-2">
+    <div class="col-5 col-sm-3 col-lg-2 col-xl-2">
       <div class="logo">
         <a href="{{ url_for('main.index') }}">
           <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="PRO Дизайн Logo" />
         </a>
       </div>
     </div>
-    <div class="col-12 col-lg-1 col-xl-6">
+    <div class="col-1 col-sm-1 col-lg-1 col-xl-6">
       <nav>
         <ul class="menu">
           <li><a href="{{ url_for('main.index') }}">ГЛАВНАЯ</a></li>
@@ -26,12 +26,12 @@
         </ul>
       </nav>
     </div>
-    <div class="col-12 col-lg-3 col-xl-2">
+    <div class="col-1 col-sm-3 col-lg-3 col-xl-2">
       <div class="contact-info phone">
         <a href="tel:88122130300">+7 (812) 213-03-00</a>
       </div>
     </div>
-    <div class="col-12 col-lg-2 col-xl-2 login">
+    <div class="col-5 col-sm-4 col-lg-4 col-xl-2 login">
       <div class="login-btn">
         {% if current_user.is_authenticated and user_in_lk %}
           <a href="{{ url_for('user.user_logout') }}">
@@ -53,17 +53,51 @@
         <span></span>
       </div>
       <div class="mobile-menu" id="hamburger-menu">
+        <div id="close-menu">
+          <span class="close close-1"></span>
+          <span class="close close-2"></span>
+        </div>
         <ul class="">
-          <li><span id="close-menu">Закрыть меню</span></li>
           <li><a href="{{ url_for('main.index') }}">ГЛАВНАЯ</a></li>
           <li><a href="{{ url_for('main.retail') }}">МАГАЗИНЫ</a></li>
           <li><a href="{{ url_for('main.partners') }}">ПАРТНЕРСТВО</a></li>
           <li><a href="{{ url_for('main.trading') }}">ОПТ</a></li>
           <li><a href="{{ url_for('main.contacts') }}">КОНТАКТЫ</a></li>
         </ul>
-        <div class="contact-info phone2">
-          <a href="tel:88122130300">+7 (812) 213-03-00</a>
+        <hr>
+        <ul class="main-contact">
+          <li class="main-contacts__item main-contacts__number">
+            <a href="tel:+7(812)213-03-00" class="main-contacts__link">
+              <img src="https://prod.ru/wp-content/themes/blankslate/img/footer-mob-tel-white.svg" alt="#" class="main-contacts__img">
+              +7 (812) 213 - 03 - 00</a>
+          </li>
+          <li class="main-contacts__item main-contacts__number">
+            <a target="_blank" href="https://t.me/prod_ru">
+              <img src="/index.wsgi/static/img/icon_tg.svg" alt="Telegram Icon" class="footer-icon">
+              <span>@prod_ru</span>
+            </a>
+          </li>
+          <li class="main-contacts__item main-contacts__number">
+            <a target="_blank" href="https://wa.me/79217787394">
+              <img src="/index.wsgi/static/img/icon_wa.svg" alt="WhatsApp Icon" class="footer-icon">
+              <span>Написать в WhatsApp</span>
+            </a>
+          </li>
+          <li class="main-contacts__item main-contacts__number">
+            <a target="_blank" href="https://vk.com/prod_rus" class="footer-contacts__link">
+              <img src="/index.wsgi/static/img/icon_vk.svg" alt="VK Icon" class="footer-icon">
+              <span>@prod_rus</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div class="mob-info">
+          <p class="shops-info__paragraf">Адрес офиса:</p>
+          <p class="shops-info__address">г. Санкт-Петербург, пр. Ленинский, д. 140А</p>
+          <p style="margin-top: 20px;" class="shops-info__paragraf">Режим работы:</p>
+          <p class="shops-info__address">С 10:00 до 19:00</p>
         </div>
+        <hr>
         <div class="login-btn">
           {% if current_user.is_authenticated and user_in_lk %}
             <a href="{{ url_for('user.user_logout') }}">

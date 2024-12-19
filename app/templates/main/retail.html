@@ -12,7 +12,7 @@
             <a href="mailto:slonparket@mail.ru">slonparket@mail.ru</a><br />
             <a href="tel:8(812)425-19-19">8 (812) 425-19-19</a>
         </div>
-        <div class="map"></div>
+        <div class="ymap" id="map_sp"></div>
     </div>
     <div class="retail-net-shop">
         <img class="retail-net-img" src="/static/img/retail/sp-1-vo-mal.jpg">
@@ -83,7 +83,7 @@
             <a href="mailto:zakaz@cp1.ru">zakaz@cp1.ru</a><br />
             <a href="tel:8(812)602-98-02">8 (812) 602-98-02</a>
         </div>
-        <div class="map"></div>
+        <div class="ymap" id="map_cp"></div>
     </div>
     <div class="retail-net-shop">
         <img class="retail-net-img" src="/static/img/retail/cp-1-len.jpg">
@@ -124,7 +124,7 @@
             <a href="mailto:zakaz@lenplitka.ru">zakaz@lenplitka.ru</a><br />
             <a href="tel:8(812)425-17-18">8 (812) 425-17-18</a>
         </div>
-        <div class="map"></div>
+        <div class="ymap" id="map_lp"></div>
     </div>
     <div class="retail-net-shop">
         <img class="retail-net-img" src="/static/img/retail/lp-1-len.jpg">
@@ -153,7 +153,7 @@
             <a href="mailto:zakaz@profildoors.sale">zakaz@profildoors.sale</a><br />
             <a href="tel:8(812)458-07-50">8 (812) 458-07-50</a>
         </div>
-        <div class="map"></div>
+        <div class="ymap" id="map_pd"></div>
     </div>
     <div class="retail-net-shop">
         <img class="retail-net-img" src="/static/img/retail/pd-1-len.jpeg">
@@ -182,7 +182,7 @@
             <a href="mailto:zakaz@realdoor.ru">zakaz@realdoor.ru</a><br />
             <a href="tel:8(812)424-47-34">8 (812) 424-47-34</a>
         </div>
-        <div class="map"></div>
+        <div class="ymap" id="map_rd"></div>
     </div>
     <div class="retail-net-shop">
         <img class="retail-net-img" src="/static/img/retail/rd-1-len.jpg">
@@ -204,7 +204,7 @@
     </div>
 </section>
 
-<section class="retail-net">
+<!--<section class="retail-net">
     <h2 class="retail-net-title">Салоны Центр Входных Дверей</h2>
     <div class="retail-net-info">
         <div class="retail-net-info-txt">
@@ -231,7 +231,7 @@
         <p class="retail-net-shop-address">Железноводская улица, дом 3, ТК «Василеостровский»</p>
         <p class="retail-net-shop-time">С 10:00 до 22:00</p>
     </div>
-</section>
+</section>-->
 
 <section class="retail-net">
     <h2 class="retail-net-title">Паркет 1703</h2>
@@ -240,7 +240,7 @@
             <a href="mailto:zakaz@parket1703.ru">zakaz@parket1703.ru</a><br />
             <a href="tel:8(812)219-20-25">8 (812) 219-20-25</a>
         </div>
-        <div class="map"></div>
+        <div class="ymap" id="map_pa"></div>
     </div>
     <div class="retail-net-shop">
         <img class="retail-net-img" src="/static/img/retail/par-1-cub.webp">
@@ -257,4 +257,9 @@
 </section>
 
 
+{% endblock %}
+
+{% block js %}
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=longlat;apikey=7e29b517-febf-4789-9368-769cf7e911eb" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}

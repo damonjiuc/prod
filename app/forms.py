@@ -40,3 +40,25 @@ class UserLogin(FlaskForm):
     password = PasswordField('Пароль', validators=[DataRequired()])
     remember = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
+
+
+class Callback(FlaskForm):
+    """ ЛК: Заказать звонок """
+    callback_name = StringField('Имя', validators=[DataRequired()], default=lambda: current_user.name)
+    callback_phone = TelField('Телефон', validators=[DataRequired()], default=lambda: current_user.phone)
+    callback_submit = SubmitField('Заказать звонок')
+
+
+class MakeOrder(FlaskForm):
+    """ ЛК: Оформить заказ """
+    make_order_name = StringField('Имя', validators=[DataRequired()], default=lambda: current_user.name)
+    make_order_phone = TelField('Телефон', validators=[DataRequired()], default=lambda: current_user.phone)
+    make_order_text = StringField('Опишите что вам нужно')
+    make_order_submit = SubmitField('Отправить')
+
+
+class Feedback(FlaskForm):
+    """ ЛК: Отзыв / пожелание """
+    feedback_name = StringField('Имя', validators=[DataRequired()], default=lambda: current_user.name)
+    feedback_text = StringField('Комментарий / пожелание по улучшению личного кабинета', validators=[DataRequired()])
+    feedback_submit = SubmitField('Отправить')

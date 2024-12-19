@@ -23,11 +23,16 @@ a:hover {
     color: var(--accent);
 }
 
-.content {
+.container {
     margin: 0 auto;
-    padding: 16px 0;
-    flex: 1 1 auto;
-    width: 1366px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    color: var(--ultra-light);
+    margin-top: 29px;
+    padding: 0 20px;
 }
 
 .flash {
@@ -103,6 +108,8 @@ header .row {
     align-items: center;
     justify-content: space-between;
     padding: 30px 16px;
+    margin-right: 0;
+    margin-left: 0;
 }
 
 header .logo img {
@@ -200,20 +207,61 @@ header .hamburger {
 header .mobile-menu {
     display: none;
     flex-direction: column;
-    padding: 20px;
+    padding: 68px 68px 68px 10px;
     right: 0;
     z-index: 99;
     background: #000;
-    width: 60%;
+    width: 70%;
     position: fixed;
     height: 100vh;
     top: 0;
     margin: 0 0 0 40%;
     border-radius: 0;
 }
-
 header .mobile-menu.active {
     display: block;
+}
+.mobile-menu #close-menu {
+    width: 25px;
+    height: 25px;
+    margin-left: auto;
+    margin-right: -16px;
+    position: initial;
+    z-index: 10;
+    right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    z-index: 20;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.mobile-menu #close-menu .close {
+    height: 2px;
+    width: 100%;
+    background-color: #FEFEFF;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+.mobile-menu #close-menu .close-1 {
+    transform: rotate(45deg) translateY(19px) translateX(0px);
+}
+.mobile-menu #close-menu .close-2 {
+    transform: rotate(-45deg) translateY(-16px) translateX(-3px);
+}
+
+header .mobile-menu ul li {
+    margin: 10px 0;
 }
 /* end header */
 
@@ -314,7 +362,7 @@ section.content p {
     opacity: 0.141;
     font-size: 360px;
     letter-spacing: 15px;
-    line-height: 668px;
+    line-height: inherit;
     text-transform: uppercase;
     color: var(--black);
     font-weight: bold;
@@ -324,7 +372,7 @@ section.content p {
 .banner-group .banner-group-dir .arrow {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 28px;
     background: black;
     border-radius: 50%;
     width: 30px;
@@ -346,7 +394,7 @@ section.content p {
     font-weight: Bold;
     content: "01";
     right: -55px;
-    top: -157px;
+    top: -0.28em;
 }
 
 .banner-group .dir-white {
@@ -364,7 +412,7 @@ section.content p {
     font-family: 'Gilroy';
     font-weight: Bold;
     content: "02";
-    top: -130px;
+    top: -0.18em;
 }
 
 .banner-group .dir-red {
@@ -375,7 +423,7 @@ section.content p {
 .banner-group .dir-red .after {
     font-weight: Bold;
     content: "03";
-    top: -130px;
+    top: -0.18em;
 }
 
 .salons {
@@ -385,8 +433,6 @@ section.content p {
     margin-top: 20px;
     text-align: center;
     display: flex;
-    padding-top: 80px;
-    padding-bottom: 60px;
 }
 
 .salons h2 {
@@ -440,13 +486,13 @@ section.content p {
 }
 
 .salons .decor-block {
-    margin-right: 20px;
 }
 
 .salons .decor-block img {
-    width: 300px;
+    width: 100%;
     height: 240px;
     border-radius: 16px;
+    margin-bottom: 20px;
 }
 
 .salons .decor-text {
@@ -551,7 +597,7 @@ section.content p {
     position: relative;
 }
 
-.partners div {
+.partners .partners-text, .partners .partners-image {
     width: 50%;
     text-align: left;
 }
@@ -600,11 +646,15 @@ section.content p {
     width: 41px;
 }
 
-.partners-people {
+.partners .partners-image img {
     bottom: 0;
     position: absolute;
     right: 10%;
     width: 45%;
+}
+
+.partners-mob {
+    display: none;
 }
 
 .our-advantages {
@@ -662,6 +712,15 @@ section.content p {
     margin-left: 28px;
     margin-right: 20px;
     width: 86px;
+}
+
+.our-advantages .advantages-block h5 {
+    color: var(--dark);
+    font-size: 1.4em;
+}
+
+.our-advantages .advantages-block p {
+    color: #8b8b8b;
 }
 
 .map {
@@ -733,13 +792,16 @@ section.content p {
 }
 
 .map .tab .shop {
-    color: var(--light);
+    color: #a7a7a7;
     font-size: 14px;
     margin-bottom: 20px;
 }
 
 .ymap {
-    width: 100%; height: 100%; padding: 0; margin: 0;
+    width: 100%;
+    height: 400px;
+    padding: 0;
+    margin: 0;
 }
 
 /* end index */
@@ -750,11 +812,15 @@ section.content p {
 
 /* footer */
 footer {
+    display: flex;
+    justify-content: space-between;
+    color: var(--ultra-light);
+    padding: 0 20px;
     color: var(--ultra-light);
 }
 
 footer .container {
-    padding: 74px;
+    padding: 30px 38px;
 }
 
 footer a {
@@ -890,16 +956,9 @@ footer .footer-button img {
 
 /** Media **/
 @media screen and (max-width: 1366px) {
-
 }
 
 @media screen and (max-width: 1200px) {
-    .salons .decor-about {
-        font-size: 0.8em;
-    }
-}
-
-@media screen and (max-width: 992px) {
     header nav {
         display: none;
     }
@@ -915,29 +974,82 @@ footer .footer-button img {
     header .hamburger span {
         display: block;
         height: 2px;
-        margin-bottom: 8px;
+        margin: 8px 0;
         width: 100%;
         background-color: #FEFEFF;
     }
-    header .mobile-menu {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        background-color: var(--dark);
-        padding: 20px;
-        position: absolute;
-        top: 133px;
-        left: 0;
-        right: 0;
-        border-radius: 0 0 16px 16px;
+
+    header .mobile-menu .login-btn {
+        display: inline;
+    }
+
+    .banner-group .dir-dark {
+        padding: 100px 35px 17px 27px;
+    }
+    .banner-group .dir-white {
+        padding: 100px 35px 17px 27px;
+    }
+    .banner-group .dir-red {
+        padding: 100px 35px 17px 27px;
+    }
+
+    .banner-group .banner h1 {
+        font-size: 1.7em;
+    }
+
+    .banner-group .dir-dark .after {
+        font-size: 18em;
+        right: -40px;
+        top: -0.08em;
+    }
+    .banner-group .dir-white .after, .banner-group .dir-red .after {
+        font-size: 18em;
+        right: -40px;
+        top: 0.03em;
+    }
+
+    .brands .info {
+        width: 60%;
+    }
+
+    .salons h2 {
+        line-height: 1.3em;
+    }
+
+    .salons .decor-about {
+        font-size: 0.8em;
+    }
+
+    .our-advantages .advantages-block {
+        width: 43%;
+    }
+
+    footer .number {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        max-width: 98%;
     }
 
     .banner-group .banner h1 {
         font-size: 1.5em;
     }
-    .banner-group .dir-dark .after,.banner-group .dir-white .after, .banner-group .dir-red .after {
+    .banner-group .dir-dark .after {
         font-size: 18em;
         right: -50px;
+        top: -0.03em;
+    }
+    .banner-group .dir-white .after, .banner-group .dir-red .after {
+        font-size: 18em;
+        right: -50px;
+        top: 0.08em;
+    }
+
+    .salons {
+        padding: 30px 28px;
     }
 
     .salons h2 {
@@ -946,13 +1058,23 @@ footer .footer-button img {
 
     .salons .decor-text {
         font-size: 0.8em;
+        line-height: 1.5em;
+    }
+    .salons .decor-block img {
+        height: 200px;
+        margin-bottom: 0;
     }
     .salons .decor-about {
         font-size: 0.6em;
+        line-height: 2em;
+    }
+
+    .brands {
+        padding: 100px 28px 30px;
     }
 
     .brands .info {
-        width: 50%;
+        width: 70%;
     }
 
     .brands .brand-list .brand {
@@ -962,25 +1084,484 @@ footer .footer-button img {
         bottom: 20px;
     }
 
-    .our-advantages .advantages-block {
-        width: 42%;
+    .partners {
+        padding: 30px 28px;
+    }
+
+    .our-advantages {
+        padding: 30px 28px;
+    }
+
+    .our-advantages .advantages-block h5 {
+        font-size: 1.2em;
+    }
+    .our-advantages .advantages-block p {
+        font-size: 0.8em;
+    }
+
+    .map {
+        padding: 30px 28px;
+    }
+
+    footer .container {
+        padding: 30px 28px;
     }
 
     footer .number {
-        font-size: 1.2em;
+        font-size: 1em;
+    }
+
+    footer .footer-button {
+        font-size: 12px;
+    }
+    footer .footer-button img {
+        margin-left: 9px;
+        width: 29px;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .content {
-        max-width: 98%;
+@media (max-width: 768px) {
+
+    .col-md-6 {
+        width: 100%;
+    }
+
+    .banner-group .dir-dark,.banner-group .dir-white,.banner-group .dir-red {
+        padding: 20px 50px 20px 20px;
+    }
+    .banner-group .dir-white {
+        margin-bottom: 20px;
+    }
+
+    .banner-group .dir-dark .after,.banner-group .dir-white .after, .banner-group .dir-red .after {
+        font-size: 10em;
+        right: -35px;
+        top: 0.03em;
+    }
+
+    .salons {
+        padding: 20px 15px;
+    }
+    .salons h2 {
+        font-size: 1.2em;
+        line-height: normal;
+    }
+
+    .salons .col-sm-6 .col-md-4 {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .salons .col-sm-6 .col-md-4:last-child {
+        margin-bottom: 70px;
+    }
+
+    .salons .decor-block img {
+        height: 120px;
+        float: left;
+        width: 45%;
+    }
+    .salons .decor-text {
+        float: right;
+        margin-top: 0;
+        width: 50%;
+    }
+    .salons .decor-about {
+        float: right;
+        height: auto;
+        line-height: 1.5em;
+        margin: 0;
+        width: 50%;
+    }
+
+    .brands .info {
+        height: auto;
+        padding: 10px 10px 10px 34px;
+        width: 70%;
+    }
+    .brands .info h4 {
+        margin-bottom: 0;
+    }
+
+    .brands {
+        padding: 54px 15px 20px;
+    }
+
+    .partners {
+        padding: 20px 15px;
+    }
+
+    .partners .partners-text {
+        width: 70%;
+    }
+    .partners .partners-image {
+        width: 30%;
+    }
+    .partners .partners-image img {
+        right: 0;
+        width: 40%;
+    }
+
+    .our-advantages {
+        padding: 20px 15px;
+    }
+    
+    .advantages-block {
+        font-size: 0.8em;
+    }
+
+    .map {
+        padding: 20px 15px;
     }
 }
 
 @media screen and (max-width: 480px) {
+    header .phone {
+        display: none;
+    }
 
+    .content {
+        margin-top: 20px;
+    }
+
+    .banner-group .col-sm-5 {
+        margin-bottom: 20px;
+    }
+
+    .banner-group .dir-dark, .banner-group .dir-white, .banner-group .dir-red {
+        padding: 20px 65px 20px 20px;
+    }
+
+    .salons .col-md-5 {
+        order: 2;
+    }
+
+    .salons .col-md-7 {
+        order: 1;
+        max-width: 100%;
+        display: grid;
+    }
+
+    .salons h2 {
+        text-align: center;
+    }
+
+    .salons .inform p {
+        margin: 20px;
+        text-align: center;
+    }
+
+    .salons .button-container {
+        text-align: center;
+    }
+
+    .salons .col-sm-6 .col-md-4:last-child {
+        margin-bottom: 20px;
+    }
+
+    .salons .napr {
+        height: auto;
+        display: -webkit-box;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        flex-wrap: nowrap;
+    }
+
+    .salons .napr .col-12 {
+        border-radius: 16px;
+        border: 2px solid var(--ultra-light);
+        display: flex;
+        align-items: center;
+        width: 50%;
+        margin-right: 20px;
+    }
+    .salons .decor-block img {
+        height: 170px;
+        width: 100%;
+    }
+    .salons .decor-text {
+        width: 100%;
+    }
+    .salons .decor-about {
+        min-height: 45px;
+        width: 100%;
+    }
+
+    .salons .napr::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+        height: 3px;
+    }
+
+    .salons .napr::-webkit-scrollbar {
+        width: 12px;
+        background-color: #F5F5F5;
+        height: 3px;
+    }
+
+    .salons .napr::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: var(--accent);
+        height: 3px;
+    }
+
+    .brands {
+        padding-bottom: 70px;
+    }
+
+    .brands .info {
+        position: relative;
+        width: calc(100% + 30px);
+        margin: 0 -15px;
+        top: -54px;
+        border-radius: 0;
+    }
+    .brands .info h4 {
+        text-align: center;
+    }
+
+    .brands h3 {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .brands .brand-list {
+        height: auto;
+        display: -webkit-box;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        flex-wrap: nowrap;
+    }
+
+    .brands .brand-list::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+        height: 3px;
+    }
+
+    .brands .brand-list::-webkit-scrollbar {
+        width: 12px;
+        background-color: #F5F5F5;
+        height: 3px;
+    }
+
+    .brands .brand-list::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: var(--accent);
+        height: 3px;
+    }
+
+    .brands .brand-list .brand {
+        border-radius: 16px;
+        border: 0;
+        display: block;
+        align-items: center;
+        width: 100%;
+        margin-right: 20px;
+    }
+    
+    .brands .brand-list .brand h4 {
+        text-align: center;
+    }
+    .brands .brand-list .brand p {
+        text-align: center;
+        position: relative;
+    }
+
+    .partners {
+        padding: 20px 15px;
+        height: 300px;
+    }
+
+    .partners .partners-text {
+        display: none;
+    }
+
+    .partners .partners-image {
+        width: 100%;
+    }
+    .partners .partners-image img {
+        width: 100%;
+    }
+
+    .partners-mob {
+        background-color: #fff;
+        display: block;
+        padding: 30px 15px;
+    }
+
+    .partners-mob h4 {
+        font-size: 24px;
+        line-height: normal;
+        color: var(--dark);
+        font-weight: bold;
+        margin-bottom: 39px;
+    }
+
+    .partners-mob p {
+        color: var(--dark);
+        width: 50%;
+        display: inline-block;
+        float: left;
+    }
+
+    .partners-mob .button-container {
+        width: 50%;
+        display: inline-block;
+        text-align: right;
+    }
+
+    .partners-mob .button-container .discover-btn{
+            width: max-content;
+        border-radius: 31px;
+        background-color: #f1eff0;
+        border: none;
+        font-size: 14px;
+        letter-spacing: 1px;
+        color: var(--dark);
+        font-weight: 500;
+        padding: 2px 2px 2px 27px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        text-align: left;
+    }
+
+    .partners-mob .button-container  img {
+        margin-left: 13px;
+        width: 41px;
+    }
+
+    .our-advantages {
+        background-color: #f1eff0;
+    }
+
+    .our-advantages h3 {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .our-advantages .advantages-block {
+        width: 100%;
+    }
+
+    .map h3 {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .map .tab .col-12.col-xl-3 {
+        display: none;
+    }
+
+    .map .tab > label {
+        margin-bottom: 20px;
+        width: 50%;
+    }
+
+    .foot1 {
+        order: 5;
+    }
+    .foot2 {
+        order: 1;
+    }
+    .foot3 {
+        order: 2;
+    }
+    .foot4 {
+        order: 3;
+    }
+    .foot5 {
+        order: 0;
+    }
+    footer .foot3 .footer-links li {
+        text-align: right;
+    }
+    footer .foot4 .footer-contacts {
+        width: 100%;
+    }
+    footer .foot4 .footer-contact-item {
+        margin: 0 auto;
+    }
+    footer .foot5 .footer-contacts {
+        width: 50%;
+        display: inline-block;
+        float: left;
+        text-align: left;
+    }
+    footer .foot5 .contact-info {
+        width: 50%;
+        display: inline-block;
+    }
+
+    .footer-logo img {
+        margin: 0 auto;
+    }
+    .footer-description {
+        text-align: center;
+    }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 420px) {
+    .banner-group .dir-dark .after {
+        top: 0.23em;
+    }
+    
+    .our-advantages .advantages-block h5 {
+        font-size: 1.2em;
+    }
+}
 
+@media screen and (max-width: 390px) {
+    header .col-1 {
+        display: none;
+    }
+
+    .banner-group .dir-dark .after {
+        top: 0.58em;
+    }
+
+    .banner-group .dir-white .after {
+
+    }
+
+    .banner-group .dir-red .after {
+        top: 0.23em;
+    }
+
+    .partners-mob h4 {
+        text-align: center;
+    }
+
+    .partners-mob p {
+        color: var(--dark);
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .partners-mob .button-container {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    footer .foot5 {
+        margin-bottom: 20px;
+    }
+    
+    footer .foot5 .footer-contacts {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    footer .foot5 .contact-info {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
 }

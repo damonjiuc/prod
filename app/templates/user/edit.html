@@ -17,7 +17,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
+                    {{ form_callback.csrf_token }}
+                    {{ form_callback.callback_name(placeholder="Имя") }}
+                    {{ form_callback.callback_phone(placeholder="Телефон") }}
+                    {{ form_callback.callback_submit(placeholder="Заказать звонок") }}
+                </form>
             </div>
         </div>
     </div>
@@ -31,7 +36,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
+                    {{ form_make_order.csrf_token }}
+                    {{ form_make_order.make_order_name(placeholder="Имя") }}
+                    {{ form_make_order.make_order_phone(placeholder="Телефон") }}
+                    {{ form_make_order.make_order_text(placeholder="Опишите что вам нужно") }}
+                    {{ form_make_order.make_order_submit(placeholder="Отправить") }}
+                </form>
             </div>
         </div>
     </div>
@@ -45,7 +56,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
+                    {{ form_feedback.csrf_token }}
+                    {{ form_feedback.feedback_name(placeholder="Имя") }}
+                    {{ form_feedback.feedback_text(placeholder="Комментарий / пожелание по улучшению личного кабинета") }}
+                    {{ form_feedback.feedback_submit(placeholder="Отправить") }}
+                </form>
             </div>
         </div>
     </div>
