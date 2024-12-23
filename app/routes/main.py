@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, send_from_directory, current_app
+from flask import Blueprint, render_template, send_from_directory, current_app, make_response, request, redirect
 import os
 from ..forms import Partnership, Contacts
 from app.email import send_partnership_email, send_contacts_email
@@ -8,7 +8,17 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
+    if not request.cookies.get('ref'):
+        ref = request.args.get('r')
+        if ref:
+            response = make_response(redirect('/'))
+            response.set_cookie('ref', str(ref), max_age=60 * 60 * 24 * 365 * 2)
+            return response
     return render_template('main/index.html')
+
+@main.route('/cookie')
+def cookie(ref):
+    pass
 
 @main.route('/favicon.ico')
 def favicon():

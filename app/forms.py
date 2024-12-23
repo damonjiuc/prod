@@ -1,6 +1,8 @@
+from flask import request
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
 from wtforms import PasswordField, SubmitField, TelField, EmailField, DateField, FileField, IntegerField, StringField, BooleanField
+from wtforms.fields.simple import TextAreaField
 from wtforms.validators import DataRequired, Length, EqualTo
 from flask_login import current_user
 
@@ -9,7 +11,7 @@ class Partnership(FlaskForm):
     """ Заявка на партнерство """
     name = StringField('Имя', validators=[DataRequired()])
     phone = TelField('Телефон', validators=[DataRequired()])
-    ref = StringField('Реф') #, default=lambda: current_user.birthday
+    ref = StringField(('Реф'), default=lambda: request.cookies.get('ref'))
     submit = SubmitField('Подать заявку')
 
 
@@ -18,8 +20,8 @@ class Contacts(FlaskForm):
     name = StringField('Имя', validators=[DataRequired()])
     phone = TelField('Телефон', validators=[DataRequired()])
     email = EmailField('E-mail')
-    message = StringField('Сообщение')
-    ref = StringField('Реф') #, default=lambda: current_user.birthday
+    message = TextAreaField('Сообщение')
+    ref = StringField(('Реф'), default=lambda: request.cookies.get('ref'))
     submit = SubmitField('Связаться')
 
 

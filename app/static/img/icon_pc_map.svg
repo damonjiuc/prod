@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="39.5" height="36.136" viewBox="0 0 39.5 36.136">
+  <g id="map" transform="translate(1.25 1.25)">
+    <path id="Контур_75" data-name="Контур 75" d="M1,8.727V35.636l11.773-6.727,13.455,6.727L38,28.909V2L26.227,8.727,12.773,2Z" transform="translate(-1 -2)" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+    <line id="Линия_16" data-name="Линия 16" y2="26.909" transform="translate(11.586)" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+    <line id="Линия_17" data-name="Линия 17" y2="26.909" transform="translate(25.04 6.727)" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+  </g>
+</svg>
