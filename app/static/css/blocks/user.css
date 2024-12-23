@@ -1,3 +1,83 @@
+@import url('../var.css');
+
+.usermenu {
+    background-color: #fff;
+    color: #332225;
+    padding: 5px;
+    border-radius: 16px;
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+}
+
+.info {
+    background-color: #fff;
+    color: #332225;
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.stats {
+    background-color: #fff;
+    color: #332225;
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.shops {
+    background-color: #fff;
+    color: #332225;
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.bonus {
+    background-color: #fff;
+    color: #332225;
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.progress {
+    background-color: #fff;
+    color: #332225;
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.prizes {
+    background-color: #fff;
+    color: #332225;
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.orders {
+    background-color: #fff;
+    color: #332225;
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+
+
+.btn-primary {
+    
+}
+
+.btn-primary span {
+    display: none;
+}
+
+
+
 .our-stores {
     display: flex;
     justify-content: space-between;
@@ -28,8 +108,6 @@
     border-top: 1px solid var(--dark);
     padding-top: 8px;
 }
-
-
 
 .progress-container::before {
   content: "";

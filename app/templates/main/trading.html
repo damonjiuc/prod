@@ -2,121 +2,185 @@
 
 {% block title %}PRO Дизайн - купить оптом ламинат, паркет, винил, SPC{% endblock %}
 
-{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+{% block style %}<link rel="stylesheet" href="/static/css/blocks/style.css">{% endblock %}
 
 {% block content %}
-<section class="row banner-group">
-    <div class="col-5">
-        <div class="banner-group-banner">
-            <img src="{{ url_for('static', filename='img/imgs/trading-slide-1.png') }}"/>
+
+<section class="partners part3">
+    <div class="partners-text">
+        <h1>Наше оптовое направление</h1>
+        <p>Оптовые поставки популярных и эксклюзивных моделей</p>
+        <ul>
+            <li>Оптовая торговля по новым правилам</li>
+            <li>Лучший дистрибьютор для 37 брендов</li>
+            <li>Строгое соблюдение сроков поставки</li>
+        </ul>
+        <div class="button-container">
+            <a class="discover-btn" href="/ref/">Сотрудничать<img class="button-icon" src="/static/img/icon_arrow_r_red.svg" alt="Icon"/></a>
         </div>
     </div>
-    <div class="col-7">
-        <div class="row">
-            <div class="col-12">
-                <div class="banner-group-dir dir-dark">
-                    <div class="banner">
-                        <div class="content-block">
-                            <h1>Наше оптовое направление</h1>
-                            <p>Оптовые поставки популярных и эксклюзивных моделей</p>
-                            <ul>
-                                <li>Оптовая торговля по новым правилам</li>
-                                <li>Лучший дистрибьютор для 37 брендов</li>
-                                <li>Строгое соблюдение сроков поставки</li>
-                            </ul>
-                            <a href="#">Сотрудничать</a>
-                        </div>
-                        <div class="arrow">
-                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
-                        </div>
-                    </div>
-                </div>
+    <div class="partners-image">
+        <img src="/static/img/imgs/trading-slide-1.png">
+    </div>
+</section> 
+
+<section class="partners-mob part3">
+    <div class="partners-text">
+        <h1>Наше оптовое направление</h1>
+        <p>Оптовые поставки популярных и эксклюзивных моделей</p>
+        <ul>
+            <li>Оптовая торговля по новым правилам</li>
+            <li>Лучший дистрибьютор для 37 брендов</li>
+            <li>Строгое соблюдение сроков поставки</li>
+        </ul>
+        <div class="button-container">
+            <a class="discover-btn" href="/ref/">Сотрудничать<img class="button-icon" src="/static/img/icon_arrow_r_red.svg" alt="Icon"/></a>
+        </div>
+    </div>
+</section> 
+
+<section class="our-advantages information" style="background-color: #fff;">
+    <div class="row topblock">
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <a href="tel:+7(812)213-03-00" class="main-contacts__link">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/footer-mob-tel.svg" alt="#" class="main-contacts__img"><span>+7 (812) 213-03-00</span></a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <a href="https://t.me/prod_ru" target="_blank" class="main-contacts__link">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/footer-tel.svg" alt="#" class="main-contacts__img"><span>@prod_ru</span></a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <a href="https://wa.me/79217787394" target="_blank" class="main-contacts__link">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/footer-watsapp.svg" alt="#" class="main-contacts__img"><span>Написать в WhatsApp</span></a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <a href="https://vk.com/prod_rus" target="_blank" class="main-contacts__link">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/footer-vk.svg" alt="#" class="main-contacts__img"><span>@prod_rus</span></a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/adress.svg" alt="#" class="main-contacts__img">
+            <span>г. Санкт-Петербург, пр. Ленинский, д. 140А</span>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/time.svg" alt="#" class="main-contacts__img">
+            <span>С 10:00 до 19:00</span>
+        </div>
+    </div>
+</section>
+
+<section class="salons trading">
+    <h2>О нашем оптовом направлении</h2>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-5">
+            <p>
+                Мы предлагаем превосходные условия для оптовых партнеров и индивидуальные скидки для постоянных покупателей. Мы рады предложить широкий ассортимент продукции на специальных условиях:
+            </p>
+            <ul>
+                <li>Ламинат, Паркет, Массив, инженерная доска и другие напольные покрытия</li>
+                <li>Межкомнатные и входные двери</li>
+                <li>Керамическая плитка, керамогранит</li>
+            </ul>
+            <p>
+                Оптовая торговля напольными покрытиями, дверьми и керамической плиткой является приоритетным направлением деятельности нашей компании.
+            </p>
+            <p>
+                Приглашаем к сотрудничеству компании любого размера из всех регионов России.
+            </p>
+        </div>
+        <div class="col-12 col-sm-12 col-md-7">
+            <img src="/static/img/imgs/trading1.png">
+        </div>
+    </div>
+</section>
+
+<section class="brands" style="background:var(--ultra-light)">
+    <h3>Наши бренды</h3>
+    <div class="brand-list">
+        <div class="brand">
+            <img src="/static/img/dist/amorim.png" />
+            <h4 style="text-align: center;font-size: 1.5em;border-top: 1px solid var(--forh);padding-top: 20px;">Amorim</h4>
+        </div>
+        <div class="brand">
+            <img src="/static/img/dist/arbiton.png" />
+            <h4 style="text-align: center;font-size: 1.5em;border-top: 1px solid var(--forh);padding-top: 20px;">Arbiton</h4>
+        </div>
+        <div class="brand" style="border-right: none;">
+            <img src="/static/img/dist/boonkeel.png" />
+            <h4 style="text-align: center;font-size: 1.5em;border-top: 1px solid var(--forh);padding-top: 20px;">AQUA</h4>
+        </div>
+        <div class="brand" style="border-bottom: none;">
+            <img src="/static/img/dist/parky.svg" />
+            <h4 style="text-align: center;font-size: 1.5em;border-top: 1px solid var(--forh);padding-top: 20px;">Parky</h4>
+        </div>
+        <div class="brand" style="border-bottom: none;">
+            <img src="/static/img/dist/profitex.png" />
+            <h4 style="text-align: center;font-size: 1.5em;border-top: 1px solid var(--forh);padding-top: 20px;">Profitex</h4>
+        </div>
+        <div class="brand" style="border-right: none; border-bottom: none;">
+            <img src="/static/img/dist/union.svg" />
+            <h4 style="text-align: center;font-size: 1.5em;border-top: 1px solid var(--forh);padding-top: 20px;">Union</h4>
+        </div>
+    </div>
+</section>
+            
+<section class="our-advantages">
+    <h3>Преимущества сотрудничества с нами</h3>
+    <div class="advantages-flex">
+        <div class="advantages-block">
+            <img src="/static/img/slide8.png" alt="" />
+            <div>
+                <h5>Бонусы за партнера</h5>
+                <p>Бонусы за приглашённых вами партнёров.</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <img src="/static/img/slide9.svg" alt="" />
+            <div>
+                <h5>Цена</h5>
+                <p>У нас гарантированно лучшие цены</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <img src="/static/img/slide3.png" alt="" />
+            <div>
+                <h5>Бонусы</h5>
+                <p>Бонус при заказе до 15%</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <img src="/static/img/slide10.svg" alt="" />
+            <div>
+                <h5>Рост % Бонуса</h5>
+                <p>Рост процента бонуса с объёмом продаж.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section>
-    <h2>О нашем оптовом направлении</h2>
-    <div>
-        <p>
-            Мы предлагаем превосходные условия для оптовых партнеров и индивидуальные скидки для постоянных покупателей. Мы рады предложить широкий ассортимент продукции на специальных условиях:
-        </p>
-        <ul>
-            <li>Ламинат, Паркет, Массив, инженерная доска и другие напольные покрытия</li>
-            <li>Межкомнатные и входные двери</li>
-            <li>Керамическая плитка, керамогранит</li>
-        </ul>
-        <p>
-            Оптовая торговля напольными покрытиями, дверьми и керамической плиткой является приоритетным направлением деятельности нашей компании.
-        </p>
-        <p>
-            Приглашаем к сотрудничеству компании любого размера из всех регионов России.
-        </p>
-    </div>
-    <div>
-        <img src="{{ url_for('static', filename='img/imgs/trading1.png') }}">
-    </div>
-</section>
-<section class="brands">
-    <h3>Мы являемся дистрибьютерами</h3>
-    <div class="brand-list">
-        <div class="brand">
-            <img src="{{ url_for('static', filename='img/dist/amorim.png') }}" />
-            <h4>Amorim</h4>
-        </div>
-        <div class="brand">
-            <img src="{{ url_for('static', filename='img/dist/arbiton.png') }}" />
-            <h4>Arbiton</h4>
-        </div>
-        <div class="brand" style="border-right: none;">
-            <img src="{{ url_for('static', filename='img/dist/boonkeel.png') }}" />
-            <h4>AQUA</h4>
-        </div>
-        <div class="brand" style="border-bottom: none;">
-            <img src="{{ url_for('static', filename='img/dist/parky.svg') }}" />
-            <h4>Parky</h4>
-        </div>
-        <div class="brand" style="border-bottom: none;">
-            <img style="width: 130px" src="{{ url_for('static', filename='img/dist/profitex.png') }}" />
-            <h4>Profitex</h4>
-        </div>
-        <div class="brand" style="border-right: none; border-bottom: none;">
-            <img src="{{ url_for('static', filename='img/dist/union.svg') }}" />
-            <h4>Union</h4>
-        </div>
-    </div>
-</section>
-<section>
-    <h3>Преимущества сотрудничества с нами</h3>
-    <div>
-        <div>
-            <h4>Бонусы за партнера</h4>
-            <p>Бонусы за приглашённых вами партнёров.</p>
-        </div>
-        <div>
-            <h4>Цена</h4>
-            <p>У нас гарантированно лучшие цены</p>
-        </div>
-        <div>
-            <h4>Бонусы</h4>
-            <p>Бонус при заказе до 15%</p>
-        </div>
-        <div>
-            <h4>Рост % Бонуса</h4>
-            <p>Рост процента бонуса с объёмом продаж.</p>
-        </div>
-    </div>
-</section>
-<section>
-    <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
-        {{ form.csrf_token }}
-        {{ form.name(placeholder="Имя") }}
-        {{ form.phone(placeholder="Телефон") }}
-        {{ form.ref(placeholder="Реферал") }}
-        {{ form.submit(placeholder="Подать заявку") }}
+<section class="our-advantages form-opt">
+    <h3>Сотрудничество с нами</h3>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-7">
+            <h4>Лучшие условия для оптовых покупателей</h4>
+            <p>
+                Заполните форму ниже и получите специальное предложение
+            </p>
+            <form class="form-add-user" method="post" enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                {{ form.name(placeholder="Имя") }}
+                {{ form.phone(placeholder="Телефон") }}
+                {{ form.ref(placeholder="Реферал") }}
+                {{ form.submit(placeholder="Подать заявку") }}
 
-    </form>
+            </form>
+            <p>
+                Нажимая на кнопку «Отправить заявку» вы подтверждаете согласие с политикой конфиденциальности
+            </p>
+        </div>
+        <div class="col-12 col-sm-12 col-md-5">
+            <img src="/static/img/partner.png">
+        </div>
+    </div>
 </section>
 
 {% endblock %}

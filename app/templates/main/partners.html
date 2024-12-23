@@ -3,173 +3,234 @@
 {% block title %}Партнерство{% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
 {% endblock %}
 
 {% block content %}
-<section>
-    <h3>О партнерстве</h3>
-    <div>
-        <p>Приглашаем к сотрудничеству дизайнеров, строителей и всех заинтересованных лиц. Мы предлагаем превосходные условия для Вас и лучший сервис для ваших клиентов:</p>
-        <ul>
-            <li>высокий процент;</li>
-            <li>прозрачная система вознаграждения;</li>
-            <li>дополнительные бонусы и подарки</li>
-        </ul>
-        <p>Мы ценим наших партнеров и всегда открыты для предложений и индивидуальных условий.</p>
-        <p>Присоединяйтесь к нашей удобной и выгодной бонусной программе.</p>
-    </div>
-    <div>
-        <iframe class="partners-about-video" width="800" height="600" src="https://www.youtube.com/embed/qtWqGVhyEzs" title="YouTube" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<section class="salons about-partners">
+    <h2>О партнерстве</h2>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-5">
+            <p>Приглашаем к сотрудничеству дизайнеров, строителей и всех заинтересованных лиц. Мы предлагаем превосходные условия для Вас и лучший сервис для ваших клиентов:</p>
+            <ul>
+                <li>высокий процент;</li>
+                <li>прозрачная система вознаграждения;</li>
+                <li>дополнительные бонусы и подарки</li>
+            </ul>
+            <p>Мы ценим наших партнеров и всегда открыты для предложений и индивидуальных условий.</p>
+            <p>Присоединяйтесь к нашей удобной и выгодной бонусной программе.</p>
+        </div>
+        <div class="col-12 col-sm-12 col-md-7">
+            <video id="vid-desk-2" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" class="partners-video">
+                <source type="video/mp4" src="/static/video/partners.mp4">
+            </video>
+        </div>
     </div>
 </section>
 
+<section class="our-advantages information">
+    <div class="row topblock">
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <a href="tel:+7(812)213-03-00" class="main-contacts__link">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/footer-mob-tel.svg" alt="#" class="main-contacts__img"><span>+7 (812) 213-03-00</span></a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <a href="https://t.me/prod_ru" target="_blank" class="main-contacts__link">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/footer-tel.svg" alt="#" class="main-contacts__img"><span>@prod_ru</span></a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <a href="https://wa.me/79217787394" target="_blank" class="main-contacts__link">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/footer-watsapp.svg" alt="#" class="main-contacts__img"><span>Написать в WhatsApp</span></a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <a href="https://vk.com/prod_rus" target="_blank" class="main-contacts__link">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/footer-vk.svg" alt="#" class="main-contacts__img"><span>@prod_rus</span></a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/adress.svg" alt="#" class="main-contacts__img">
+            <span>г. Санкт-Петербург, пр. Ленинский, д. 140А</span>
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-xl-2">
+            <img src="https://prod.ru/wp-content/themes/blankslate/img/time.svg" alt="#" class="main-contacts__img">
+            <span>С 10:00 до 19:00</span>
+        </div>
+    </div>
+</section>
 
 <section class="brands">
-    <h3>Мы являемся дистрибьютерами</h3>
+    <h3>Наши бренды</h3>
     <div class="brand-list">
         <div class="brand">
-            <img src="{{ url_for('static', filename='img/dist/amorim.png') }}" />
-            <h4>Amorim</h4>
+            <img class="dontact" src="/static/img/stores/slonparket-gs.svg" />
+            <img class="act" src="/static/img/stores/slonparket.svg" />
+            <h4>Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений для отделки пола</h4>
+            <p><a href="https://slonparket.ru" target="_blank">slonparket.ru</a></p>
         </div>
         <div class="brand">
-            <img src="{{ url_for('static', filename='img/dist/arbiton.png') }}" />
-            <h4>Arbiton</h4>
+            <img class="dontact" src="/static/img/stores/rd-gs.svg" />
+            <img class="act" src="/static/img/stores/rd.svg" />
+            <h4>Большой ассортимент межкомнатных дверей с разными покрытиями: шпон, эмаль, массив</h4>
+            <p><a href="https://realdoor.ru" target="_blank">realdoor.ru</a></p>
         </div>
         <div class="brand" style="border-right: none;">
-            <img src="{{ url_for('static', filename='img/dist/boonkeel.png') }}" />
-            <h4>AQUA</h4>
+            <img class="dontact" src="/static/img/stores/lp-gs.svg" />
+            <img class="act" src="/static/img/stores/lp.svg" />
+            <h4>В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене.</h4>
+            <p><a href="https://lenplitka.ru" target="_blank">lenplitka.ru</a></p>
         </div>
         <div class="brand" style="border-bottom: none;">
-            <img src="{{ url_for('static', filename='img/dist/parky.svg') }}" />
-            <h4>Parky</h4>
+            <img class="dontact" src="/static/img/stores/cp1-gs.svg" />
+            <img class="act" src="/static/img/stores/cp1.svg" />
+            <h4>Огромный выбор качественного напольного покрытия.</h4>
+            <p><a href="https://cp1.ru" target="_blank">cp1.ru</a></p>
         </div>
         <div class="brand" style="border-bottom: none;">
-            <img style="width: 130px" src="{{ url_for('static', filename='img/dist/profitex.png') }}" />
-            <h4>Profitex</h4>
+            <img class="dontact" src="/static/img/stores/pd-gs.svg" />
+            <img class="act" src="/static/img/stores/pd.svg" />
+            <h4>Широкий выбор дверей из экошпона и алюминия.</h4>
+            <p><a href="https://profildoors.sale" target="_blank">profildoors.sale</a></p>
         </div>
         <div class="brand" style="border-right: none; border-bottom: none;">
-            <img src="{{ url_for('static', filename='img/dist/union.svg') }}" />
-            <h4>Union</h4>
+            <img class="dontact" src="/static/img/stores/parket1703-gs.svg" />
+            <img class="act" src="/static/img/stores/parket1703.svg" />
+            <h4>Большой выбор напольных покрытий квартир, так и для частных домов</h4>
+            <p><a href="https://parket1703.ru" target="_blank">parket1703.ru</a></p>
         </div>
     </div>
 </section>
 
-<section>
-    <h2>Наши бренды</h2>
-    <div class="our-stores">
-        <div class="our-stores-store">
-            <div class="our-stores-img-cont">
-                <img src="{{ url_for('static', filename='img/stores/slonparket.svg') }}">
-            </div>
-            <div class="our-stores-txt">
-                Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений  для отделки пола
-            </div>
-        </div>
-        <div class="our-stores-store">
-            <div class="our-stores-img-cont">
-                <img src="{{ url_for('static', filename='img/stores/cp1.svg') }}">
-            </div>
-            <div class="our-stores-txt">
-                Огромный выбор качественного напольного покрытия
-            </div>
-        </div>
-        <div class="our-stores-store">
-            <div class="our-stores-img-cont">
-                <img src="{{ url_for('static', filename='img/stores/parket1703.svg') }}">
-            </div>
-            <div class="our-stores-txt">
-                Новая сеть салонов напольных покрытий, отвечающая нашим высочайшим стандартам качества сервиса и продукции.
-            </div>
-        </div>
-        <div class="our-stores-store">
-            <div class="our-stores-img-cont">
-                <img src="{{ url_for('static', filename='img/stores/lp.svg') }}">
-            </div>
-            <div class="our-stores-txt">
-                В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене
-            </div>
-        </div>
-        <div class="our-stores-store">
-            <div class="our-stores-img-cont">
-                <img src="{{ url_for('static', filename='img/stores/pd.svg') }}">
-            </div>
-            <div class="our-stores-txt">
-                Широкий выбор дверей из экошпона и алюминия
-            </div>
-        </div>
-        <div class="our-stores-store">
-            <div class="our-stores-img-cont">
-                <img src="{{ url_for('static', filename='img/stores/rd.svg') }}">
-            </div>
-            <div class="our-stores-txt">
-                Большой ассортимент межкомнатных дверей  с разными покрытиями: шпон, эмаль, массив
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section>
-    <h3>Преимущества сотрудничества с нами</h3>
-    <div>
-        <div>
-            <h4>Бонусы за партнера</h4>
-            <p>Бонусы за приглашённых вами партнёров.</p>
-        </div>
-        <div>
-            <h4>Цена</h4>
-            <p>У нас гарантированно лучшие цены</p>
-        </div>
-        <div>
-            <h4>Бонусы</h4>
-            <p>Бонус при заказе до 15%</p>
-        </div>
-        <div>
-            <h4>Рост % Бонуса</h4>
-            <p>Рост процента бонуса с объёмом продаж.</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h3>Зарабатывайте еще больше с нашей реферально-прогрессивной программой</h3>
-    <div>
-        <h4>Увеличивайте бонус до 15% и получайте 5000 ₽ за каждого реферала</h4>
+<section class="partners part2">
+    <div class="partners-text">
+        <h3>Зарабатывайте еще больше с нашей реферально-прогрессивной программой</h3>
+        <p>Увеличивайте бонус до 15% и получайте 5000 ₽ за каждого реферала</p>
         <p>Узнайте о лучших условиях для партнеров</p>
-        <p>Узнать подробнее</p>
+        <div class="button-container">
+            <a class="discover-btn" href="/ref/">Узнать подробнее<img class="button-icon" src="/static/img/icon_arrow_r_red.svg" alt="Icon"/></a>
+        </div>
     </div>
-    <div>
-        <img src="{{ url_for('static', filename='img/imgs/trading1.png') }}">
+    <div class="partners-image">
+        <img src="/static/img/spendmore.png">
+    </div>
+</section>  
+
+<section class="partners-mob part2">
+    <div class="partners-text">
+        <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
+        
+        <p>Узнайте о лучших условиях для партнеров</p>
+        <div class="button-container">
+            <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
+        </div>
+    </div>
+</section>
+            
+<section class="our-advantages">
+    <h3>Что Вы получаете</h3>
+    <div class="advantages-flex">
+        <div class="advantages-block">
+            <img src="/static/img/slide3.png" alt="" />
+            <div>
+                <h5>Бонусы</h5>
+                <p>Бонус при заказе до 15%</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <img src="/static/img/slide5.svg" alt="" />
+            <div>
+                <h5>Заказы</h5>
+                <p>Доступ к личному кабинету для контроля своих заказов</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <img src="/static/img/slide4.svg" alt="" />
+            <div>
+                <h5>Мероприятия</h5>
+                <p>Посещения мероприятий для дизайнеров</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <img src="/static/img/slide2.svg" alt="" />
+            <div>
+                <h5>Дистанционно</h5>
+                <p>Делитесь картой с клиентами, получайте бонус</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <img src="/static/img/slide1.png" alt="" />
+            <div>
+                <h5>Бонусы за партнера</h5>
+                <p>Бонусы за приглашённых вами партнёров</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <img src="/static/img/slide6.svg" alt="" />
+            <div>
+                <h5>Розыгрыш</h5>
+                <p>Участие в розыгрыше ценных призов</p>
+            </div>
+        </div>
+        <div class="advantages-block">
+            <img src="/static/img/slide7.png" alt="" />
+            <div>
+                <h5>Рост % бонуса</h5>
+                <p>Рост процента бонуса с объёмом продаж</p>
+            </div>
+        </div>
     </div>
 </section>
 
-<section>
+<section class="our-advantages form-part">
     <h3>Станьте нашим партнером</h3>
-    <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
-        {{ form.csrf_token }}
-        {{ form.name(placeholder="Имя") }}
-        {{ form.phone(placeholder="Телефон") }}
-        {{ form.ref(placeholder="Реферал") }}
-        {{ form.submit(placeholder="Подать заявку") }}
-    </form>
-</section>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-7">
+            <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
+            <p>
+                Получите карту нашего партнера и контроллируйте все
+            </p>
+            <form class="form-add-user" method="post" enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                {{ form.name(placeholder="Имя") }}
+                {{ form.phone(placeholder="Телефон") }}
+                {{ form.ref(placeholder="Реферал") }}
+                {{ form.submit(placeholder="Подать заявку") }}
 
-<section>
-    <h3>Адрес офиса</h3>
-    <div>
-        <div>
-            <h4>Главный офис</h4>
-            <p>г. Санкт-Петербург, пр. Ленинский, д. 140А</p>
-            <p>С 10:00 до 19:00</p>
-            <p><a href="tel:+7(812)213-03-00" target="_blank">+7(812)213-03-00</a></p>
+            </form>
+            <p>
+                Нажимая на кнопку «Отправить заявку» вы подтверждаете согласие с политикой конфиденциальности
+            </p>
         </div>
-        <div>
-            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A75e39e246a62b3833a2929c9a6da44088fa2f8d0a62feade50b353383e062cd8&amp;width=100%25&amp;height=350&amp;lang=ru_RU&amp;scroll=true"></script>
+        <div class="col-12 col-sm-12 col-md-5">
+            <img src="/static/img/designcards.png">
         </div>
     </div>
 </section>
 
-
+<section class="map contacts-part">
+    <h3>Адрес офиса</h3>
+    <div class="row">
+        <div class="d-none d-md-block col-3 main-color-bg">
+            <div class="map-main-slider">
+                <div class="swiper map-partners">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="map-partners-item active" data-geo-x="59.85260325545839" data-geo-y="30.28383625799301" data-title="Главный офис">
+                            <img src="https://prod.ru/wp-content/uploads/2021/11/office-300x200.jpg" alt="logo" class="map-main-item__img">
+                            <h4 class="map-main-item__text">Главный офис</h4>
+                            <p class="map-main-item__address">г. Санкт-Петербург, пр. Ленинский, д. 140А</p>
+                            <hr class="partners-hr">
+                            <p class="map-main-item__address map-main-item__time">С 10:00 до 19:00</p>
+                            <hr class="partners-hr">
+                            <p class="map-main-item__address map-main-item__tel">+7 (812) 213 - 03 - 00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-9 map-container">
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A143b179512c21d2b8256be23ffe723ab7a794dbd400708739faadd3e14727441&amp;width=100%25&amp;height=423&amp;lang=ru_RU&amp;scroll=true"></script>
+        </div>
+    </div>
+</section>
 {% endblock %}

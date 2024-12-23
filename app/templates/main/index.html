@@ -6,7 +6,7 @@
     <div class="col-12 col-sm-5 col-md-5">
         <div class="banner-group-banner">
             <video id="vid-desk-2" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" class="home-main--video vid-home vid-desk" style="opacity: 0.648521;">
-                <source type="video/mp4" src="https://prod.ru/wp-content/uploads/2022/12/whole.mp4">
+                <source type="video/mp4" src="/static/video/ind.mp4">
               </video>
             <!--<img src="{{ url_for('static', filename='img/imgs/ban.jpg') }}"/>-->
         </div>
@@ -14,55 +14,61 @@
     <div class="col-12 col-sm-7 col-md-7">
         <div class="row">
             <div class="col-12">
-                <div class="banner-group-dir dir-dark">
-                    <div class="after">
-                        01
-                    </div>
-                    <div class="banner">
-                        <div class="content-block">
-                            <h1>Самая крупная сеть салонов<br/>отделочных материалов</h1>
-                            <p>Напольные покрытия, двери, плитка</p>
-                            <a href="#">Адреса магазинов</a>
+                <a href="/retail">
+                    <div class="banner-group-dir dir-dark">
+                        <div class="after">
+                            01
+                        </div>
+                        <div class="banner">
+                            <div class="content-block">
+                                <h1>Самая крупная сеть салонов<br/>отделочных материалов</h1>
+                                <p>Напольные покрытия, двери, плитка</p>
+                                Адреса магазинов
+                            </div>
+                        </div>
+                        <div class="arrow">
+                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
                         </div>
                     </div>
-                    <div class="arrow">
-                        <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-md-6  col-xl-6">
-                <div class="banner-group-dir dir-white">
-                    <div class="after">
-                        02
-                    </div>
-                    <div class="banner">
-                        <div class="content-block">
-                            <h1>Лучшая партнерская программа</h1>
-                            <p>Для дизайнеров <br>и строителей</p>
+                <a href="/partners">
+                    <div class="banner-group-dir dir-white">
+                        <div class="after">
+                            02
+                        </div>
+                        <div class="banner">
+                            <div class="content-block">
+                                <h1>Лучшая партнерская программа</h1>
+                                <p>Для дизайнеров <br>и строителей</p>
+                            </div>
+                        </div>
+                        <div class="arrow">
+                            <img src="{{ url_for('static', filename='img/icon_arrow_rt_red.svg') }}"/>
                         </div>
                     </div>
-                    <div class="arrow">
-                        <img src="{{ url_for('static', filename='img/icon_arrow_rt_red.svg') }}"/>
-                    </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-6  col-xl-6">
-                <div class="banner-group-dir dir-red">
-                    <div class="after">
-                        03
-                    </div>
-                    <div class="banner">
-                        <div class="content-block">
-                            <h1> Производство<br/>и оптовое направление  </h1>
-                            <p>Union, Decospan<br>другие бренды</p>
+                <a href="/trading">
+                    <div class="banner-group-dir dir-red">
+                        <div class="after">
+                            03
+                        </div>
+                        <div class="banner">
+                            <div class="content-block">
+                                <h1> Производство<br/>и оптовое направление  </h1>
+                                <p>Union, Decospan<br>другие бренды</p>
+                            </div>
+                        </div>
+                        <div class="arrow">
+                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
                         </div>
                     </div>
-                    <div class="arrow">
-                        <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -114,34 +120,40 @@
     <h3>Наши бренды</h3>
     <div class="brand-list">
         <div class="brand">
-            <img src="/static/img/stores/slonparket-gs.svg" />
+            <img class="dontact" src="/static/img/stores/slonparket-gs.svg" />
+            <img class="act" src="/static/img/stores/slonparket.svg" />
             <h4>Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений для отделки пола</h4>
-            <p>slonparket.ru</p>
+            <p><a href="https://slonparket.ru" target="_blank">slonparket.ru</a></p>
         </div>
         <div class="brand">
-            <img src="/static/img/stores/rd-gs.svg" />
-            <h4>Большой ассортимент межкомнатных<br> дверей с разными покрытиями: шпон, эмаль, массив</h4>
-            <p>realdoor.ru</p>
+            <img class="dontact" src="/static/img/stores/rd-gs.svg" />
+            <img class="act" src="/static/img/stores/rd.svg" />
+            <h4>Большой ассортимент межкомнатных дверей с разными покрытиями: шпон, эмаль, массив</h4>
+            <p><a href="https://realdoor.ru" target="_blank">realdoor.ru</a></p>
         </div>
         <div class="brand" style="border-right: none;">
-            <img src="/static/img/stores/lp-gs.svg" />
+            <img class="dontact" src="/static/img/stores/lp-gs.svg" />
+            <img class="act" src="/static/img/stores/lp.svg" />
             <h4>В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене.</h4>
-            <p>lenplitka.ru</p>
+            <p><a href="https://lenplitka.ru" target="_blank">lenplitka.ru</a></p>
         </div>
         <div class="brand" style="border-bottom: none;">
-            <img src="/static/img/stores/cp1-gs.svg" />
+            <img class="dontact" src="/static/img/stores/cp1-gs.svg" />
+            <img class="act" src="/static/img/stores/cp1.svg" />
             <h4>Огромный выбор качественного напольного покрытия.</h4>
-            <p>cp1.ru</p>
+            <p><a href="https://cp1.ru" target="_blank">cp1.ru</a></p>
         </div>
         <div class="brand" style="border-bottom: none;">
-            <img src="/static/img/stores/pd-gs.svg" />
+            <img class="dontact" src="/static/img/stores/pd-gs.svg" />
+            <img class="act" src="/static/img/stores/pd.svg" />
             <h4>Широкий выбор дверей из экошпона и алюминия.</h4>
-            <p>profildoors.sale</p>
+            <p><a href="https://profildoors.sale" target="_blank">profildoors.sale</a></p>
         </div>
         <div class="brand" style="border-right: none; border-bottom: none;">
-            <img src="/static/img/stores/parket1703-gs.svg" />
+            <img class="dontact" src="/static/img/stores/parket1703-gs.svg" />
+            <img class="act" src="/static/img/stores/parket1703.svg" />
             <h4>Большой выбор напольных покрытий квартир, так и для частных домов</h4>
-            <p>parket1703.ru</p>
+            <p><a href="https://parket1703.ru" target="_blank">parket1703.ru</a></p>
         </div>
     </div>
 </section>

@@ -2,17 +2,18 @@
 
 {% block title %}Авторизация{% endblock %}
 
-{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/style.css') }}">{% endblock %}
 
 {% block content %}
+
+<section class="login-page">
     <form class="form-add-user" method="post" enctype="multipart/form-data">
         {{ form.csrf_token }}
-        {{ form.login(placeholder="Login") }}
+        {{ form.login(placeholder="Номер карты / телефон") }}
         {{ form.password(placeholder="Пароль") }}
         {{ form.remember.label }} {{ form.remember(placeholder="Запомнить") }}
         {{ form.submit(placeholder="Войти") }}
-
     </form>
-
+</section>
 
 {% endblock %}
