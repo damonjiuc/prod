@@ -6,6 +6,7 @@ from ..models.users import Users
 from ..models.orders import Orders
 from ..models.items import Items
 from ..models.prizes import Prizes
+from ..models.ref import Ref
 from ..functions import role_required
 from app.email import send_registration_email, bonus_paid
 
@@ -17,6 +18,7 @@ admin = Blueprint('admin', __name__)
 def all_users():
     users = Users.query.order_by(Users.id.desc()).all()
     return render_template('admin/users.html', users=users)
+
 
 @admin.route('/admin/add_user', methods=['POST', 'GET'])
 @login_required
@@ -32,7 +34,6 @@ def add_user():
         birthday = request.form.get('birthday')
         email = request.form.get('email')
         phone = request.form.get('phone')
-        referer = request.form.get('referer')
         bankcard = request.form.get('bankcard')
         bankname = request.form.get('bankname')
         cardholder = request.form.get('cardholder')
@@ -44,7 +45,7 @@ def add_user():
         comment = request.form.get('comment')
 
         user = Users(card=card, password=hashed_password, surname=surname, name=name, secname=secname, birthday=birthday,
-                     email=email, phone=phone, referer=referer, bankcard=bankcard, bankname=bankname, cardholder=cardholder,
+                     email=email, phone=phone, bankcard=bankcard, bankname=bankname, cardholder=cardholder,
                      city=city, company=company, active=active, role=role, lvl=lvl, comment=comment)
 
         try:
@@ -77,7 +78,6 @@ def edit_user(id):
         user.birthday = request.form.get('birthday')
         user.email = request.form.get('email')
         user.phone = request.form.get('phone')
-        user.referer = request.form.get('referer')
         user.bankcard = request.form.get('bankcard')
         user.bankname = request.form.get('bankname')
         user.cardholder = request.form.get('cardholder')
@@ -100,7 +100,46 @@ def edit_user(id):
         return render_template('admin/edit_user.html', user=user, orders=orders)
 
 
-@admin.route('/admin/edit_user_pwd/<int:id>', methods=['POST', 'GET'])
+@admin.route('/admin/edit_user_ref/<int:card>', methods=['POST', 'GET'])
+@login_required
+@role_required(1)
+def edit_user_ref(card):
+    refs = Ref.query.order_by(Ref.id.desc()).filter_by(referer_card=card).all()
+    if request.method == 'POST':
+        referer_card = card
+        referral_card = request.form.get('referral_card')
+        ref = Ref(referer_card=referer_card,  referral_card=referral_card, paid=0)
+
+        try:
+            db.session.add(ref)
+            db.session.commit()
+            flash('Реферал добавлен!', category='success')
+            return redirect(f'/admin/edit_user_ref/{card}')
+        except Exception as exc:
+            print(str(exc))
+            return str(exc)
+
+    else:
+        return render_template('admin/edit_user_ref.html', card=card, refs=refs)
+
+
+@admin.route('/admin/ref_paid/<int:id>', methods=['POST', 'GET'])
+@login_required
+@role_required(1)
+def ref_paid(id):
+    ref = Ref.query.get(id)
+    ref.paid = 1 if ref.paid == 0 else 0
+    print(ref.id, ref.referer_card, ref.referral_card, ref.paid)
+    try:
+        db.session.commit()
+        flash('Статус выплаты бонуса за реферала изменен', category='success')
+        return redirect(f'/admin/edit_user_ref/{ref.referer_card}')
+    except Exception as exc:
+        print(str(exc))
+        return str(exc)
+
+
+@admin.route('/admin/edit_user_ref/<int:id>', methods=['POST', 'GET'])
 @login_required
 @role_required(1)
 def edit_user_pwd(id):

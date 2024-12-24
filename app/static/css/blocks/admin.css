@@ -1,5 +1,5 @@
 body {
-    background-color: var(--white);
+    background-color: var(--medium);
 }
 
 /* Юзеры добавить */
@@ -17,6 +17,7 @@ body {
     border-radius: 8px;
     padding: 8px;
     width: 320px;
+    color: var(--dark);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.05),
         0 0 0 3px rgb(255, 255, 255),
         0.3em 0.3em 1em rgba(0, 0, 0, 0.2);

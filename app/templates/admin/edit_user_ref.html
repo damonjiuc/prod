@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Изменить рефералов партнера #{{ '%04d' % card }} {% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+
+{% block content %}
+<form class="form-add-user" method="post">
+  <div class="form-add-user-el">
+    <label for="referral_card">Номер реферала</label>
+    <input id="referral_card" name="referral_card" type="number" placeholder="####">
+  </div>
+  <input value="Добавить реферала" type="submit" class="btn btn-confirm">
+</form>
+
+<table class="table-users">
+{% for ref in refs %}
+    <tr>
+      <td>
+        <a href="{{ url_for('admin.ref_paid', id=ref.id) }}">
+          {% if ref.paid == 1 %}
+            <span class="green">✔</span>
+          {% else %}
+            <span class="red">✘</span>
+          {% endif %}
+        </a>
+      </td>
+      <td>{{ ref.referral_card }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

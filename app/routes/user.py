@@ -5,6 +5,7 @@ from ..models.users import Users
 from ..models.orders import Orders
 from ..models.items import Items
 from ..models.prizes import Prizes
+from ..models.ref import Ref
 from ..forms import UserEditForm, UserLogin, Callback, MakeOrder, Feedback
 from ..functions import save_picture
 from app.email import user_callback_email, user_feedback_email, user_make_order_email
@@ -35,10 +36,11 @@ def user_login():
             flash('Некорректные данные', category='error')
     return render_template('user/login.html', form=form)
 
-@user.route('/user/edit', methods=['POST', 'GET'])
+@user.route('/user/', methods=['POST', 'GET'])
 @login_required
 def user_profile():
-    user_in_lk = True if request.base_url.endswith('/user/edit') else False
+    user_in_lk = True if request.base_url.endswith('/user/') else False
+    refs = Ref.query.order_by(Ref.id.desc()).filter_by(referer_card=current_user.card).all()
     form = UserEditForm()
     form_callback = Callback()
     form_make_order = MakeOrder()
@@ -92,8 +94,8 @@ def user_profile():
         text = form_make_order.make_order_phone.data
         user_make_order_email(current_user.card, name, phone, text)
 
-    return render_template('user/edit.html', form=form, orders=orders, stats=stats, user_in_lk=user_in_lk, prizes=user_prizes,
-                           form_callback=form_callback, form_make_order=form_make_order, form_feedback=form_feedback)
+    return render_template('user/index.html', orders=orders, stats=stats, refs=refs, user_in_lk=user_in_lk, prizes=user_prizes,
+                           form=form, form_callback=form_callback, form_make_order=form_make_order, form_feedback=form_feedback)
 
 
 @user.route('/user/orders')

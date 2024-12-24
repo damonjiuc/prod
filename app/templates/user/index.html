@@ -4,7 +4,7 @@
 
 {% block style %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 {% endblock %}
 
 {% block modal %}
@@ -17,12 +17,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
+                    {{ form_callback.csrf_token }}
+                    {{ form_callback.callback_name(placeholder="Имя") }}
+                    {{ form_callback.callback_phone(placeholder="Телефон") }}
+                    {{ form_callback.callback_submit(placeholder="Заказать звонок") }}
+                </form>
             </div>
         </div>
     </div>
 </div>
-<!-- Callback -->
+<!-- Make Order -->
 <div class="modal fade" id="modal-order" tabindex="-1" aria-labelledby="ModalOrderLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -31,7 +36,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
+                    {{ form_make_order.csrf_token }}
+                    {{ form_make_order.make_order_name(placeholder="Имя") }}
+                    {{ form_make_order.make_order_phone(placeholder="Телефон") }}
+                    {{ form_make_order.make_order_text(placeholder="Опишите что вам нужно") }}
+                    {{ form_make_order.make_order_submit(placeholder="Отправить") }}
+                </form>
             </div>
         </div>
     </div>
@@ -45,7 +56,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form class="form-add-user" method="post" enctype="multipart/form-data" style="background: #fff;">
+                    {{ form_feedback.csrf_token }}
+                    {{ form_feedback.feedback_name(placeholder="Имя") }}
+                    {{ form_feedback.feedback_text(placeholder="Комментарий / пожелание по улучшению личного кабинета") }}
+                    {{ form_feedback.feedback_submit(placeholder="Отправить") }}
+                </form>
             </div>
         </div>
     </div>
@@ -99,7 +115,7 @@
     </div>
 </div>
 
-<!-- Reminder -->
+<!-- Top goods -->
 <div class="modal fade" id="modal-goods" tabindex="-1" aria-labelledby="ModalGoodsLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
@@ -208,31 +224,37 @@
 
     <div class="col12 col-sm-12 col-md-5">
         <div class="info">
-            <form class="form-add-user" method="post" enctype="multipart/form-data">
+            <form class="row form-add-user" method="post" enctype="multipart/form-data">
                 {{ form.csrf_token }}
-                <div class="form-add-user-el">
-                    {{ form.id.label }}
-                    {{ form.id(placeholder="ID") }}
+                <div class="col-12 col-sm-8 top">
+                    Привет, {{ current_user.name }}!
                 </div>
-                <div class="form-add-user-el">
+                <div class="col-12 col-sm-4 avatar">
+                    {% if current_user.avatar %}
+                        <img src="/static/upload/{{ current_user.avatar }}">
+                    {% else %}
+                        <img src="/static/img/imgs/avatar.png">
+                    {% endif %}
+                </div>
+                <div class="col-12 col-sm-12 card">
+                    <label>Карта</label> 
+                    <span>{{ '%04d' % current_user.card }}</span>
+                </div>
+                <div class="col-12 col-sm-6 form-add-user-el">
                     {{ form.phone.label }}
                     {{ form.phone(placeholder="Телефон") }}
                 </div>
-                <div class="form-add-user-el">
+                <div class="col-12 col-sm-6 form-add-user-el">
                     {{ form.email.label }}
                     {{ form.email(placeholder="E-Mail") }}
                 </div>
-                <div class="form-add-user-el">
+                <div class="col-12 col-sm-6 form-add-user-el">
                     {{ form.birthday.label }}
                     {{ form.birthday(placeholder="Дата рождения") }}
                 </div>
-                <div class="form-add-user-el">
+                <div class="col-12 col-sm-6 form-add-user-el">
                     {{ form.password.label }}
                     {{ form.password(placeholder="Пароль") }}
-                </div>
-                <div class="form-add-user-el">
-                    {{ form.confirm_password.label }}
-                    {{ form.confirm_password(placeholder="Подтвердите пароль") }}
                 </div>
                 <div class="form-add-user-el">
                     {{ form.avatar.label }}
@@ -251,6 +273,28 @@
                 <div>Ожидает выплаты: {{ stats['bonus_to_pay'] }}</div>
                 <div>Заработали: {{ stats['money_earned'] }}</div>
                 <div>Ваша реф. ссылка: <span id="ref_link" onclick="copyRefLink(document.getElementById('ref_link').innerHTML)">https://prod.ru/?r={{  '%04d' % current_user.card }}</span></div>
+            </div>
+            <div>
+                <div class="orders-tbl">
+                    <div class="orders-tbl-section orders-tbl-header">
+                        <div class="orders-tbl-el tbl-order-num">№ Заказа</div>
+                        <div class="orders-tbl-el tbl-order-fio">ФИО Клиента</div>
+                    </div>
+                    {% for ref in refs %}
+                        <div class="orders-tbl-order">
+                            <div class="orders-tbl-section">
+                                <div class="orders-tbl-el tbl-order-num">{{ '%04d' % ref.referral_card }}</div>
+                                <div class="orders-tbl-el tbl-order-fio">
+                                    {% if ref.paid == 1 %}
+                                        Выплачено
+                                    {% else %}
+                                        Не выплачено
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -316,7 +360,7 @@
             <h2>Бонусная программа</h2>
             <div>
                 Повышая объемы продаж, Вы увеличиваете свой уровень, за который получаете бонусы. Повышенный % бонуса действует на материалы из списка.
-                <button type="button" class="btn btn-primary" id="modal-btn-goods" data-bs-toggle="modal" data-bs-target="#modal-goods">
+                <button type="button" class="btn" id="modal-btn-goods" data-bs-toggle="modal" data-bs-target="#modal-goods">
                     Список высокомаржинальных товаров
                 </button>
             </div>
@@ -334,11 +378,7 @@
                 <div class="circle">14.5</div>
                 <div class="circle">15%</div>
             </div>
-        </div>
-    </div>
 
-    <div class="col12 col-sm-12 col-md-12">
-        <div class="progress">
             <script>
             /* шкала прогресса реф программы */
             const progress = document.getElementById("progress");
@@ -354,11 +394,11 @@
 
             function update(currentActive) {
             stepCircles.forEach((circle, i) => {
-                if (i < currentActive) {
-                circle.classList.add("active");
-                } else {
-                circle.classList.remove("active");
-                }
+            if (i < currentActive) {
+              circle.classList.add("active");
+            } else {
+              circle.classList.remove("active");
+            }
             });
 
             const activeCircles = document.querySelectorAll(".active");
@@ -366,76 +406,94 @@
             }
             /* end шкала прогресса реф программы */
             </script>
+            <div class="progress"></div>
 
-            <div class="animated-progress">
-                <span style="width: {{ current_user.moneytomln / 10000 }}%">{{ current_user.moneytomln }}₽ / 1000000.0₽</span>
+            <div style="height: 100px;">
+                <div class="animated-progress">
+                    <span style="width: {{ current_user.moneytomln / 10000 }}%">{{ current_user.moneytomln }}₽</span>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="col12 col-sm-12 col-md-12">
+    </div>
+
+    <div class="col12 col-sm-12 col-md-12">
         <div class="prizes">
             <h2>Выигранные призы</h2>
-            <div class="prizes">
-                <div class="prize">
-                    {% if 'alisa' in prizes %}
-                    <div class="prizes-img-cont active">
-                    {% else %}
-                    <div class="prizes-img-cont">
-                    {% endif %}
-                        <img src="{{ url_for('static', filename='img/prizes/1-alisa.png') }}">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="prize">
+                        {% if 'alisa' in prizes %}
+                        <div class="prizes-img-cont active">
+                        {% else %}
+                        <div class="prizes-img-cont">
+                        {% endif %}
+                            <img src="{{ url_for('static', filename='img/prizes/1-alisa.png') }}">
+                        </div>
+                        <div class="prizes-txt">Яндекс станция с Алисой</div>
                     </div>
-                    <div class="prizes-txt">Яндекс станция с Алисой</div>
                 </div>
-                <div class="prize">
-                    {% if 'ipad' in prizes %}
-                    <div class="prizes-img-cont active">
-                    {% else %}
-                    <div class="prizes-img-cont">
-                    {% endif %}
-                        <img src="{{ url_for('static', filename='img/prizes/2-ipad.png') }}">
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="prize">
+                        {% if 'ipad' in prizes %}
+                        <div class="prizes-img-cont active">
+                        {% else %}
+                        <div class="prizes-img-cont">
+                        {% endif %}
+                            <img src="{{ url_for('static', filename='img/prizes/2-ipad.png') }}">
+                        </div>
+                        <div class="prizes-txt">iPad</div>
                     </div>
-                    <div class="prizes-txt">iPad</div>
                 </div>
-                <div class="prize">
-                    {% if 'macbook' in prizes %}
-                    <div class="prizes-img-cont active">
-                    {% else %}
-                    <div class="prizes-img-cont">
-                    {% endif %}
-                        <img src="{{ url_for('static', filename='img/prizes/3-macbook.png') }}">
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="prize">
+                        {% if 'macbook' in prizes %}
+                        <div class="prizes-img-cont active">
+                        {% else %}
+                        <div class="prizes-img-cont">
+                        {% endif %}
+                            <img src="{{ url_for('static', filename='img/prizes/3-macbook.png') }}">
+                        </div>
+                        <div class="prizes-txt">MacBook Air</div>
                     </div>
-                    <div class="prizes-txt">MacBook Air</div>
                 </div>
-                <div class="prize">
-                    {% if 'coswick' in prizes %}
-                    <div class="prizes-img-cont active">
-                    {% else %}
-                    <div class="prizes-img-cont">
-                    {% endif %}
-                        <img src="{{ url_for('static', filename='img/prizes/4-coswick.jpg') }}">
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="prize">
+                        {% if 'coswick' in prizes %}
+                        <div class="prizes-img-cont active">
+                        {% else %}
+                        <div class="prizes-img-cont">
+                        {% endif %}
+                            <img src="{{ url_for('static', filename='img/prizes/4-coswick.jpg') }}">
+                        </div>
+                        <div class="prizes-txt">Поездка на фабрику Coswick</div>
                     </div>
-                    <div class="prizes-txt">Поездка на фабрику Coswick</div>
                 </div>
-                <div class="prize">
-                    {% if 'maldives' in prizes %}
-                    <div class="prizes-img-cont active">
-                    {% else %}
-                    <div class="prizes-img-cont">
-                    {% endif %}
-                        <img src="{{ url_for('static', filename='img/prizes/5-maldives.jpg') }}">
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="prize">
+                        {% if 'maldives' in prizes %}
+                        <div class="prizes-img-cont active">
+                        {% else %}
+                        <div class="prizes-img-cont">
+                        {% endif %}
+                            <img src="{{ url_for('static', filename='img/prizes/5-maldives.jpg') }}">
+                        </div>
+                        <div class="prizes-txt">Поездка на Мальдивы</div>
                     </div>
-                    <div class="prizes-txt">Поездка на Мальдивы</div>
                 </div>
-                <div class="prize">
-                    {% if 'kia' in prizes %}
-                    <div class="prizes-img-cont active">
-                    {% else %}
-                    <div class="prizes-img-cont">
-                    {% endif %}
-                        <img src="{{ url_for('static', filename='img/prizes/6-kia.png') }}">
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="prize">
+                        {% if 'kia' in prizes %}
+                        <div class="prizes-img-cont active">
+                        {% else %}
+                        <div class="prizes-img-cont">
+                        {% endif %}
+                            <img src="{{ url_for('static', filename='img/prizes/6-kia.png') }}">
+                        </div>
+                        <div class="prizes-txt">Автомобиль Kia Soul</div>
                     </div>
-                    <div class="prizes-txt">Автомобиль Kia Soul</div>
                 </div>
             </div>
         </div>

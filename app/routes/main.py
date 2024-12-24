@@ -64,3 +64,7 @@ def contacts():
         ref = form.ref.data
         send_contacts_email(name, phone, email, message, ref)
     return render_template('main/contacts.html', form=form)
+
+@main.route('/policy')
+def policy():
+    return render_template('main/policy.html')

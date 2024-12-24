@@ -9,6 +9,7 @@ def load_user(user_id):
 
 
 class Users(db.Model, UserMixin):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     card = db.Column(db.Integer, nullable=False)
     surname = db.Column(db.String(31))

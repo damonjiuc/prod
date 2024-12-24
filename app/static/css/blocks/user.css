@@ -1,13 +1,40 @@
 @import url('../var.css');
 
+
+h2 {
+    margin-top: 0;
+}
+
 .usermenu {
     background-color: #fff;
     color: #332225;
     padding: 5px;
     border-radius: 16px;
     margin-top: 20px;
+    height: calc(100% - 20px);
     text-align: center;
     display: flex;
+    position: relative;
+    flex-direction: column;
+    align-content: center;
+}
+
+.usermenu button {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    background: none;
+    padding: 12px 0;
+    margin: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    transition: background-color .33s, box-shadow .33s;
+}
+
+.usermenu button img {
+    width: 24px;
+    height: 24px;
 }
 
 .info {
@@ -16,6 +43,26 @@
     padding: 20px;
     border-radius: 16px;
     margin-top: 20px;
+}
+
+.info .top {
+    text-align: left;
+    font-weight: 600;
+    font-size: 2em;
+    line-height: 48px;
+    color: var(--forh);
+    font-weight: bold;
+}
+
+.info input[type="text"],.info input[type="tel"],.info input[type="email"]{
+    border: 1px solid var(--forh);
+    padding: 12px;
+    border-radius: 16px;
+    margin: 0 0 20px 0;
+}
+
+.info label {
+    width: 100%;
 }
 
 .stats {
@@ -34,6 +81,36 @@
     margin-top: 20px;
 }
 
+.shops .our-stores {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shops .our-stores-store {
+    width: 14%;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 0px 16px 0px rgba(29, 29, 27, 0.32);
+}
+
+.shops .our-stores-img-cont {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.shops .our-stores-img-cont img {
+    width: 149px;
+}
+
+.shops .our-stores-txt {
+    font-size: 0.8em;
+    border-top: 1px solid var(--dark);
+    padding-top: 8px;
+}
+
 .bonus {
     background-color: #fff;
     color: #332225;
@@ -45,9 +122,8 @@
 .progress {
     background-color: #fff;
     color: #332225;
-    padding: 20px;
+    padding: 2px;
     border-radius: 16px;
-    margin-top: 20px;
 }
 
 .prizes {
@@ -69,44 +145,40 @@
 
 
 .btn-primary {
-    
+    background: none;
+    padding: 0;
+    border: none;
+}
+
+.btn-primary:hover {
+    background:#bb2434;
 }
 
 .btn-primary span {
     display: none;
 }
 
-
-
-.our-stores {
-    display: flex;
-    justify-content: space-between;
+.btn-check:focus + .btn-primary, .btn-primary:focus {
+    background:#fff;
+    border-color: #bb2434;
+    box-shadow: 0 0 0 0.25rem #bb243490;
 }
 
-.our-stores-store {
-    width: 14%;
-    padding: 16px;
-    border-radius: 8px;
-    background-color: var(--light);
-    text-align: center;
-    box-shadow: 0px 0px 16px 0px rgba(29, 29, 27, 0.32);
-}
 
-.our-stores-img-cont {
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 
-.our-stores-img-cont img {
-    width: 149px;
-}
 
-.our-stores-txt {
-    font-size: 0.8em;
-    border-top: 1px solid var(--dark);
-    padding-top: 8px;
+
+
+.progress {
+  background: var(--accent);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 3px;
+  width: 0%;
+  z-index: 1;
+  transition: 0.4s ease;
 }
 
 .progress-container::before {
@@ -118,7 +190,7 @@
   transform: translateY(-50%);
   height: 3px;
   width: 100%;
-  z-index: -1;
+  z-index: 1;
 }
 
 .progress-container {
@@ -129,18 +201,6 @@
   margin-bottom: 30px;
   max-width: 100%;
   width: 1000px;
-}
-
-.progress {
-  background: var(--accent);
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  height: 3px;
-  width: 0%;
-  z-index: -1;
-  transition: 0.4s ease;
 }
 
 .circle {
@@ -154,6 +214,7 @@
   justify-content: center;
   border: 3px solid var(--medium);
   transition: .4s ease;
+  z-index: 9;
 }
 
 .circle.active {
