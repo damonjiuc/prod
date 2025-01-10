@@ -896,6 +896,15 @@ section.content p {
     margin: 0;
 }
 
+.ymap > ymaps {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+iframe {
+    border-radius: 16px;
+}
+
 /* end index */
 
 
@@ -1101,6 +1110,9 @@ footer .footer-button img {
     padding: 5px 10px;
 }
 
+.retail-net-shop-address {
+    min-height: 82px;
+}
 
 .retail-net a.shopemail, .retail-net a.shoptel {
     display: -webkit-box;
@@ -1348,6 +1360,7 @@ footer .footer-button img {
 }
 
 .login-page .form-add-user input {
+    color: var(--forh);
     display: block;
     margin: 0 auto;
     min-width: 280px;
@@ -1546,6 +1559,10 @@ footer .footer-button img {
 
 @media (max-width: 768px) {
     .banner-group .col-md-6 {
+        width: 100%;
+    }
+    .banner-group .banner-group-banner video {
+        height: 250px;
         width: 100%;
     }
 

@@ -16,7 +16,7 @@ admin = Blueprint('admin', __name__)
 @login_required
 @role_required(1)
 def all_users():
-    users = Users.query.order_by(Users.id.desc()).all()
+    users = db.session.query(Users).order_by(Users.id.desc()).all()
     return render_template('admin/users.html', users=users)
 
 
@@ -30,7 +30,7 @@ def add_user():
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         surname = request.form.get('surname')
         name = request.form.get('name')
-        secname = request.form.get('secname')
+        #secname = request.form.get('secname')
         birthday = request.form.get('birthday')
         email = request.form.get('email')
         phone = request.form.get('phone')
@@ -44,7 +44,7 @@ def add_user():
         lvl = request.form.get('lvl')
         comment = request.form.get('comment')
 
-        user = Users(card=card, password=hashed_password, surname=surname, name=name, secname=secname, birthday=birthday,
+        user = Users(card=card, password=hashed_password, surname=surname, name=name, birthday=birthday,
                      email=email, phone=phone, bankcard=bankcard, bankname=bankname, cardholder=cardholder,
                      city=city, company=company, active=active, role=role, lvl=lvl, comment=comment)
 
@@ -68,13 +68,13 @@ def add_user():
 @login_required
 @role_required(1)
 def edit_user(id):
-    user = Users.query.get(id)
-    orders = Orders.query.order_by(Orders.order_date.desc()).filter_by(card_num=user.card).all()
+    user = db.session.query(Users).get(id)
+    orders = db.session.query(Orders).order_by(Orders.order_date.desc()).filter_by(card_num=user.card).all()
     if request.method == 'POST':
         user.card = request.form.get('card')
         user.surname = request.form.get('surname')
         user.name = request.form.get('name')
-        user.secname = request.form.get('secname')
+        #user.secname = request.form.get('secname')
         user.birthday = request.form.get('birthday')
         user.email = request.form.get('email')
         user.phone = request.form.get('phone')
@@ -104,7 +104,7 @@ def edit_user(id):
 @login_required
 @role_required(1)
 def edit_user_ref(card):
-    refs = Ref.query.order_by(Ref.id.desc()).filter_by(referer_card=card).all()
+    refs = db.session.query(Ref).order_by(Ref.id.desc()).filter_by(referer_card=card).all()
     if request.method == 'POST':
         referer_card = card
         referral_card = request.form.get('referral_card')
@@ -127,7 +127,7 @@ def edit_user_ref(card):
 @login_required
 @role_required(1)
 def ref_paid(id):
-    ref = Ref.query.get(id)
+    ref = db.session.query(Ref).query.get(id)
     ref.paid = 1 if ref.paid == 0 else 0
     print(ref.id, ref.referer_card, ref.referral_card, ref.paid)
     try:
@@ -143,7 +143,7 @@ def ref_paid(id):
 @login_required
 @role_required(1)
 def edit_user_pwd(id):
-    user = Users.query.get(id)
+    user = db.session.query(Users).query.get(id)
     if request.method == 'POST':
         password = request.form.get('password')
         user.password = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -163,14 +163,14 @@ def edit_user_pwd(id):
 @login_required
 @role_required(1)
 def add_prize(id):
-    user = Users.query.get(id)
+    user = db.session.query(Users).query.get(id)
     user_card = user.card
     if request.method == 'POST':
-        user_id = request.form.get('user_id')
+        user_card = request.form.get('user_card')
         type = request.form.get('type')
         date = request.form.get('date')
 
-        prize = Prizes(user_id=user_id, type=type, date=date)
+        prize = Prizes(user_card=user_card, type=type, date=date)
         print(prize)
 
         try:
@@ -191,7 +191,7 @@ def add_prize(id):
 @login_required
 @role_required(1)
 def delete_user(id):
-    user = Users.query.get(id)
+    user = db.session.query(Users).get(id)
     try:
         db.session.delete(user)
         db.session.commit()
@@ -206,8 +206,8 @@ def delete_user(id):
 @login_required
 @role_required(1)
 def edit_order(order_id):
-    order = Orders.query.get(order_id)
-    items = Items.query.filter_by(order_id=order_id).all()
+    order = db.session.query(Orders).get(order_id)
+    items = db.session.query(Items).filter_by(order_id=order_id).all()
     if request.method == 'POST':
         order.bonus_paid = int(request.form.get('bonus_paid'))
         try:

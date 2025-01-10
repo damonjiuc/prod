@@ -17,9 +17,7 @@ class Config(object):
 
     SQLALCHEMY_DATABASE_URI = f'mysql+mysqlconnector://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB}'
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_TRACK_MODIFICATIONS = True
-    SQLALCHEMY_POOL_SIZE = 100
-    SQLALCHEMY_POOL_RECYCLE = 280
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # end DB
 

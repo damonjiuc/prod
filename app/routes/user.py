@@ -20,11 +20,11 @@ def user_login():
         login = form.login.data
         if login.isdigit():
             login = int(login)
-            user = Users.query.filter_by(card=login).first()
+            user = db.session.query(Users).filter_by(card=login).first()
             if not user:
-                user = Users.query.filter_by(phone=login).first()
+                user = db.session.query(Users).filter_by(phone=login).first()
         else:
-            user = Users.query.filter_by(email=login).first()
+            user = db.session.query(Users).filter_by(email=login).first()
         if user.active == 0:
             flash('Ваш доступ в личный кабинет заблокирован', category='error')
             return redirect(url_for('main.index'))
@@ -40,20 +40,23 @@ def user_login():
 @login_required
 def user_profile():
     user_in_lk = True if request.base_url.endswith('/user/') else False
-    refs = Ref.query.order_by(Ref.id.desc()).filter_by(referer_card=current_user.card).all()
+    refs = db.session.query(Ref).order_by(Ref.id.desc()).filter_by(referer_card=current_user.card).all()
     form = UserEditForm()
     form_callback = Callback()
     form_make_order = MakeOrder()
     form_feedback = Feedback()
-    prizes = Prizes.query.filter_by(user_id=current_user.id).all()
+    prizes = db.session.query(Prizes).filter_by(user_card=current_user.card).all()
     user_prizes = set()
     for prize in prizes:
         user_prizes.add(prize.type)
-    orders = Orders.query.order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all() # .limit(6)
+    orders = db.session.query(Orders).order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all() # .limit(6)
     stats = {'orders_count': 0, 'bonus_to_pay': 0, 'money_earned': 0}
 
+    count_orders = 0
     for order in orders:
-        order.order_items = Items.query.filter_by(order_id=order.order_id).all()
+        count_orders += 1
+        order.count = count_orders
+        order.order_items = db.session.query(Items).filter_by(order_id=order.order_id).all()
         stats['orders_count'] += 1
         if order.payment_date is not None:
             stats['money_earned'] += order.bonus
@@ -65,7 +68,7 @@ def user_profile():
     orders = orders[:6]
 
     if form.validate_on_submit():
-        user = Users.query.get(form.id.data)
+        user = db.session.query(Users).get(form.id.data)
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user.phone=form.phone.data
         user.email=form.email.data
@@ -101,9 +104,12 @@ def user_profile():
 @user.route('/user/orders')
 @login_required
 def user_orders():
-    orders = Orders.query.order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all()
+    orders = db.session.query(Orders).order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all()
+    count_orders = 0
     for order in orders:
-        order.order_items = Items.query.filter_by(order_id=order.order_id).all()
+        count_orders += 1
+        order.count = count_orders
+        order.order_items = db.session.query(Items).filter_by(order_id=order.order_id).all()
     return render_template('user/orders.html', orders=orders)
 
 @user.route('/user/logout', methods =['POST', 'GET'])

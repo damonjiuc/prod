@@ -3,8 +3,8 @@
 {% block title %}Здравствуйте, {{ current_user.name }}{% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
 {% endblock %}
 
 {% block modal %}
@@ -268,17 +268,42 @@
     <div class="col12 col-sm-12 col-md-6">
         <div class="stats">
             <h2>Статистика</h2>
-            <div>
-                <div>Кол-во заказов: {{ stats['orders_count'] }}</div>
-                <div>Ожидает выплаты: {{ stats['bonus_to_pay'] }}</div>
-                <div>Заработали: {{ stats['money_earned'] }}</div>
-                <div>Ваша реф. ссылка: <span id="ref_link" onclick="copyRefLink(document.getElementById('ref_link').innerHTML)">https://prod.ru/?r={{  '%04d' % current_user.card }}</span></div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-4">
+                    <div>{{ stats['orders_count'] }}
+                        <div class="statimg">
+                            <img src="/static/img/user/zakazy.svg">
+                            <img src="/static/img/user/circle.svg">
+                        </div>
+                    </div>
+                    <div>Кол-во заказов</div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4">
+                    <div>{{ stats['bonus_to_pay'] }}
+                        <div class="statimg">
+                            <img src="/static/img/user/ozhidaet.svg">
+                            <img src="/static/img/user/circle.svg">
+                        </div>
+                    </div>
+                    <div>Ожидает выплаты</div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4">
+                    <div>{{ stats['money_earned'] }}
+                        <div class="statimg">
+                            <img src="/static/img/user/zarabotano.svg">
+                            <img src="/static/img/user/circle.svg">
+                        </div>
+                    </div>
+                    <div>Заработали</div>
+                </div>
             </div>
+            <h2>Рефералы</h2>
+            <div>Ваша реф. ссылка: <span id="ref_link" onclick="copyRefLink(document.getElementById('ref_link').innerHTML)">https://prod.ru/?r={{  '%04d' % current_user.card }}</span></div>
             <div>
                 <div class="orders-tbl">
                     <div class="orders-tbl-section orders-tbl-header">
-                        <div class="orders-tbl-el tbl-order-num">№ Заказа</div>
-                        <div class="orders-tbl-el tbl-order-fio">ФИО Клиента</div>
+                        <div class="orders-tbl-el tbl-order-num">Реферал</div>
+                        <div class="orders-tbl-el tbl-order-fio">Статус</div>
                     </div>
                     {% for ref in refs %}
                         <div class="orders-tbl-order">
@@ -286,9 +311,9 @@
                                 <div class="orders-tbl-el tbl-order-num">{{ '%04d' % ref.referral_card }}</div>
                                 <div class="orders-tbl-el tbl-order-fio">
                                     {% if ref.paid == 1 %}
-                                        Выплачено
+                                        <span class="paid">Выплачено</span>
                                     {% else %}
-                                        Не выплачено
+                                        <span class="notpaid">Не выплачено</span>
                                     {% endif %}
                                 </div>
                             </div>
@@ -359,12 +384,15 @@
         <div class="bonus">
             <h2>Бонусная программа</h2>
             <div>
-                Повышая объемы продаж, Вы увеличиваете свой уровень, за который получаете бонусы. Повышенный % бонуса действует на материалы из списка.
-                <button type="button" class="btn" id="modal-btn-goods" data-bs-toggle="modal" data-bs-target="#modal-goods">
-                    Список высокомаржинальных товаров
-                </button>
+                <p>
+                    Повышая объемы продаж, Вы увеличиваете свой уровень, за который получаете бонусы. Повышенный % бонуса действует на материалы из списка.
+                </p>
+                <p>
+                    <button type="button" class="btn" id="modal-btn-goods" data-bs-toggle="modal" data-bs-target="#modal-goods">Список высокомаржинальных товаров</button>
+                </p>
             </div>
             <div class="progress-container">
+                <h4>Текущий % бонуса</h4>
                 <div class="progress" id="progress"> </div>
                 <div class="circle active">10%</div>
                 <div class="circle">10.5</div>
@@ -407,9 +435,11 @@
             /* end шкала прогресса реф программы */
             </script>
 
+            <h4>До следующего уровня:</h4>
             <div style="height: 100px;">
                 <div class="animated-progress">
-                    <span style="width: {{ current_user.moneytomln / 10000 }}%">{{ current_user.moneytomln }}₽</span>
+                    <span class="have" style="width: {{ current_user.moneytomln / 10000 }}%">Куплено: {{ current_user.moneytomln }}₽</span>
+                    <span class="left" style="width: calc(100% - {{ current_user.moneytomln / 10000 }}%)">Осталось: {{ 1000000 - current_user.moneytomln }}₽</span>
                 </div>
             </div>
         </div>
@@ -422,75 +452,81 @@
         <div class="prizes">
             <h2>Выигранные призы</h2>
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                    {% if 'alisa' in prizes %}
+                    <div class="prize active">
+                    {% else %}
                     <div class="prize">
-                        {% if 'alisa' in prizes %}
-                        <div class="prizes-img-cont active">
-                        {% else %}
-                        <div class="prizes-img-cont">
-                        {% endif %}
+                    {% endif %}
+                        <div class="prizes-img-cont ">
                             <img src="{{ url_for('static', filename='img/prizes/1-alisa.png') }}">
                         </div>
+                        <hr>
                         <div class="prizes-txt">Яндекс станция с Алисой</div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                    {% if 'ipad' in prizes %}
+                    <div class="prize active">
+                    {% else %}
                     <div class="prize">
-                        {% if 'ipad' in prizes %}
-                        <div class="prizes-img-cont active">
-                        {% else %}
-                        <div class="prizes-img-cont">
-                        {% endif %}
+                    {% endif %}
+                        <div class="prizes-img-cont ">
                             <img src="{{ url_for('static', filename='img/prizes/2-ipad.png') }}">
                         </div>
+                        <hr>
                         <div class="prizes-txt">iPad</div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                    {% if 'macbook' in prizes %}
+                    <div class="prize active">
+                    {% else %}
                     <div class="prize">
-                        {% if 'macbook' in prizes %}
-                        <div class="prizes-img-cont active">
-                        {% else %}
-                        <div class="prizes-img-cont">
-                        {% endif %}
+                    {% endif %}
+                        <div class="prizes-img-cont ">
                             <img src="{{ url_for('static', filename='img/prizes/3-macbook.png') }}">
                         </div>
+                        <hr>
                         <div class="prizes-txt">MacBook Air</div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                    {% if 'coswick' in prizes %}
+                    <div class="prize active">
+                    {% else %}
                     <div class="prize">
-                        {% if 'coswick' in prizes %}
-                        <div class="prizes-img-cont active">
-                        {% else %}
-                        <div class="prizes-img-cont">
-                        {% endif %}
+                    {% endif %}
+                        <div class="prizes-img-cont ">
                             <img src="{{ url_for('static', filename='img/prizes/4-coswick.jpg') }}">
                         </div>
+                        <hr>
                         <div class="prizes-txt">Поездка на фабрику Coswick</div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                    {% if 'maldives' in prizes %}
+                    <div class="prize active">
+                    {% else %}
                     <div class="prize">
-                        {% if 'maldives' in prizes %}
-                        <div class="prizes-img-cont active">
-                        {% else %}
-                        <div class="prizes-img-cont">
-                        {% endif %}
+                    {% endif %}
+                        <div class="prizes-img-cont ">
                             <img src="{{ url_for('static', filename='img/prizes/5-maldives.jpg') }}">
                         </div>
+                        <hr>
                         <div class="prizes-txt">Поездка на Мальдивы</div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                    {% if 'kia' in prizes %}
+                    <div class="prize active">
+                    {% else %}
                     <div class="prize">
-                        {% if 'kia' in prizes %}
-                        <div class="prizes-img-cont active">
-                        {% else %}
-                        <div class="prizes-img-cont">
-                        {% endif %}
+                    {% endif %}
+                        <div class="prizes-img-cont ">
                             <img src="{{ url_for('static', filename='img/prizes/6-kia.png') }}">
                         </div>
+                        <hr>
                         <div class="prizes-txt">Автомобиль Kia Soul</div>
                     </div>
                 </div>
@@ -513,35 +549,39 @@
                 </div>
                 {% for order in orders %}
                 <div class="orders-tbl-order">
-                <div class="orders-tbl-section">
-                <div class="orders-tbl-el tbl-order-num">{{ order.order_num }}</div>
-                <div class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</div>
-                <div class="orders-tbl-el tbl-order-address">{{ order.address }}</div>
-                <div class="orders-tbl-el tbl-order-date">{{ order.order_date }}</div>
-                <div class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</div>
-                <div class="orders-tbl-el tbl-order-sum">{{ order.order_sum }}</div>
-                <div class="orders-tbl-el tbl-order-bonus">{{ order.bonus }}</div>
-                </div>
-                <div class="orders-tbl-items">
-                <div class="orders-tbl-items-header">
-                    <div class="orders-tbl-items-el tbl-items-name">Наименование</div>
-                    <div class="orders-tbl-items-el tbl-items-amount">Количество</div>
-                    <div class="orders-tbl-items-el tbl-items-price">Цена</div>
-                    <div class="orders-tbl-items-el tbl-items-total">Стоимость</div>
-                </div>
-                {% for item in order.order_items %}
-                <div class="orders-tbl-items-section">
-                    <div class="orders-tbl-items-el tbl-items-name">{{ item.name }}</div>
-                    <div class="orders-tbl-items-el tbl-items-amount">{{ '%0.2f' % item.amount }}</div>
-                    <div class="orders-tbl-items-el tbl-items-price">{{ '%0.2f' % item.price }}</div>
-                    <div class="orders-tbl-items-el tbl-items-total">{{ '%0.2f' % (item.amount * item.price) }}</div>
-                </div>
-                {% endfor %}
-                </div>
+                    <input type="checkbox" name="order" id="order{{ order.count }}" />
+                    <label class="orders-tbl-section" for="order{{ order.count }}">
+                        <span class="orders-tbl-el tbl-order-num">{{ order.order_num }}</span>
+                        <span class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</span>
+                        <span class="orders-tbl-el tbl-order-address">{{ order.address }}</span>
+                        <span class="orders-tbl-el tbl-order-date">{{ order.order_date }}</span>
+                        <span class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</span>
+                        <span class="orders-tbl-el tbl-order-sum">{{ order.order_sum }}</span>
+                        <span class="orders-tbl-el tbl-order-bonus">{{ order.bonus }}</span>
+                        <span class="orders-tbl-el arrow"></span>
+                    </label>
+                    <div class="orders-tbl-items">
+                        <div class="orders-tbl-items-header">
+                            <div class="orders-tbl-items-el tbl-items-name">Наименование</div>
+                            <div class="orders-tbl-items-el tbl-items-amount">Количество</div>
+                            <div class="orders-tbl-items-el tbl-items-price">Цена</div>
+                            <div class="orders-tbl-items-el tbl-items-total">Стоимость</div>
+                        </div>
+                        {% for item in order.order_items %}
+                        <div class="orders-tbl-items-section">
+                            <div class="orders-tbl-items-el tbl-items-name">{{ item.name }}</div>
+                            <div class="orders-tbl-items-el tbl-items-amount">{{ '%0.2f' % item.amount }}</div>
+                            <div class="orders-tbl-items-el tbl-items-price">{{ '%0.2f' % item.price }}</div>
+                            <div class="orders-tbl-items-el tbl-items-total">{{ '%0.2f' % (item.amount * item.price) }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 {% endfor %}
             </div>
-            <div><a href="{{ url_for('user.user_orders') }}">Все заказы</a></div>
+            <div class="allorders">
+                <a href="{{ url_for('user.user_orders') }}">Все заказы</a>
+            </div>
         </div>
     </div>
 

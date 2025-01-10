@@ -1,4 +1,6 @@
 from flask import Flask
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 from .extensions import db, login_manager, mail
 from .config import Config
@@ -11,6 +13,8 @@ from .routes.user import user
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle' : 280}
+
 
     app.register_blueprint(main)
     app.register_blueprint(admin)

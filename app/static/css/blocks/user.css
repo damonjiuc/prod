@@ -5,6 +5,21 @@ h2 {
     margin-top: 0;
 }
 
+.btn {
+    width: max-content;
+    border-radius: 8px;
+    background-color: var(--accent);
+    border: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--white);
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    text-align: left;
+}
+
 .usermenu {
     background-color: #fff;
     color: #332225;
@@ -20,6 +35,7 @@ h2 {
 }
 
 .usermenu button {
+    display: block;
     width: 100%;
     height: auto;
     cursor: pointer;
@@ -29,6 +45,7 @@ h2 {
     -webkit-appearance: none;
     appearance: none;
     position: relative;
+    text-align: center;
     transition: background-color .33s, box-shadow .33s;
 }
 
@@ -54,23 +71,54 @@ h2 {
     font-weight: bold;
 }
 
-.info input[type="text"],.info input[type="tel"],.info input[type="email"]{
+.info .avatar {
+    
+}
+
+.info .avatar img {
+    border-radius: 50%;
+    width: 100px;
+}
+
+.info input[type="text"],.info input[type="tel"],.info input[type="email"],.info input[type="date"],.info input[type="password"] {
     border: 1px solid var(--forh);
     padding: 12px;
     border-radius: 16px;
     margin: 0 0 20px 0;
+    width: 100%;
+}
+
+.info input[type="file"] {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.info input[type="file"]::file-selector-button {
+    border: 1px solid var(--forh);
+    border-radius: 8px;
+    padding: 5px 12px;
+}
+
+.info .form-add-user input#submit {
+    border-radius: 8px;
 }
 
 .info label {
     width: 100%;
 }
 
-.stats {
-    background-color: #fff;
-    color: #332225;
-    padding: 20px;
-    border-radius: 16px;
-    margin-top: 20px;
+.info .card {
+    border: none;
+    margin-bottom: 20px;
+}
+
+.info .card span {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.info #submit {
+        padding: 10px 27px;
 }
 
 .shops {
@@ -134,14 +182,6 @@ h2 {
     margin-top: 20px;
 }
 
-.orders {
-    background-color: #fff;
-    color: #332225;
-    padding: 20px;
-    border-radius: 16px;
-    margin-top: 20px;
-}
-
 
 
 .btn-primary {
@@ -169,7 +209,7 @@ h2 {
 
 
 
-.progress {
+.bonus .progress {
   background: var(--accent);
   position: absolute;
   top: 50%;
@@ -181,149 +221,250 @@ h2 {
   transition: 0.4s ease;
 }
 
-.progress-container::before {
-  content: "";
-  background: var(--medium);
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  height: 3px;
-  width: 100%;
-  z-index: 1;
+.bonus h4 {
+    text-align: center;
 }
 
-.progress-container {
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  margin-bottom: 30px;
-  max-width: 100%;
-  width: 1000px;
+.bonus .progress-container::before {
+    content: "";
+    background: var(--medium);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 3px;
+    width: 100%;
+    z-index: 1;
 }
 
-.circle {
-  background: #fff;
-  color: var(--dark);
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid var(--medium);
-  transition: .4s ease;
-  z-index: 9;
+.bonus .progress-container {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 30px auto;
+    max-width: 100%;
 }
 
-.circle.active {
-  border-color: var(--accent);
+.bonus .progress-container .circle {
+    background: #fff;
+    color: var(--dark);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--medium);
+    transition: .4s ease;
+    z-index: 9;
+}
+
+.bonus .progress-container .circle.active {
+    border-color: var(--accent);
 }
 
 /* Прогресс текущего уровня */
 
-.animated-progress {
-  width: 1000px;
-  height: 20px;
-  border-radius: 8px;
-  margin: 20px auto;
-  border: 1px solid rgb(189, 113, 113);
-  overflow: hidden;
-  position: relative;
+.bonus .animated-progress {
+    height: 30px;
+    border-radius: 8px;
+    margin: 20px auto;
+    border: 1px solid rgb(189, 113, 113);
+    overflow: hidden;
+    position: relative;
 }
 
-.animated-progress span {
-  height: 100%;
-  display: block;
-  width: 0;
-  color: rgb(255, 251, 251);
-  background-color: var(--accent);
-  line-height: 16px;
-  position: absolute;
-  text-align: end;
-  padding-right: 5px;
+.bonus .animated-progress span.have {
+    height: 100%;
+    display: inline-block;
+    width: 0;
+    color: rgb(255, 251, 251);
+    background-color: var(--accent);
+    line-height: 16px;
+    position: absolute;
+    text-align: center;
+    padding: 7px;
+    min-width: fit-content;
+}
+
+.bonus .animated-progress span.left {
+    height: 100%;
+    display: inline-block;
+    width: 0;
+    color: var(--accent);   
+    background-color: #fff;
+    line-height: 16px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    padding: 7px;
+    min-width: fit-content;
 }
 
 /* Данные о заказах */
+.stats {
+    background-color: #fff;
+    color: #332225;
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
 
-.orders-tbl-section {
+.stats .orders-tbl {
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.stats .orders-tbl .orders-tbl-section {
     display: flex;
     justify-content: space-between;
     border-radius: 8px;
     margin-bottom: 8px;
-    background-color: var(--medium);
 }
 
-.orders-tbl-el {
-    padding: 8px;
-}
-
-.orders-tbl-header {
-    font-weight: bold;
-}
-
-.tbl-order-num {
-    width: 128px;
-}
-
-.tbl-order-num a {
-    color: var(--accent);
-}
-
-.tbl-order-fio {
+.stats .orders-tbl .tbl-order-fio {
     width: 280px;
-}
-
-.tbl-order-address {
-    width: 500px;
-}
-
-.tbl-order-date {
-    width: 120px;
-}
-
-.tbl-order-del-date {
-    width: 120px;
-}
-
-.tbl-order-sum {
-    width: 100px;
-}
-
-.tbl-order-bonus {
-    width: 80px;
-}
-
-.orders-tbl-items-header, .orders-tbl-items-section {
-    display: flex;
-    justify-content: space-between;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    background-color: var(--white);
-}
-
-.orders-tbl-items-el {
-    padding: 8px;
-}
-
-.orders-tbl-items-header {
-    font-weight: bold;
-}
-
-.tbl-items-name {
-    width: 800px;
-}
-
-.tbl-items-price, .tbl-items-amount, .tbl-items-total {
-    width: 100px;
+    text-align: right;
 }
 
 /* Призы */
-.prizes-img-cont img {
+.prizes {
+
+}
+
+.prizes .prize {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    height: 100%;
+    margin: 0 10px 5px;
+    padding: 10px 10px 2px;
+    text-align: center;
+}
+
+.prizes .prize.active {
+    border: 2px solid #34A646;
+}
+
+.prizes .prize .prizes-img-cont {
+    filter: grayscale(90%);
+    opacity: 0.4;
+}
+
+.prizes .prize.active .prizes-img-cont {
+    filter: none;
+    opacity: 1;
+}
+
+.prizes .prize .prizes-img-cont img {
     max-height: 60px;
 }
 
-.modal-text {
+.prizes .prize .modal-text {
     white-space: pre-line;
 }
+
+
+.orders {
+    background-color: #fff;
+    color: var(--forh);
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.orders .orders-tbl {
+    display: grid;
+}
+
+.orders .orders-tbl-header {
+    background: #ccc;
+    border-bottom: 1px solid #000;
+    display: grid;
+    grid-template-columns: 10% 20% 20% 10% 10% 10% 10%;
+    gap: 8px;
+    font-weight: bold;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.orders .orders-tbl-header > div {
+    display: inline-block;
+    float: left;
+}
+
+.orders .orders-tbl-order {
+    border-bottom: 1px solid #000;
+}
+.orders .orders-tbl-order:nth-child(2n+1) {
+    background: #cccccc90;
+}
+
+.orders .orders-tbl-order .orders-tbl-section {
+    display: grid;
+    grid-template-columns: 10% 20% 20% 10% 10% 10% 10% 5%;
+    gap: 8px;
+    margin: 5px 0;
+}
+
+.orders .orders-tbl-order .orders-tbl-section > div {
+    display: flex;
+    align-items: center;
+}
+
+.orders .orders-tbl-order .orders-tbl-section .tbl-order-date, .orders .orders-tbl-order .orders-tbl-section .tbl-order-del-date, .orders .orders-tbl-order .orders-tbl-section .tbl-order-sum, .orders .orders-tbl-order .orders-tbl-section .tbl-order-bonus {
+    display: grid;
+    text-align: center;
+}
+
+.orders .orders-tbl-order .orders-tbl-items .orders-tbl-items-header {
+
+}
+
+.orders .orders-tbl-order .orders-tbl-items .orders-tbl-items-section {
+
+}
+
+.allorders {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.allorders a {
+    color: var(--accent);
+}
+
+/* заказы */
+.orders-tbl input{
+    display: none;
+}
+
+.orders-tbl label{
+    z-index: 100;
+}
+
+.orders-tbl .orders-tbl-items {
+    height: 0;
+    overflow: hidden;
+    transition: color 0.5s, padding 0.5s;
+}
+
+.orders-tbl input:checked + label + .orders-tbl-items {
+    height: auto;
+    margin-top: -5px;
+    padding: 20px 30px 10px;
+}
+
+
+.orders-tbl label .arrow:before {
+    content: '\276F';
+    float: right;
+}
+
+.orders-tbl input:checked + (label .arrow:before) {
+    transition: transform .35s;
+    transform: rotate(90deg);
+}
+/* end заказы */
