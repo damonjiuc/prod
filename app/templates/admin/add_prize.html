@@ -5,28 +5,30 @@
 {% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
 
 {% block content %}
-<h2>Добавить приз дизайнеру {{ '%04d' % user_card }}</h2>
-<form class="form-add-user" method="post" name="action">
-  <div class="form-add-user-el">
-    <label for="user_id">ID пользователя</label>
-    <input id="user_id" name="user_id" type="number" placeholder="ID пользователя" value="{{ '%04d' % id }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="type">Тип приза</label>
-    <input id="type" name="type" list="typelist" type="text" placeholder="Тип приза">
-    <datalist id="typelist">
-      <option value="alisa">Алиса</option>
-      <option value="ipad">iPad</option>
-      <option value="macbook">MacBook</option>
-      <option value="coswick">Coswick</option>
-      <option value="maldives">Maldives</option>
-      <option value="kia">Kia</option>
-    </datalist>
-  </div>
-  <div class="form-add-user-el">
-    <label for="date">Дата</label>
-    <input id="date" name="date" type="date" placeholder="Дата">
-  </div>
-  <input value="AddPrize" name="action" type="submit" class="btn btn-confirm">
-</form>
+<div class="static">
+  <h2>Добавить приз дизайнеру {{ '%04d' % user_card }}</h2>
+  <form class="form-add-user" method="post" name="action">
+    <div class="form-add-user-el">
+      <label for="user_id">ID пользователя</label>
+      <input id="user_id" name="user_id" type="number" placeholder="ID пользователя" value="{{ '%04d' % id }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="type">Тип приза</label>
+      <input id="type" name="type" list="typelist" type="text" placeholder="Тип приза">
+      <datalist id="typelist">
+        <option value="alisa">Алиса</option>
+        <option value="ipad">iPad</option>
+        <option value="macbook">MacBook</option>
+        <option value="coswick">Coswick</option>
+        <option value="maldives">Maldives</option>
+        <option value="kia">Kia</option>
+      </datalist>
+    </div>
+    <div class="form-add-user-el">
+      <label for="date">Дата</label>
+      <input id="date" name="date" type="date" placeholder="Дата">
+    </div>
+    <input value="AddPrize" name="action" type="submit" class="btn btn-confirm">
+  </form>
+</div>
 {% endblock %}

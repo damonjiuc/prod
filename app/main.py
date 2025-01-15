@@ -9,7 +9,7 @@ def transform_date(date_str):
         return None
     return '-'.join(reversed(date_str.split('.')))
 
-def read_goods(goods_xlsx, orders_to_check):
+def read_goods(cursor, goods_xlsx, orders_to_check):
     """
     Выбираем из выгрузки эксель те товыры, которые привязаны к заказам (ключ словаря orders_to_check).
     Добавляем в них id заказов к которым они привязаны.
@@ -89,7 +89,7 @@ def read_deals(orders_xlsx='xls/Dveri diz zakazy (XLSX).xlsx', days_to_load=32):
 
     return orders
 
-def process_orders(orders_dict_xls):
+def process_orders(cursor, orders_dict_xls):
     """
     Обработка заказов, апдейт и инсерт в БД
 
@@ -100,7 +100,7 @@ def process_orders(orders_dict_xls):
     orders_insert = {}
     orders_update = {}
 
-    orders_dict_db = read_orders_from_db([f'"{order_num}"' for order_num in orders_to_check])
+    orders_dict_db = read_orders_from_db(cursor, [f'"{order_num}"' for order_num in orders_to_check])
 
     for order in orders_to_check:
         if order in orders_dict_db.keys():
@@ -137,7 +137,7 @@ def process_orders(orders_dict_xls):
     return goods_to_check
 
 
-def read_orders_from_db(orders_nums):
+def read_orders_from_db(cursor, orders_nums):
     """
     Чтение заказов из БД вместе с присвоенным id auto increment
 
@@ -152,7 +152,7 @@ def read_orders_from_db(orders_nums):
 
     return orders_dict
 
-def process_one_direction(orders_table, items_table):
+def process_one_direction(cursor, orders_table, items_table):
     """
     Обработка выгрузки по 1 направлению
 
@@ -167,9 +167,9 @@ def process_one_direction(orders_table, items_table):
     if len(cur_orders.keys()) == 0:
         return None
 
-    check_goods = process_orders(cur_orders)
+    check_goods = process_orders(cursor, cur_orders)
 
-    cur_goods = read_goods(items_table, check_goods)
+    cur_goods = read_goods(cursor, items_table, check_goods)
 
     for order_goods in cur_goods.values():
         for good in order_goods:
@@ -182,7 +182,7 @@ def process_one_direction(orders_table, items_table):
 
     print()
 
-def process_users_vars():
+def process_users_vars(cursor):
     """ Функция для расчета сумм, которые потратили дизайнеры и и уровня партнерки """
     # Получаем из БД инфо о юзерах и кладем в словарь, ключ - номер карты
     cursor.execute(f"SELECT ID, CARD, LVL, MONEYTOMLN, TOTALMONEY FROM users")
@@ -237,20 +237,20 @@ def process_users_vars():
             sql = f"UPDATE users SET LVL='{lvl}', MONEYTOMLN='{money_to_lvl}', TOTALMONEY='{total_money}', MONEYTHISYEAR='{money_this_year}', TICKETS='{tickets}' WHERE CARD='{user}'"
             cursor.execute(sql)
 
-if __name__ == '__main__':
+def update():
     db = mysql.connector.connect(
-        host="vh436.timeweb.ru",
+        host="bitrix404.timeweb.ru",
         user="quicksteps_tests",
         password="tests",
         database="quicksteps_tests"
     )
     cursor = db.cursor()
 
-    process_one_direction('xls/Dveri diz zakazy (XLSX).xlsx', 'xls/Dveri diz tovary (XLSX).xlsx')
-    process_one_direction('xls/Keramika diz zakazy (XLSX).xlsx', 'xls/Keramika diz tovary (XLSX).xlsx')
-    process_one_direction('xls/Parket diz zakazy (XLSX).xlsx', 'xls/Parket diz tovary (XLSX).xlsx')
+    process_one_direction(cursor, '/home/q/quicksteps/dev_prod/public_html/app/xls/Dveri diz zakazy (XLSX).xlsx', '/home/q/quicksteps/dev_prod/public_html/app/xls/Dveri diz tovary (XLSX).xlsx')
+    process_one_direction(cursor, '/home/q/quicksteps/dev_prod/public_html/app/xls/Keramika diz zakazy (XLSX).xlsx', '/home/q/quicksteps/dev_prod/public_html/app/xls/Keramika diz tovary (XLSX).xlsx')
+    process_one_direction(cursor, '/home/q/quicksteps/dev_prod/public_html/app/xls/Parket diz zakazy (XLSX).xlsx', '/home/q/quicksteps/dev_prod/public_html/app/xls/Parket diz tovary (XLSX).xlsx')
 
-    process_users_vars()
+    process_users_vars(cursor)
 
     db.commit()
     db.close()

@@ -24,37 +24,107 @@
                     <div class="orders-tbl-el tbl-order-sum">Сумма</div>
                     <div class="orders-tbl-el tbl-order-bonus">Бонус</div>
                 </div>
-                {% for order in orders %}
-                <div class="orders-tbl-order">
-                    <input type="checkbox" name="order" id="order{{ order.count }}" />
-                    <label class="orders-tbl-section" for="order{{ order.count }}">
-                        <span class="orders-tbl-el tbl-order-num">{{ order.order_num }}</span>
-                        <span class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</span>
-                        <span class="orders-tbl-el tbl-order-address">{{ order.address }}</span>
-                        <span class="orders-tbl-el tbl-order-date">{{ order.order_date }}</span>
-                        <span class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</span>
-                        <span class="orders-tbl-el tbl-order-sum">{{ order.order_sum }}</span>
-                        <span class="orders-tbl-el tbl-order-bonus">{{ order.bonus }}</span>
-                        <span class="orders-tbl-el arrow"></span>
-                    </label>
-                    <div class="orders-tbl-items">
-                        <div class="orders-tbl-items-header">
-                            <div class="orders-tbl-items-el tbl-items-name">Наименование</div>
-                            <div class="orders-tbl-items-el tbl-items-amount">Количество</div>
-                            <div class="orders-tbl-items-el tbl-items-price">Цена</div>
-                            <div class="orders-tbl-items-el tbl-items-total">Стоимость</div>
+                <div class="desctoporders">
+                    {% for order in orders %}
+                    <div class="orders-tbl-order">
+                        <input type="checkbox" name="order" id="order{{ order.count }}" />
+                        <label class="orders-tbl-section" for="order{{ order.count }}">
+                            <span class="orders-tbl-el tbl-order-num">{{ order.order_num }}</span>
+                            <span class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</span>
+                            <span class="orders-tbl-el tbl-order-address">{{ order.address }}</span>
+                            <span class="orders-tbl-el tbl-order-date">{{ order.order_date }}</span>
+                            <span class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</span>
+                            <span class="orders-tbl-el tbl-order-sum">{{ order.order_sum }} ₽</span>
+                            <span class="orders-tbl-el tbl-order-bonus">
+                                <div style="align-content: end;">{{ order.bonus }} ₽</div>
+                                {% if order.bonus_paid %}<div class="bonuspaid green">Выплачен{% else %}<div class="bonuspaid gray">Ожидает выплаты{% endif %}</div>
+                            </span>
+                            <span class="orders-tbl-el arrow"></span>
+                        </label>
+                        <div class="orders-tbl-items">
+                            <div class="orders-tbl-items-header">
+                                <div class="orders-tbl-items-el tbl-items-name">Наименование</div>
+                                <div class="orders-tbl-items-el tbl-items-amount">Количество</div>
+                                <div class="orders-tbl-items-el tbl-items-price">Цена</div>
+                                <div class="orders-tbl-items-el tbl-items-total">Стоимость</div>
+                            </div>
+                            {% for item in order.order_items %}
+                            <div class="orders-tbl-items-section">
+                                <div class="orders-tbl-items-el tbl-items-name">{{ item.name }}</div>
+                                <div class="orders-tbl-items-el tbl-items-amount">{{ '%0.2f' % item.amount }}</div>
+                                <div class="orders-tbl-items-el tbl-items-price">{{ '%0.2f' % item.price }} ₽</div>
+                                <div class="orders-tbl-items-el tbl-items-total">{{ '%0.2f' % (item.amount * item.price) }} ₽</div>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% for item in order.order_items %}
-                        <div class="orders-tbl-items-section">
-                            <div class="orders-tbl-items-el tbl-items-name">{{ item.name }}</div>
-                            <div class="orders-tbl-items-el tbl-items-amount">{{ '%0.2f' % item.amount }}</div>
-                            <div class="orders-tbl-items-el tbl-items-price">{{ '%0.2f' % item.price }}</div>
-                            <div class="orders-tbl-items-el tbl-items-total">{{ '%0.2f' % (item.amount * item.price) }}</div>
-                        </div>
-                        {% endfor %}
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+                <div class="mobileorders">
+                    {% for order in orders %}
+                    <div class="orders-tbl-order">
+                        <input type="checkbox" name="order" id="order{{ order.count }}m" />
+                        <label class="orders-tbl-section" for="order{{ order.count }}m">
+                            <div class="orders-tbl-el tbl-order-num">
+                                <label>Номер заказа</label>
+                                {{ order.order_num }}
+                            </div>
+                            <span class="orders-tbl-el tbl-order-bonus">
+                                {% if order.bonus_paid %}<div class="bonuspaid green">Выплачен{% else %}<div class="bonuspaid gray">Ожидает выплаты{% endif %}</div>
+                            </span>
+                            <span class="orders-tbl-el arrow"></span>
+                        </label>
+                        <div class="orders-tbl-items">
+                            <div class="dopinfo">
+                                <div class="orders-tbl-items-el tbl-order-fio">
+                                    <label>Имя клиента</label>
+                                    {{ order.customer_name }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-date">
+                                    <label>Дата заказа</label>
+                                    {{ order.order_date }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-address">
+                                    <label>Адрес</label>
+                                    {{ order.address }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-del-date">
+                                    <label>Дата отгрузки</label>
+                                    {{ order.shipment_date }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-sum">
+                                    <label>Сумма</label>
+                                    {{ order.order_sum }} ₽
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-bonus">
+                                    <label>Бонус</label>
+                                    {{ order.bonus }} ₽
+                                </div>
+                            </div>
+                            {% for item in order.order_items %}
+                            <div class="orders-tbl-items-section">
+                                <div class="orders-tbl-items-el tbl-items-name">
+                                    <label>Наименование</label>
+                                    {{ item.name }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-items-amount">
+                                    <label>Количество</label>
+                                    {{ '%0.2f' % item.amount }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-items-price">
+                                    <label>Цена</label>
+                                    {{ '%0.2f' % item.price }} ₽
+                                </div>
+                                <div class="orders-tbl-items-el tbl-items-total">
+                                    <label>Стоимость</label>
+                                    {{ '%0.2f' % (item.amount * item.price) }} ₽
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

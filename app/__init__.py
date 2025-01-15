@@ -2,18 +2,18 @@ from flask import Flask
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from .extensions import db, login_manager, mail
-from .config import Config
+from app.extensions import db, login_manager, mail
+from app.config import Config
 
-from .routes.main import main
-from .routes.admin import admin
-from .routes.user import user
-
+from app.routes.main import main
+from app.routes.admin import admin
+from app.routes.user import user
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
-    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle' : 280}
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle' : 60}
 
 
     app.register_blueprint(main)

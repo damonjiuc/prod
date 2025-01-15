@@ -3,6 +3,11 @@
 
 h2 {
     margin-top: 0;
+    text-align: left;
+}
+
+label {
+    z-index: 1;
 }
 
 .btn {
@@ -18,6 +23,10 @@ h2 {
     display: inline-flex;
     align-items: center;
     text-align: left;
+}
+
+.usermenumob {
+    display: none;
 }
 
 .usermenu {
@@ -49,6 +58,25 @@ h2 {
     transition: background-color .33s, box-shadow .33s;
 }
 
+.usermenu button:hover {
+    border-radius: 8px 0 0 8px;
+    z-index: 10;
+}
+
+.usermenu button:hover > span {
+    display: inline-block;
+    float: right;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 100%;
+    white-space: nowrap;
+    padding: 15px;
+    border-radius: 0 5px 5px 0;
+    background-color: #bb2434;
+    color: #fff;
+}
+
 .usermenu button img {
     width: 24px;
     height: 24px;
@@ -65,7 +93,6 @@ h2 {
 .info .top {
     text-align: left;
     font-weight: 600;
-    font-size: 2em;
     line-height: 48px;
     color: var(--forh);
     font-weight: bold;
@@ -77,19 +104,20 @@ h2 {
 
 .info .avatar img {
     border-radius: 50%;
-    width: 100px;
+    width: 80px;
 }
 
 .info input[type="text"],.info input[type="tel"],.info input[type="email"],.info input[type="date"],.info input[type="password"] {
     border: 1px solid var(--forh);
     padding: 12px;
-    border-radius: 16px;
+    border-radius: 8px;
     margin: 0 0 20px 0;
     width: 100%;
 }
 
 .info input[type="file"] {
     margin-left: 0;
+    max-width: 100%;
     padding-left: 0;
 }
 
@@ -124,7 +152,7 @@ h2 {
 .shops {
     background-color: #fff;
     color: #332225;
-    padding: 20px;
+    padding: 20px 20px 40px;
     border-radius: 16px;
     margin-top: 20px;
 }
@@ -135,11 +163,12 @@ h2 {
 }
 
 .shops .our-stores-store {
-    width: 14%;
-    padding: 16px;
-    border-radius: 8px;
-    text-align: center;
     box-shadow: 0px 0px 16px 0px rgba(29, 29, 27, 0.32);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+    height: 100%;
 }
 
 .shops .our-stores-img-cont {
@@ -150,6 +179,7 @@ h2 {
 }
 
 .shops .our-stores-img-cont img {
+    margin: 0 auto;
     width: 149px;
 }
 
@@ -171,7 +201,7 @@ h2 {
     background-color: #fff;
     color: #332225;
     padding: 2px;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 
 .prizes {
@@ -204,13 +234,8 @@ h2 {
     box-shadow: 0 0 0 0.25rem #bb243490;
 }
 
-
-
-
-
-
 .bonus .progress {
-  background: var(--accent);
+  background: #34A646;
   position: absolute;
   top: 50%;
   left: 0;
@@ -261,7 +286,7 @@ h2 {
 }
 
 .bonus .progress-container .circle.active {
-    border-color: var(--accent);
+    border-color: #34A646;
 }
 
 /* Прогресс текущего уровня */
@@ -311,28 +336,77 @@ h2 {
     margin-top: 20px;
 }
 
+.stats .row {
+    margin-bottom: 20px;
+}
+
+.stats .row .col-12 {
+    margin-bottom: 10px;
+}
+
+.stats .statelem {
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.stats .statelem .statimg {
+    display: inline-block;
+    width: auto;
+    height: 30px;
+    position: relative;
+    left: 13px;
+}
+
+.stats .statimg .circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 2;
+    transform: rotate(180deg);
+}
+
 .stats .orders-tbl {
-    border-radius: 16px;
+    border-radius: 8px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
     margin-top: 20px;
     padding: 0 10px;
 }
 
-.stats .orders-tbl .orders-tbl-section {
+.stats .refs .orders-tbl {
+    padding: 5px 10px;
+}
+
+.stats .refs .orders-tbl .orders-tbl-section {
     display: flex;
     justify-content: space-between;
     border-radius: 8px;
-    margin-bottom: 8px;
+    margin: 4px 0;
 }
 
-.stats .orders-tbl .tbl-order-fio {
+.stats .refs .orders-tbl .orders-tbl-section .arrow {
+    
+}
+
+.stats .refs .orders-tbl .tbl-order-fio {
     width: 280px;
     text-align: right;
+}
+
+#ref_link {
+    display: inline-block;
+    cursor: pointer;
 }
 
 /* Призы */
 .prizes {
 
+}
+
+.prizes .col-md-4 {
+    margin-bottom: 10px;
 }
 
 .prizes .prize {
@@ -367,6 +441,7 @@ h2 {
 }
 
 
+/* заказы */
 .orders {
     background-color: #fff;
     color: var(--forh);
@@ -381,11 +456,13 @@ h2 {
 
 .orders .orders-tbl-header {
     background: #ccc;
-    border-bottom: 1px solid #000;
+    border-radius: 8px;
     display: grid;
     grid-template-columns: 10% 20% 20% 10% 10% 10% 10%;
     gap: 8px;
+    font-size: 0.8em;
     font-weight: bold;
+    margin-bottom: 12px;
     padding: 10px 0;
     text-align: center;
 }
@@ -396,17 +473,21 @@ h2 {
 }
 
 .orders .orders-tbl-order {
-    border-bottom: 1px solid #000;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0px 3px 5px 0px rgba(29, 29, 27, 0.32);
+    margin-bottom: 18px;
 }
-.orders .orders-tbl-order:nth-child(2n+1) {
-    background: #cccccc90;
+
+.orders .orders-tbl-order:last-child {
+    border-radius: 0 0 8px 8px;
 }
 
 .orders .orders-tbl-order .orders-tbl-section {
     display: grid;
     grid-template-columns: 10% 20% 20% 10% 10% 10% 10% 5%;
     gap: 8px;
-    margin: 5px 0;
+    padding: 10px;
 }
 
 .orders .orders-tbl-order .orders-tbl-section > div {
@@ -414,35 +495,81 @@ h2 {
     align-items: center;
 }
 
-.orders .orders-tbl-order .orders-tbl-section .tbl-order-date, .orders .orders-tbl-order .orders-tbl-section .tbl-order-del-date, .orders .orders-tbl-order .orders-tbl-section .tbl-order-sum, .orders .orders-tbl-order .orders-tbl-section .tbl-order-bonus {
-    display: grid;
-    text-align: center;
+.orders .orders-tbl-order .orders-tbl-section .tbl-order-num, .orders .orders-tbl-order .orders-tbl-section .tbl-order-fio, .orders .orders-tbl-order .orders-tbl-section .tbl-order-address, .orders .orders-tbl-order .orders-tbl-section .tbl-order-date, .orders .orders-tbl-order .orders-tbl-section .tbl-order-del-date, .orders .orders-tbl-order .orders-tbl-section .tbl-order-sum, .orders .orders-tbl-order .orders-tbl-section .arrow {
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+}
+.orders .orders-tbl-order .orders-tbl-section .tbl-order-date, .orders .orders-tbl-order .orders-tbl-section .tbl-order-del-date, .orders .orders-tbl-order .orders-tbl-section .tbl-order-sum, .orders .orders-tbl-order .orders-tbl-section .tbl-order-bonus, .orders .orders-tbl-order .orders-tbl-section .arrow {
+    justify-content: center;
+}
+.orders .orders-tbl-order .orders-tbl-section .tbl-order-bonus {
+    display: inherit;
+  text-align: center;
+}
+
+.tbl-order-bonus .green {
+    color: #09A827;
+    font-size: 0.7em;
+}
+
+.tbl-order-bonus .gray {
+    color: var(--light);
+    font-size: 0.7em;
+}
+
+.orders .orders-tbl-order .orders-tbl-items {
+    
 }
 
 .orders .orders-tbl-order .orders-tbl-items .orders-tbl-items-header {
-
-}
-
-.orders .orders-tbl-order .orders-tbl-items .orders-tbl-items-section {
-
-}
-
-.allorders {
-    font-size: 1.5em;
+    border-top: 1px solid #ccc;
+    display: grid;
+    grid-template-columns: 55% 15% 15% 15%;
+    gap: 8px;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 6px 0;
     text-align: center;
 }
 
-.allorders a {
-    color: var(--accent);
+.orders .orders-tbl-order .orders-tbl-items .orders-tbl-items-section {
+    background: #fff;
+    border-bottom: 1px solid #000;
+    display: grid;
+    font-size: 0.8em;
+    grid-template-columns: 55% 15% 15% 15%;
+    gap: 8px;
+    padding: 10px;
 }
 
-/* заказы */
+.orders .orders-tbl-order .orders-tbl-items .orders-tbl-items-section:last-child {
+    border-bottom: none;
+    border-radius: 0 0 8px 8px;
+}
+
 .orders-tbl input{
     display: none;
 }
 
 .orders-tbl label{
     z-index: 100;
+}
+
+.orders-tbl label .arrow:before {
+    content: '\276F';
+    float: right;
+    font-size: 2em;
+}
+
+.orders-tbl input:checked + label .arrow:before {
+    transition: transform .35s;
+    transform: rotate(90deg);
+}
+
+.orders-tbl input:checked + label {
+    border: 1px solid #585858;
+    border-radius: 8px;
 }
 
 .orders-tbl .orders-tbl-items {
@@ -453,18 +580,227 @@ h2 {
 
 .orders-tbl input:checked + label + .orders-tbl-items {
     height: auto;
-    margin-top: -5px;
-    padding: 20px 30px 10px;
+    margin: 20px 0 10px;
+}
+
+.orders .orders-tbl-order .orders-tbl-items .tbl-items-name {
+    display: grid;
+}
+
+.orders .orders-tbl-order .orders-tbl-items .tbl-items-amount, .orders .orders-tbl-order .orders-tbl-items .tbl-items-price, .orders .orders-tbl-order .orders-tbl-items .tbl-items-total {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.allorders {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.allorders a {
+}
+
+.mobileorders {
+    display: none;
+}
+
+.modal-body form {
+    text-align: center;
+}
+
+.modal.fade {
+    
+}
+
+.modal-body input[type="text"], .modal-body input[type="tel"], .modal-body input[type="email"], .modal-body input[type="date"], .modal-body input[type="password"] {
+    border: 1px solid var(--forh);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+
+.modal-body input[type="submit"] {
+    width: max-content;
+    border-radius: 8px;
+    background-color: var(--accent);
+    border: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--white);
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    text-align: left;
+    padding: 10px 27px;
+}
+
+@media screen and (max-width: 880px) {
+    .col-md-5.desc {
+        min-width: 50%;
+    }
+
+    .notdesc {
+        display: none;
+    }
+
+    .usermenumob {
+        display: inline-flex;
+        position: fixed;
+        bottom: 0;
+        background: #fff;
+        width: 100%;
+        padding: 10px 20px;
+        z-index: 990;
+    }
+
+    .usermenumob button {
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+        padding: 5px;
+    }
+
+    .usermenumob button img {
+        width: 24px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .orders .orders-tbl-header {
+        display: none;
+    }
+    .desctoporders {
+        display: none;
+    }
+
+    .mobileorders {
+        display: block;
+    }
+
+    .orders .orders-tbl-order .orders-tbl-section {
+        border-radius: 8px;
+    }
+
+    .orders .orders-tbl-order .orders-tbl-el label {
+        color: #a4a4a4;
+        font-size: 10px;
+    }
+
+    .orders .orders-tbl-order {
+        background: #e7e7e7;
+        box-shadow: 0px 0px 7px 0px rgba(29, 29, 27, 0.32);
+    }
+
+    .orders .orders-tbl-order .orders-tbl-section {
+        background: #fff;
+        grid-template-columns: 75% 15% 10%;
+    }
+
+    .orders .orders-tbl-order .orders-tbl-section .tbl-order-num {
+        display: inherit;
+        font-weight: 500;
+    }
+
+    .orders .orders-tbl-order .orders-tbl-section .tbl-order-bonus .bonuspaid {
+        display: flex;
+        align-items: center;
+    }
+
+    .orders-tbl input:checked + label + .orders-tbl-items {
+        margin: 0 0 10px;
+    }
+
+    .orders .orders-tbl-order .dopinfo {
+        display: block;
+        margin-bottom: 10px;
+        padding: 0 10px;
+        width: 100%;
+    }
+
+    .orders .orders-tbl-order .dopinfo .tbl-order-fio, .orders .orders-tbl-order .dopinfo .tbl-order-address, .orders .orders-tbl-order .dopinfo .tbl-order-sum, .orders .orders-tbl-order .dopinfo .tbl-order-date, .orders .orders-tbl-order .dopinfo .tbl-order-del-date, .orders .orders-tbl-order .dopinfo .tbl-order-bonus {
+        display: inline-grid;
+        width: 50%;
+    }
+
+    .orders .orders-tbl-order .dopinfo .orders-tbl-items-el {
+        width: 65%;
+    }
+
+    .orders .orders-tbl-order .dopinfo .orders-tbl-items-el:nth-child(2n) {
+        width: 30%;
+    }
+
+    .orders .orders-tbl-order .dopinfo label {
+        color: #a4a4a4;
+        font-size: 10px;
+        width: 100%;
+    }
+
+    .orders .orders-tbl-order .orders-tbl-items .orders-tbl-items-section {
+        background: #fff;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .orders .orders-tbl-order .orders-tbl-items .tbl-items-name {
+        display: block;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    .orders .orders-tbl-order .orders-tbl-items .tbl-items-amount, .orders .orders-tbl-order .orders-tbl-items .tbl-items-price, .orders .orders-tbl-order .orders-tbl-items .tbl-items-total {
+        display: inherit;
+        width: 32%;
+    }
+
+    .orders .orders-tbl-order .orders-tbl-items .orders-tbl-items-section .orders-tbl-items-el label {
+        color: #a4a4a4;
+        font-size: 10px;
+        width: 100%;
+    }
 }
 
 
-.orders-tbl label .arrow:before {
-    content: '\276F';
-    float: right;
+@media screen and (max-width: 575px) {
+    .info .avatar {
+        text-align: center;
+    }
+    
+    .info .card {
+        text-align: center;
+    }
 }
 
-.orders-tbl input:checked + (label .arrow:before) {
-    transition: transform .35s;
-    transform: rotate(90deg);
+@media screen and (max-width: 480px) {
+    .orders .orders-tbl-order .orders-tbl-section {
+        grid-template-columns: 60% 20% 15%;
+    }
+
+    .bonus .progress-container .circle {
+        border-radius: 8px;
+        height: 28px;
+        width: 28px;
+        font-size: 0.8em;
+        font-weight: bold;
+        border-width: 2px;
+    }
+
+    .bonus .progress-container .circle.active {
+        background: var(--ultra-light);
+    }
+
+    .bonus .progress-container .circle:nth-child(odd) {
+        font-size: 0.6em;
+        height: 22px;
+        width: 22px;
+        margin-top: 3px;
+    }
+
+    .mob-btn-block {
+        text-align: center;
+    }
 }
 /* end заказы */

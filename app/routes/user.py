@@ -1,13 +1,13 @@
 from flask import Blueprint, render_template, redirect, flash, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
-from ..extensions import db, bcrypt
-from ..models.users import Users
-from ..models.orders import Orders
-from ..models.items import Items
-from ..models.prizes import Prizes
-from ..models.ref import Ref
-from ..forms import UserEditForm, UserLogin, Callback, MakeOrder, Feedback
-from ..functions import save_picture
+from app.extensions import db, bcrypt
+from app.models.users import Users
+from app.models.orders import Orders
+from app.models.items import Items
+from app.models.prizes import Prizes
+from app.models.ref import Ref
+from app.forms import UserEditForm, UserLogin, Callback, MakeOrder, Feedback
+from app.functions import save_picture
 from app.email import user_callback_email, user_feedback_email, user_make_order_email
 
 
@@ -41,6 +41,12 @@ def user_login():
 def user_profile():
     user_in_lk = True if request.base_url.endswith('/user/') else False
     refs = db.session.query(Ref).order_by(Ref.id.desc()).filter_by(referer_card=current_user.card).all()
+    for ref in refs:
+        card = ref.referral_card
+        print(card)
+        userdata = db.session.query(Users).filter_by(card=card).first()
+        name = ' '.join([userdata.name, userdata.surname])
+        ref.name = name
     form = UserEditForm()
     form_callback = Callback()
     form_make_order = MakeOrder()

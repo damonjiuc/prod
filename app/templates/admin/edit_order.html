@@ -5,40 +5,42 @@
 {% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
 
 {% block content %}
-<h1>Изменить данные заказа {{ order.order_num }}</h1>
-<div>Статус бонуса:
-  {% if order.bonus_paid == 1 %}
-    <span class="green">✔ Выплачен</span>
-    <form method="post" style="display: inline;">
-      <input id="bonus_paid" name="bonus_paid" type="text" value="0" style="display: none;">
-      <input value="Изменить" type="submit" class="btn">
-    </form>
-  {% else %}
-    <span class="red">✘ Не выплачен</span>
-    <form method="post" style="display: inline;">
-      <input id="bonus_paid" name="bonus_paid" type="text" value="1" style="display: none;">
-      <input value="Изменить" type="submit" class="btn">
-    </form>
-  {% endif %}
+<div class="static">
+  <h1>Изменить данные заказа {{ order.order_num }}</h1>
+  <div>Статус бонуса:
+    {% if order.bonus_paid == 1 %}
+      <span class="green">✔ Выплачен</span>
+      <form method="post" style="display: inline;">
+        <input id="bonus_paid" name="bonus_paid" type="text" value="0" style="display: none;">
+        <input value="Изменить" type="submit" class="btn">
+      </form>
+    {% else %}
+      <span class="red">✘ Не выплачен</span>
+      <form method="post" style="display: inline;">
+        <input id="bonus_paid" name="bonus_paid" type="text" value="1" style="display: none;">
+        <input value="Изменить" type="submit" class="btn">
+      </form>
+    {% endif %}
+  </div>
+  <table class="table-users">
+    <thead>
+      <tr>
+        <th>Наименование</th>
+        <th>Кол-во</th>
+        <th>Ед. измерения</th>
+        <th>Цена</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.amount }}</td>
+        <td>{{ item.amount_type }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
-<table class="table-users">
-  <thead>
-    <tr>
-      <th>Наименование</th>
-      <th>Кол-во</th>
-      <th>Ед. измерения</th>
-      <th>Цена</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for item in items %}
-    <tr>
-      <td>{{ item.name }}</td>
-      <td>{{ item.amount }}</td>
-      <td>{{ item.amount_type }}</td>
-      <td>{{ item.price }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
 {% endblock %}

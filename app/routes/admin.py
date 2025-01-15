@@ -1,13 +1,13 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required
 
-from ..extensions import db, bcrypt
-from ..models.users import Users
-from ..models.orders import Orders
-from ..models.items import Items
-from ..models.prizes import Prizes
-from ..models.ref import Ref
-from ..functions import role_required
+from app.extensions import db, bcrypt
+from app.models.users import Users
+from app.models.orders import Orders
+from app.models.items import Items
+from app.models.prizes import Prizes
+from app.models.ref import Ref
+from app.functions import role_required
 from app.email import send_registration_email, bonus_paid
 
 admin = Blueprint('admin', __name__)

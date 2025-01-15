@@ -5,76 +5,78 @@
 {% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
 
 {% block content %}
-<form class="form-add-user" method="post">
-  <div class="form-add-user-el">
-    <label for="card">Номер карты</label>
-    <input id="card" name="card" type="number" placeholder="Номер карты">
-  </div>
-  <div class="form-add-user-el">
-    <label for="password">Пароль</label>
-    <input id="password" name="password" type="password" placeholder="Пароль">
-  </div>
-  <div class="form-add-user-el">
-    <label for="surname">Фамилия</label>
-    <input id="surname" name="surname" type="text" placeholder="Фамилия">
-  </div>
-  <div class="form-add-user-el">
-    <label for="name">Имя</label>
-    <input id="name" name="name" type="text" placeholder="Имя">
-  </div>
-  <div class="form-add-user-el">
-    <label for="birthday">День рождения</label>
-    <input id="birthday" name="birthday" type="date" placeholder="День рождения">
-  </div>
-  <div class="form-add-user-el">
-    <label for="email">E-mail</label>
-    <input id="email" name="email" type="email" placeholder="E-mail">
-  </div>
-  <div class="form-add-user-el">
-    <label for="phone">Телефон</label>
-    <input id="phone" name="phone" type="tel" placeholder="8XXXxxxXXxx">
-  </div>
-  <div class="form-add-user-el">
-    <label for="comment">Комментарий</label>
-    <input id="comment" name="comment" type="text" placeholder="Комментарий">
-  </div>
-  <div class="form-add-user-group">Реквизиты</div>
-  <div class="form-add-user-el">
-    <label for="bankcard">Номер банковской карты</label>
-    <input id="bankcard" name="bankcard" type="number" placeholder="Номер банковской карты">
-  </div>
-  <div class="form-add-user-el">
-    <label for="bankname">Название банка</label>
-    <input id="bankname" name="bankname" type="text" placeholder="Название банка">
-  </div>
-  <div class="form-add-user-el">
-    <label for="cardholder">Держатель карты</label>
-    <input id="cardholder" name="cardholder" type="text" placeholder="Держатель карты">
-  </div>
-  <div class="form-add-user-el">
-    <label for="city">Город</label>
-    <input id="city" name="city" type="text" placeholder="Город">
-  </div>
-  <div class="form-add-user-el">
-    <label for="company">Название Компании</label>
-    <input id="company" name="company" type="text" placeholder="Название Компании">
-  </div>
-  <div>Сайт</div>
-  <div class="form-add-user-el">
-    <label for="active">Активнось (1-да, 0-нет)</label>
-    <input id="active" name="active" type="number" placeholder="1 - active, 0 - off">
-  </div>
-  <div class="form-add-user-el">
-    <label for="role">Роль (1-админ, 2-юзер)</label>
-    <input id="role" name="role" type="number" placeholder="1 - admin, 2 - dis">
-  </div>
-  <div class="form-add-user-group">Не трогать, ОПАСНОСТЬ!</div>
-  <div class="form-add-user-el">
-    <label for="lvl">Уровень</label>
-    <input id="lvl" name="lvl" type="number" placeholder="lvl №#">
-  </div>
+<div class="static">
+  <form class="form-add-user" method="post">
+    <div class="form-add-user-el">
+      <label for="card">Номер карты</label>
+      <input id="card" name="card" type="number" placeholder="Номер карты">
+    </div>
+    <div class="form-add-user-el">
+      <label for="password">Пароль</label>
+      <input id="password" name="password" type="password" placeholder="Пароль">
+    </div>
+    <div class="form-add-user-el">
+      <label for="surname">Фамилия</label>
+      <input id="surname" name="surname" type="text" placeholder="Фамилия">
+    </div>
+    <div class="form-add-user-el">
+      <label for="name">Имя</label>
+      <input id="name" name="name" type="text" placeholder="Имя">
+    </div>
+    <div class="form-add-user-el">
+      <label for="birthday">День рождения</label>
+      <input id="birthday" name="birthday" type="date" placeholder="День рождения">
+    </div>
+    <div class="form-add-user-el">
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" placeholder="E-mail">
+    </div>
+    <div class="form-add-user-el">
+      <label for="phone">Телефон</label>
+      <input id="phone" name="phone" type="tel" placeholder="8XXXxxxXXxx">
+    </div>
+    <div class="form-add-user-el">
+      <label for="comment">Комментарий</label>
+      <input id="comment" name="comment" type="text" placeholder="Комментарий">
+    </div>
+    <div class="form-add-user-group">Реквизиты</div>
+    <div class="form-add-user-el">
+      <label for="bankcard">Номер банковской карты</label>
+      <input id="bankcard" name="bankcard" type="number" placeholder="Номер банковской карты">
+    </div>
+    <div class="form-add-user-el">
+      <label for="bankname">Название банка</label>
+      <input id="bankname" name="bankname" type="text" placeholder="Название банка">
+    </div>
+    <div class="form-add-user-el">
+      <label for="cardholder">Держатель карты</label>
+      <input id="cardholder" name="cardholder" type="text" placeholder="Держатель карты">
+    </div>
+    <div class="form-add-user-el">
+      <label for="city">Город</label>
+      <input id="city" name="city" type="text" placeholder="Город">
+    </div>
+    <div class="form-add-user-el">
+      <label for="company">Название Компании</label>
+      <input id="company" name="company" type="text" placeholder="Название Компании">
+    </div>
+    <div>Сайт</div>
+    <div class="form-add-user-el">
+      <label for="active">Активнось (1-да, 0-нет)</label>
+      <input id="active" name="active" type="number" placeholder="1 - active, 0 - off">
+    </div>
+    <div class="form-add-user-el">
+      <label for="role">Роль (1-админ, 2-юзер)</label>
+      <input id="role" name="role" type="number" placeholder="1 - admin, 2 - dis">
+    </div>
+    <div class="form-add-user-group">Не трогать, ОПАСНОСТЬ!</div>
+    <div class="form-add-user-el">
+      <label for="lvl">Уровень</label>
+      <input id="lvl" name="lvl" type="number" placeholder="lvl №#">
+    </div>
 
 
-  <input value="Добавить" type="submit" class="btn btn-confirm">
-</form>
+    <input value="Добавить" type="submit" class="btn btn-confirm">
+  </form>
+</div>
 {% endblock %}

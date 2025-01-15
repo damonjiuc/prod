@@ -13,6 +13,14 @@
     {% block modal %}{% endblock %}
     <header>{% include 'main/_header.html' %}</header>
     <main class="content">
+        <div id="paint1" class="paint"></div>
+        <div id="paint2" class="paint"></div>
+        <div id="paint3" class="paint"></div>
+        <div id="paint4" class="paint"></div>
+        <div id="paint5" class="paint"></div>
+        <div id="paint6" class="paint"></div>
+        <div id="paint7" class="paint"></div>
+        <div id="paint8" class="paint"></div>
         <div class="container">
             {% include 'main/_flash.html' %}
             {% block content %}{% endblock %}
@@ -22,5 +30,28 @@
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
     {% block js %}{% endblock %}
+
+    <script>
+        let elem = document.getElementById("partners");
+        var c = elem.getBoundingClientRect(),
+        elemtop = window.pageYOffset + c.top - 40,
+        elemleft = window.pageXOffset + c.left - 100;
+        bottom = elem.offsetHeight + 80;
+
+        let paint6 = document.getElementById("paint6");
+        paint6.setAttribute('style', 'width: 200px;height:'+bottom+'px;top:'+elemtop+'px;left:'+elemleft+'px');
+
+        let paint7 = document.getElementById("paint7");
+        paint7.setAttribute('style', 'width: 200px;height:'+bottom+'px;top:'+elemtop+'px;right:'+elemleft+'px');
+
+        let infobrands = document.getElementById("infobrands");
+        var d = infobrands.getBoundingClientRect(),
+        infotop = d.top - 40,
+        inforight = elemleft + 40;
+        infobottom = infobrands.offsetHeight + 40;
+
+        let paint8 = document.getElementById("paint8");
+        paint8.setAttribute('style', 'width: 120px;height:'+infobottom+'px;top:'+infotop+'px;right:'+inforight+'px');
+    </script>
 </body>
 </html>

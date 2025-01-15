@@ -91,7 +91,7 @@
                     <div class="decor-block">
                         <img src="{{ url_for('static', filename='img/imgs/salon1.jpg') }}" />
                         <h3 class="decor-text">Деревяные напольные покрытия</h3>
-                        <p class="decor-about"> паркет, ламинат, кварц-виниловая плитка, массивная доска и др.</p>
+                        <p class="decor-about"> кварц-виниловая плитка, паркет, ламинат, массивная доска и др.</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
@@ -114,7 +114,7 @@
 </section>
 
 <section class="brands">
-    <div class="info">
+    <div id="infobrands" class="info">
         <h4>Мы гарантируем самую низкую цену на весь предлагаемый ассортимент и будем рады видеть вас в наших салонах.</h4>
     </div>
     <h3>Наши бренды</h3>
@@ -158,7 +158,7 @@
     </div>
 </section>
 
-<section class="partners">
+<section id="partners" class="partners">
     <div class="partners-text">
         <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
         <p>Узнайте о лучших условиях для партнеров</p>
@@ -303,7 +303,19 @@
         <div class="tab-content" id="content-rd">
             <div class="row">
                 <div class="col-12 col-xl-3">
-                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="shop">
+                        Ленинский проспект, дом 140А,
+                        <br>
+                        ТЦ «Загородный дом 2», 4 модуль
+                    </div>
+                    <div class="shop">
+                        Энгельса проспект, дом 48
+                    </div>
+                    <div class="shop">
+                        Железноводская ул, дом 3,
+                        <br>
+                        ТК «Василеостровский», секция 40
+                    </div>
                 </div>
                 <div class="col-12 col-xl-9">
                     <div class="ymap" id="map_rd"></div>
@@ -313,7 +325,19 @@
         <div class="tab-content" id="content-lp">
             <div class="row">
                 <div class="col-12 col-xl-3">
-                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="shop">
+                        Ленинский проспект, дом 140А,
+                        <br>
+                        ТЦ «Загородный дом 2», 2-3 модуль
+                    </div>
+                    <div class="shop">
+                        Энгельса проспект, дом 48
+                    </div>
+                    <div class="shop">
+                        ул. Железноводская, д.3,
+                        <br>
+                        ТЦ "Василеостровский", 2 этаж, секция 102
+                    </div>
                 </div>
                 <div class="col-12 col-xl-9">
                     <div class="ymap" id="map_lp"></div>
@@ -323,7 +347,29 @@
         <div class="tab-content" id="content-cp">
             <div class="row">
                 <div class="col-12 col-xl-3">
-                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="shop">
+                        Ленинский проспект, дом 140А,
+                        <br>
+                        ТЦ «Загородный дом 2», 1 модуль
+                    </div>
+                    <div class="shop">
+                        Фучика улица, дом 9,
+                        <br>
+                        ТК «Кубатура», 1 этаж, секция 1.74
+                    </div>
+                    <div class="shop">
+                        Полевая Сабировская улица, дом 54,
+                        <br>
+                        ТК «Интерио», 2 этаж, секция 212
+                    </div>
+                    <div class="shop">
+                        Энгельса проспект, дом 48А
+                    </div>
+                    <div class="shop">
+                        ул. Уральская, д. 10,
+                        <br>
+                        ТЦ "Василеостровский", 1 этаж, секция 83
+                    </div>
                 </div>
                 <div class="col-12 col-xl-9">
                     <div class="ymap" id="map_cp"></div>
@@ -333,7 +379,11 @@
         <div class="tab-content" id="content-pd">
             <div class="row">
                 <div class="col-12 col-xl-3">
-                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="shop">
+                        Ленинский проспект, дом 140А,
+                        <br>
+                        ТЦ «Загородный дом 2», 13 модуль
+                    </div>
                 </div>
                 <div class="col-12 col-xl-9">
                     <div class="ymap" id="map_pd"></div>
@@ -343,7 +393,16 @@
         <div class="tab-content" id="content-pa">
             <div class="row">
                 <div class="col-12 col-xl-3">
-                    Магазины<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="shop">
+                        Ленинский проспект, дом 140А,
+                        <br>
+                        ТЦ «Загородный дом 2», 8-9 модуль
+                    </div>
+                    <div class="shop">
+                        Студенческая улица, дом 10,
+                        <br>
+                        ТК «Ланской», секция А1
+                    </div>
                 </div>
                 <div class="col-12 col-xl-9">
                     <div class="ymap" id="map_pa"></div>

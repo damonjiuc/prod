@@ -1,5 +1,5 @@
 from sqlalchemy.orm import backref
-from ..extensions import db
+from app.extensions import db
 
 
 class Ref(db.Model):

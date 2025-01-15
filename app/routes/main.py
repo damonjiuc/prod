@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template, send_from_directory, current_app, make_response, request, redirect
 import os
-from ..forms import Partnership, Contacts
+from app.forms import Partnership, Contacts
 from app.email import send_partnership_email, send_contacts_email
+from app.main import update
+import socket
 
 
 main = Blueprint('main', __name__)
@@ -68,3 +70,14 @@ def contacts():
 @main.route('/policy')
 def policy():
     return render_template('main/policy.html')
+
+@main.route('/upd')
+def update_orders():
+    update()
+    return 'ok'
+
+@main.route('/ip')
+def ip():
+    hostname = socket.gethostname()
+    local_ip = socket.gethostbyname(hostname)
+    return local_ip

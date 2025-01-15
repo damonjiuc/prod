@@ -11,7 +11,7 @@
         {{ form.csrf_token }}
         {{ form.login(placeholder="Номер карты / телефон") }}
         {{ form.password(placeholder="Пароль") }}
-        {{ form.remember.label }} {{ form.remember(placeholder="Запомнить") }}
+        {{ form.remember(placeholder="Запомнить") }} {{ form.remember.label }} 
         {{ form.submit(placeholder="Войти") }}
     </form>
 </section>

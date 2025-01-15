@@ -5,158 +5,160 @@
 {% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
 
 {% block content %}
-<form class="form-add-user" method="post" name="action">
-  <div class="form-add-user-el">
-    <label for="card">Номер карты</label>
-    <input id="card" name="card" type="number" placeholder="Номер карты" value="{{ '%04d' % user.card }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="surname">Фамилия</label>
-    <input id="surname" name="surname" type="text" placeholder="Фамилия" value="{{ user.surname }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="name">Имя</label>
-    <input id="name" name="name" type="text" placeholder="Имя" value="{{ user.name }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="birthday">День рождения</label>
-    <input id="birthday" name="birthday" type="date" placeholder="День рождения" value="{{ user.birthday }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="email">E-mail</label>
-    <input id="email" name="email" type="email" placeholder="E-mail" value="{{ user.email }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="phone">Телефон</label>
-    <input id="phone" name="phone" type="tel" placeholder="8XXXxxxXXxx" value="{{ user.phone }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="comment">Комментарий</label>
-    <input id="comment" name="comment" type="text" placeholder="Комментарий" value="{{ user.comment }}">
-  </div>
-  <div class="form-add-user-group">Реквизиты</div>
-  <div class="form-add-user-el">
-    <label for="bankcard">Номер банковской карты</label>
-    <input id="bankcard" name="bankcard" type="number" placeholder="Номер банковской карты" value="{{ '%16d' % user.bankcard }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="bankname">Название банка</label>
-    <input id="bankname" name="bankname" type="text" placeholder="Название банка" value="{{ user.bankname }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="cardholder">Держатель карты</label>
-    <input id="cardholder" name="cardholder" type="text" placeholder="Держатель карты" value="{{ user.cardholder }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="company">Название Компании</label>
-    <input id="company" name="company" type="text" placeholder="Название Компании" value="{{ user.company }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="city">Город</label>
-    <input id="city" name="city" type="text" placeholder="Город" value="{{ user.city }}">
-  </div>
-  <div class="form-add-user-group">Сайт</div>
-  <div class="form-add-user-el">
-    <label for="active">Активнось (1-да, 0-нет)</label>
-    <input id="active" name="active" type="number" placeholder="1 - active, 0 - off" value="{{ user.active }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="role">Роль (1-админ, 2-юзер)</label>
-    <input id="role" name="role" type="number" placeholder="1 - admin, 2 - dis" value="{{ user.role }}">
-  </div>
-  <div class="form-add-user-group">Не трогать, ОПАСНОСТЬ!</div>
-  <div class="form-add-user-el">
-    <label for="lvl">Уровень</label>
-    <input id="lvl" name="lvl" type="number" placeholder="lvl №#" value="{{ user.lvl }}">
-  </div>
-  <!--<div class="form-add-user-el">
-    <label for="moneytomln">Денег до миллиона</label>
-    <input id="moneytomln" name="moneytomln" type="number" step=0.01 placeholder="Денег до миллиона" value="{{ user.moneytomln }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="totalmoney">Всего купил на</label>
-    <input id="totalmoney" name="totalmoney" type="number" step=0.01 placeholder="Всего купил на" value="{{ user.totalmoney }}">
-  </div>
-  <div class="form-add-user-el">
-    <label for="apptoken">App Token</label>
-    <input id="apptoken" name="apptoken" type="number" placeholder="App Token" value="{{ user.apptoken }}">
-  </div>-->
+<div class="static">
+  <form class="form-add-user" method="post" name="action">
+    <div class="form-add-user-el">
+      <label for="card">Номер карты</label>
+      <input id="card" name="card" type="number" placeholder="Номер карты" value="{{ '%04d' % user.card }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="surname">Фамилия</label>
+      <input id="surname" name="surname" type="text" placeholder="Фамилия" value="{{ user.surname }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="name">Имя</label>
+      <input id="name" name="name" type="text" placeholder="Имя" value="{{ user.name }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="birthday">День рождения</label>
+      <input id="birthday" name="birthday" type="date" placeholder="День рождения" value="{{ user.birthday }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" placeholder="E-mail" value="{{ user.email }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="phone">Телефон</label>
+      <input id="phone" name="phone" type="tel" placeholder="8XXXxxxXXxx" value="{{ user.phone }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="comment">Комментарий</label>
+      <input id="comment" name="comment" type="text" placeholder="Комментарий" value="{{ user.comment }}">
+    </div>
+    <div class="form-add-user-group">Реквизиты</div>
+    <div class="form-add-user-el">
+      <label for="bankcard">Номер банковской карты</label>
+      <input id="bankcard" name="bankcard" type="number" placeholder="Номер банковской карты" value="{{ '%16d' % user.bankcard }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="bankname">Название банка</label>
+      <input id="bankname" name="bankname" type="text" placeholder="Название банка" value="{{ user.bankname }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="cardholder">Держатель карты</label>
+      <input id="cardholder" name="cardholder" type="text" placeholder="Держатель карты" value="{{ user.cardholder }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="company">Название Компании</label>
+      <input id="company" name="company" type="text" placeholder="Название Компании" value="{{ user.company }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="city">Город</label>
+      <input id="city" name="city" type="text" placeholder="Город" value="{{ user.city }}">
+    </div>
+    <div class="form-add-user-group">Сайт</div>
+    <div class="form-add-user-el">
+      <label for="active">Активнось (1-да, 0-нет)</label>
+      <input id="active" name="active" type="number" placeholder="1 - active, 0 - off" value="{{ user.active }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="role">Роль (1-админ, 2-юзер)</label>
+      <input id="role" name="role" type="number" placeholder="1 - admin, 2 - dis" value="{{ user.role }}">
+    </div>
+    <div class="form-add-user-group">Не трогать, ОПАСНОСТЬ!</div>
+    <div class="form-add-user-el">
+      <label for="lvl">Уровень</label>
+      <input id="lvl" name="lvl" type="number" placeholder="lvl №#" value="{{ user.lvl }}">
+    </div>
+    <!--<div class="form-add-user-el">
+      <label for="moneytomln">Денег до миллиона</label>
+      <input id="moneytomln" name="moneytomln" type="number" step=0.01 placeholder="Денег до миллиона" value="{{ user.moneytomln }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="totalmoney">Всего купил на</label>
+      <input id="totalmoney" name="totalmoney" type="number" step=0.01 placeholder="Всего купил на" value="{{ user.totalmoney }}">
+    </div>
+    <div class="form-add-user-el">
+      <label for="apptoken">App Token</label>
+      <input id="apptoken" name="apptoken" type="number" placeholder="App Token" value="{{ user.apptoken }}">
+    </div>-->
 
 
-  <input value="UpdateUser" name="action" type="submit" class="btn btn-confirm">
-</form>
-<div>
-  <a class="btn btn-confirm" href="{{ url_for('admin.edit_user_pwd', id=user.id) }}">Сменить пароль</a>
-</div>
-<div>
-  <a class="btn btn-confirm" href="{{ url_for('admin.add_prize', id=user.id) }}">Добавить приз</a>
-</div>
-<div>
-  <a class="btn btn-confirm" href="{{ url_for('admin.edit_user_ref', card=user.card) }}">Рефералы</a>
-</div>
-<div class="sales-data">
-  <h2>Продажи юзера {{ '%04d' % user.card }}</h2>
-  <div class="user-info">
-    <div class="user-info-label">
-      Денег до миллиона
+    <input value="UpdateUser" name="action" type="submit" class="btn btn-confirm">
+  </form>
+  <div>
+    <a class="btn btn-confirm" href="{{ url_for('admin.edit_user_pwd', id=user.id) }}">Сменить пароль</a>
+  </div>
+  <div>
+    <a class="btn btn-confirm" href="{{ url_for('admin.add_prize', id=user.id) }}">Добавить приз</a>
+  </div>
+  <div>
+    <a class="btn btn-confirm" href="{{ url_for('admin.edit_user_ref', card=user.card) }}">Рефералы</a>
+  </div>
+  <div class="sales-data">
+    <h2>Продажи юзера {{ '%04d' % user.card }}</h2>
+    <div class="user-info">
+      <div class="user-info-label">
+        Денег до миллиона
+      </div>
+      <div class="user-info-data">
+        {{ user.moneytomln }}
+      </div>
     </div>
-    <div class="user-info-data">
-      {{ user.moneytomln }}
+    <div class="user-info">
+      <div class="user-info-label">
+        Всего купил на
+      </div>
+      <div class="user-info-data">
+        {{ user.totalmoney }}
+      </div>
+    </div>
+    <div class="user-info">
+      <div class="user-info-label">
+        Купил в этом году
+      </div>
+      <div class="user-info-data">
+        {{ user.moneythisyear }}
+      </div>
+    </div>
+    <div class="user-info">
+      <div class="user-info-label">
+        Билетов
+      </div>
+      <div class="user-info-data">
+        {{ user.tickets }}
+      </div>
     </div>
   </div>
-  <div class="user-info">
-    <div class="user-info-label">
-      Всего купил на
-    </div>
-    <div class="user-info-data">
-      {{ user.totalmoney }}
-    </div>
-  </div>
-  <div class="user-info">
-    <div class="user-info-label">
-      Купил в этом году
-    </div>
-    <div class="user-info-data">
-      {{ user.moneythisyear }}
-    </div>
-  </div>
-  <div class="user-info">
-    <div class="user-info-label">
-      Билетов
-    </div>
-    <div class="user-info-data">
-      {{ user.tickets }}
-    </div>
-  </div>
-</div>
 
-<table class="table-users">
-  <thead>
-    <tr>
-      <th style="width: 152px;">№ Заказа</th>
-      <th>ФИО Клиента</th>
-      <th>Адрес</th>
-      <th>Дата заказа</th>
-      <th>Дата отгрузки</th>
-      <th>Сумма</th>
-      <th>Бонус</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for order in orders %}
-    <tr>
-      <td>
-        {% if order.bonus_paid %}<span class="green">✔</span>{% else %}<span class="red">✘</span>{% endif %}
-        <a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a>
-      </td>
-      <td>{{ order.customer_name }}</td>
-      <td style="max-width: 500px;">{{ order.address }}</td>
-      <td>{{ order.order_date }}</td>
-      <td>{{ order.shipment_date }}</td>
-      <td>{{ order.order_sum }}</td>
-      <td>{{ order.bonus }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+  <table class="table-users">
+    <thead>
+      <tr>
+        <th style="width: 152px;">№ Заказа</th>
+        <th>ФИО Клиента</th>
+        <th>Адрес</th>
+        <th>Дата заказа</th>
+        <th>Дата отгрузки</th>
+        <th>Сумма</th>
+        <th>Бонус</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td>
+          {% if order.bonus_paid %}<span class="green">✔</span>{% else %}<span class="red">✘</span>{% endif %}
+          <a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a>
+        </td>
+        <td>{{ order.customer_name }}</td>
+        <td style="max-width: 500px;">{{ order.address }}</td>
+        <td>{{ order.order_date }}</td>
+        <td>{{ order.shipment_date }}</td>
+        <td>{{ order.order_sum }}</td>
+        <td>{{ order.bonus }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

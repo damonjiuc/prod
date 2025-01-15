@@ -2,6 +2,14 @@ body {
     background-color: var(--medium);
 }
 
+.content .static {
+    color: var(--forh);
+}
+
+.paint {
+    display: none;
+}
+
 /* Юзеры добавить */
 
 .form-add-user, .sales-data {

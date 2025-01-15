@@ -184,6 +184,29 @@
         </div>
     </div>
 </div>
+
+<div class="usermenumob">
+    <button type="button" class="btn btn-primary" id="modal-btn-callback-mob" data-bs-toggle="modal" data-bs-target="#modal-callback">
+        <img src="/static/img/icon_pc_callback.svg">
+        <span>Заказать обратный звонок</span>
+    </button>
+    <button type="button" class="btn btn-primary" id="modal-btn-order-mob" data-bs-toggle="modal" data-bs-target="#modal-order">
+        <img src="/static/img/icon_pc_order.svg">
+        <span>Оформить заказ</span>
+    </button>
+    <button type="button" class="btn btn-primary" id="modal-btn-feedback-mob" data-bs-toggle="modal" data-bs-target="#modal-feedback">
+        <img src="/static/img/icon_pc_feedback.svg">
+        <span>Оставить отзыв/пожелание</span>
+    </button>
+    <button type="button" class="btn btn-primary" id="modal-btn-reminder-mob" data-bs-toggle="modal" data-bs-target="#modal-reminder">
+        <img src="/static/img/icon_pc_map.svg">
+        <span>Памятка партнера</span>
+    </button>
+    <button type="button" class="btn btn-primary" id="modal-btn-news-mob" data-bs-toggle="modal" data-bs-target="#modal-news">
+        <img src="/static/img/icon_pc_news.svg">
+        <span>Журнал новостей</span>
+    </button>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -195,9 +218,8 @@
         {% endif %}
     </div>-->
 
-
 <div class="row">
-    <div class="col12 col-sm-12 col-md-1">
+    <div class="col-12 col-sm-12 col-md-1 notdesc">
         <div class="usermenu">
             <button type="button" class="btn btn-primary" id="modal-btn-callback" data-bs-toggle="modal" data-bs-target="#modal-callback">
                 <img src="/static/img/icon_pc_callback.svg">
@@ -208,12 +230,12 @@
                 <span>Оформить заказ</span>
             </button>
             <button type="button" class="btn btn-primary" id="modal-btn-feedback" data-bs-toggle="modal" data-bs-target="#modal-feedback">
-                <img src="/static/img/icon_pc_map.svg">
+                <img src="/static/img/icon_pc_feedback.svg">
                 <span>Оставить отзыв/пожелание</span>
             </button>
             <button type="button" class="btn btn-primary" id="modal-btn-reminder" data-bs-toggle="modal" data-bs-target="#modal-reminder">
-                <img src="/static/img/icon_pc_feedback.svg">
-                <span>Памятка партнера
+                <img src="/static/img/icon_pc_map.svg">
+                <span>Памятка партнера</span>
             </button>
             <button type="button" class="btn btn-primary" id="modal-btn-news" data-bs-toggle="modal" data-bs-target="#modal-news">
                 <img src="/static/img/icon_pc_news.svg">
@@ -222,12 +244,12 @@
         </div>
     </div>
 
-    <div class="col12 col-sm-12 col-md-5">
+    <div class="col-12 col-sm-6 col-md-5 desc">
         <div class="info">
             <form class="row form-add-user" method="post" enctype="multipart/form-data">
                 {{ form.csrf_token }}
                 <div class="col-12 col-sm-8 top">
-                    Привет, {{ current_user.name }}!
+                    <h2>Привет, {{ current_user.name }}!</h2>
                 </div>
                 <div class="col-12 col-sm-4 avatar">
                     {% if current_user.avatar %}
@@ -254,52 +276,55 @@
                 </div>
                 <div class="col-12 col-sm-6 form-add-user-el">
                     {{ form.password.label }}
-                    {{ form.password(placeholder="Пароль") }}
+                    {{ form.password(placeholder="Новый пароль") }}
                 </div>
                 <div class="form-add-user-el">
                     {{ form.avatar.label }}
                     {{ form.avatar(placeholder="Аватар") }}
                 </div>
-                    {{ form.submit(placeholder="Изменить") }}
+                    {{ form.submit(placeholder="Сохранить") }}
             </form>
         </div>
     </div>
 
-    <div class="col12 col-sm-12 col-md-6">
+    <div class="col-12 col-sm-6 col-md-6">
         <div class="stats">
             <h2>Статистика</h2>
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-4">
-                    <div>{{ stats['orders_count'] }}
+                    <div class="statelem">
+                        {{ stats['orders_count'] }}
                         <div class="statimg">
                             <img src="/static/img/user/zakazy.svg">
-                            <img src="/static/img/user/circle.svg">
+                            <img class="circle" src="/static/img/user/circle.svg">
                         </div>
                     </div>
                     <div>Кол-во заказов</div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-4">
-                    <div>{{ stats['bonus_to_pay'] }}
+                    <div class="statelem">
+                        {{ stats['bonus_to_pay'] }} ₽
                         <div class="statimg">
                             <img src="/static/img/user/ozhidaet.svg">
-                            <img src="/static/img/user/circle.svg">
+                            <img class="circle" src="/static/img/user/circle.svg">
                         </div>
                     </div>
                     <div>Ожидает выплаты</div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-4">
-                    <div>{{ stats['money_earned'] }}
+                    <div class="statelem">
+                        {{ stats['money_earned'] }} ₽
                         <div class="statimg">
                             <img src="/static/img/user/zarabotano.svg">
-                            <img src="/static/img/user/circle.svg">
+                            <img class="circle" src="/static/img/user/circle.svg">
                         </div>
                     </div>
                     <div>Заработали</div>
                 </div>
             </div>
             <h2>Рефералы</h2>
-            <div>Ваша реф. ссылка: <span id="ref_link" onclick="copyRefLink(document.getElementById('ref_link').innerHTML)">https://prod.ru/?r={{  '%04d' % current_user.card }}</span></div>
-            <div>
+            <div>Ваша реф. ссылка: <span id="ref_link" onclick="copyRefLink(document.getElementById('ref_link').innerText)">https://prod.ru/?r={{  '%04d' % current_user.card }} &nbsp;<img src="/static/img/icon_copy.svg"></span></div>
+            <div class="refs">
                 <div class="orders-tbl">
                     <div class="orders-tbl-section orders-tbl-header">
                         <div class="orders-tbl-el tbl-order-num">Реферал</div>
@@ -308,7 +333,7 @@
                     {% for ref in refs %}
                         <div class="orders-tbl-order">
                             <div class="orders-tbl-section">
-                                <div class="orders-tbl-el tbl-order-num">{{ '%04d' % ref.referral_card }}</div>
+                                <div class="orders-tbl-el tbl-order-num">{{ ref.name }}</div>
                                 <div class="orders-tbl-el tbl-order-fio">
                                     {% if ref.paid == 1 %}
                                         <span class="paid">Выплачено</span>
@@ -324,75 +349,87 @@
         </div>
     </div>
 
-    <div class="col12 col-sm-12 col-md-12">
+    <div class="col-12 col-sm-12 col-md-12">
         <div class="shops">
             <h2>Наши магазины</h2>
-            <div class="our-stores">
-                <div class="our-stores-store">
-                    <div class="our-stores-img-cont">
-                        <img src="{{ url_for('static', filename='img/stores/slonparket.svg') }}">
-                    </div>
-                    <div class="our-stores-txt">
-                        Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений  для отделки пола
-                    </div>
-                </div>
-                <div class="our-stores-store">
-                    <div class="our-stores-img-cont">
-                        <img src="{{ url_for('static', filename='img/stores/cp1.svg') }}">
-                    </div>
-                    <div class="our-stores-txt">
-                        Огромный выбор качественного напольного покрытия
+            <div class="row our-stores">
+                <div class="col-12 col-sm-12 col-md-4 col-xl-2">
+                    <div class="our-stores-store">
+                        <div class="our-stores-img-cont">
+                            <img src="{{ url_for('static', filename='img/stores/slonparket.svg') }}">
+                        </div>
+                        <div class="our-stores-txt">
+                            Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений  для отделки пола
+                        </div>
                     </div>
                 </div>
-                <div class="our-stores-store">
-                    <div class="our-stores-img-cont">
-                        <img src="{{ url_for('static', filename='img/stores/parket1703.svg') }}">
-                    </div>
-                    <div class="our-stores-txt">
-                        Новая сеть салонов напольных покрытий, отвечающая нашим высочайшим стандартам качества сервиса и продукции.
-                    </div>
-                </div>
-                <div class="our-stores-store">
-                    <div class="our-stores-img-cont">
-                        <img src="{{ url_for('static', filename='img/stores/lp.svg') }}">
-                    </div>
-                    <div class="our-stores-txt">
-                        В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене
+                <div class="col-12 col-sm-12 col-md-4 col-xl-2">
+                    <div class="our-stores-store">
+                        <div class="our-stores-img-cont">
+                            <img src="{{ url_for('static', filename='img/stores/lp.svg') }}">
+                        </div>
+                        <div class="our-stores-txt">
+                            В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене
+                        </div>
                     </div>
                 </div>
-                <div class="our-stores-store">
-                    <div class="our-stores-img-cont">
-                        <img src="{{ url_for('static', filename='img/stores/pd.svg') }}">
-                    </div>
-                    <div class="our-stores-txt">
-                        Широкий выбор дверей из экошпона и алюминия
+                <div class="col-12 col-sm-12 col-md-4 col-xl-2">
+                    <div class="our-stores-store">
+                        <div class="our-stores-img-cont">
+                            <img src="{{ url_for('static', filename='img/stores/rd.svg') }}">
+                        </div>
+                        <div class="our-stores-txt">
+                            Большой ассортимент межкомнатных дверей с разными покрытиями: шпон, эмаль, массив
+                        </div>
                     </div>
                 </div>
-                <div class="our-stores-store">
-                    <div class="our-stores-img-cont">
-                        <img src="{{ url_for('static', filename='img/stores/rd.svg') }}">
+                <div class="col-12 col-sm-12 col-md-4 col-xl-2">
+                    <div class="our-stores-store">
+                        <div class="our-stores-img-cont">
+                            <img src="{{ url_for('static', filename='img/stores/cp1.svg') }}">
+                        </div>
+                        <div class="our-stores-txt">
+                            Огромный выбор качественного напольного покрытия
+                        </div>
                     </div>
-                    <div class="our-stores-txt">
-                        Большой ассортимент межкомнатных дверей с разными покрытиями: шпон, эмаль, массив
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-xl-2">
+                    <div class="our-stores-store">
+                        <div class="our-stores-img-cont">
+                            <img src="{{ url_for('static', filename='img/stores/parket1703.svg') }}">
+                        </div>
+                        <div class="our-stores-txt">
+                            Новая сеть салонов напольных покрытий, отвечающая нашим высочайшим стандартам качества сервиса и продукции.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-xl-2">
+                    <div class="our-stores-store">
+                        <div class="our-stores-img-cont">
+                            <img src="{{ url_for('static', filename='img/stores/pd.svg') }}">
+                        </div>
+                        <div class="our-stores-txt">
+                            Широкий выбор дверей из экошпона и алюминия
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col12 col-sm-12 col-md-12">
+    <div class="col-12 col-sm-12 col-md-12">
         <div class="bonus">
             <h2>Бонусная программа</h2>
             <div>
                 <p>
                     Повышая объемы продаж, Вы увеличиваете свой уровень, за который получаете бонусы. Повышенный % бонуса действует на материалы из списка.
                 </p>
-                <p>
+                <p class="mob-btn-block">
                     <button type="button" class="btn" id="modal-btn-goods" data-bs-toggle="modal" data-bs-target="#modal-goods">Список высокомаржинальных товаров</button>
                 </p>
             </div>
+            <h4>Текущий % бонуса</h4>
             <div class="progress-container">
-                <h4>Текущий % бонуса</h4>
                 <div class="progress" id="progress"> </div>
                 <div class="circle active">10%</div>
                 <div class="circle">10.5</div>
@@ -445,10 +482,10 @@
         </div>
     </div>
 
-    <div class="col12 col-sm-12 col-md-12">
+    <div class="col-12 col-sm-12 col-md-12">
     </div>
 
-    <div class="col12 col-sm-12 col-md-12">
+    <div class="col-12 col-sm-12 col-md-12">
         <div class="prizes">
             <h2>Выигранные призы</h2>
             <div class="row">
@@ -534,7 +571,7 @@
         </div>
     </div>
 
-    <div class="col12 col-sm-12 col-md-12">
+    <div class="col-12 col-sm-12 col-md-12">
         <div class="orders">
             <h2>Заказы</h2>
             <div class="orders-tbl">
@@ -547,40 +584,110 @@
                     <div class="orders-tbl-el tbl-order-sum">Сумма</div>
                     <div class="orders-tbl-el tbl-order-bonus">Бонус</div>
                 </div>
-                {% for order in orders %}
-                <div class="orders-tbl-order">
-                    <input type="checkbox" name="order" id="order{{ order.count }}" />
-                    <label class="orders-tbl-section" for="order{{ order.count }}">
-                        <span class="orders-tbl-el tbl-order-num">{{ order.order_num }}</span>
-                        <span class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</span>
-                        <span class="orders-tbl-el tbl-order-address">{{ order.address }}</span>
-                        <span class="orders-tbl-el tbl-order-date">{{ order.order_date }}</span>
-                        <span class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</span>
-                        <span class="orders-tbl-el tbl-order-sum">{{ order.order_sum }}</span>
-                        <span class="orders-tbl-el tbl-order-bonus">{{ order.bonus }}</span>
-                        <span class="orders-tbl-el arrow"></span>
-                    </label>
-                    <div class="orders-tbl-items">
-                        <div class="orders-tbl-items-header">
-                            <div class="orders-tbl-items-el tbl-items-name">Наименование</div>
-                            <div class="orders-tbl-items-el tbl-items-amount">Количество</div>
-                            <div class="orders-tbl-items-el tbl-items-price">Цена</div>
-                            <div class="orders-tbl-items-el tbl-items-total">Стоимость</div>
+                <div class="desctoporders">
+                    {% for order in orders %}
+                    <div class="orders-tbl-order">
+                        <input type="checkbox" name="order" id="order{{ order.count }}" />
+                        <label class="orders-tbl-section" for="order{{ order.count }}">
+                            <span class="orders-tbl-el tbl-order-num">{{ order.order_num }}</span>
+                            <span class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</span>
+                            <span class="orders-tbl-el tbl-order-address">{{ order.address }}</span>
+                            <span class="orders-tbl-el tbl-order-date">{{ order.order_date }}</span>
+                            <span class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</span>
+                            <span class="orders-tbl-el tbl-order-sum">{{ order.order_sum }} ₽</span>
+                            <span class="orders-tbl-el tbl-order-bonus">
+                                <div style="align-content: end;">{{ order.bonus }} ₽</div>
+                                {% if order.bonus_paid %}<div class="bonuspaid green">Выплачен{% else %}<div class="bonuspaid gray">Ожидает выплаты{% endif %}</div>
+                            </span>
+                            <span class="orders-tbl-el arrow"></span>
+                        </label>
+                        <div class="orders-tbl-items">
+                            <div class="orders-tbl-items-header">
+                                <div class="orders-tbl-items-el tbl-items-name">Наименование</div>
+                                <div class="orders-tbl-items-el tbl-items-amount">Количество</div>
+                                <div class="orders-tbl-items-el tbl-items-price">Цена</div>
+                                <div class="orders-tbl-items-el tbl-items-total">Стоимость</div>
+                            </div>
+                            {% for item in order.order_items %}
+                            <div class="orders-tbl-items-section">
+                                <div class="orders-tbl-items-el tbl-items-name">{{ item.name }}</div>
+                                <div class="orders-tbl-items-el tbl-items-amount">{{ '%0.2f' % item.amount }}</div>
+                                <div class="orders-tbl-items-el tbl-items-price">{{ '%0.2f' % item.price }} ₽</div>
+                                <div class="orders-tbl-items-el tbl-items-total">{{ '%0.2f' % (item.amount * item.price) }} ₽</div>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% for item in order.order_items %}
-                        <div class="orders-tbl-items-section">
-                            <div class="orders-tbl-items-el tbl-items-name">{{ item.name }}</div>
-                            <div class="orders-tbl-items-el tbl-items-amount">{{ '%0.2f' % item.amount }}</div>
-                            <div class="orders-tbl-items-el tbl-items-price">{{ '%0.2f' % item.price }}</div>
-                            <div class="orders-tbl-items-el tbl-items-total">{{ '%0.2f' % (item.amount * item.price) }}</div>
-                        </div>
-                        {% endfor %}
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+                <div class="mobileorders">
+                    {% for order in orders %}
+                    <div class="orders-tbl-order">
+                        <input type="checkbox" name="order" id="order{{ order.count }}m" />
+                        <label class="orders-tbl-section" for="order{{ order.count }}m">
+                            <div class="orders-tbl-el tbl-order-num">
+                                <label>Номер заказа</label>
+                                {{ order.order_num }}
+                            </div>
+                            <span class="orders-tbl-el tbl-order-bonus">
+                                {% if order.bonus_paid %}<div class="bonuspaid green">Выплачен{% else %}<div class="bonuspaid gray">Ожидает выплаты{% endif %}</div>
+                            </span>
+                            <span class="orders-tbl-el arrow"></span>
+                        </label>
+                        <div class="orders-tbl-items">
+                            <div class="dopinfo">
+                                <div class="orders-tbl-items-el tbl-order-fio">
+                                    <label>Имя клиента</label>
+                                    {{ order.customer_name }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-date">
+                                    <label>Дата заказа</label>
+                                    {{ order.order_date }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-address">
+                                    <label>Адрес</label>
+                                    {{ order.address }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-del-date">
+                                    <label>Дата отгрузки</label>
+                                    {{ order.shipment_date }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-sum">
+                                    <label>Сумма</label>
+                                    {{ order.order_sum }} ₽
+                                </div>
+                                <div class="orders-tbl-items-el tbl-order-bonus">
+                                    <label>Бонус</label>
+                                    {{ order.bonus }} ₽
+                                </div>
+                            </div>
+                            {% for item in order.order_items %}
+                            <div class="orders-tbl-items-section">
+                                <div class="orders-tbl-items-el tbl-items-name">
+                                    <label>Наименование</label>
+                                    {{ item.name }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-items-amount">
+                                    <label>Количество</label>
+                                    {{ '%0.2f' % item.amount }}
+                                </div>
+                                <div class="orders-tbl-items-el tbl-items-price">
+                                    <label>Цена</label>
+                                    {{ '%0.2f' % item.price }} ₽
+                                </div>
+                                <div class="orders-tbl-items-el tbl-items-total">
+                                    <label>Стоимость</label>
+                                    {{ '%0.2f' % (item.amount * item.price) }} ₽
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
             <div class="allorders">
-                <a href="{{ url_for('user.user_orders') }}">Все заказы</a>
+                <a class="btn" href="{{ url_for('user.user_orders') }}">Все заказы</a>
             </div>
         </div>
     </div>
