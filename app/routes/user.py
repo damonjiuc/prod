@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, redirect, flash, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
+from passlib.hash import phpass
+
 from app.extensions import db, bcrypt
 from app.models.users import Users
 from app.models.orders import Orders
@@ -28,7 +30,19 @@ def user_login():
         if user.active == 0:
             flash('Ваш доступ в личный кабинет заблокирован', category='error')
             return redirect(url_for('main.index'))
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
+        if user.password.startswith('$P$B') and user and phpass.verify(form.password.data, user.password):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
+            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+            user.password = hashed_password
+            try:
+                db.session.commit()
+                print('ok')
+            except Exception as exc:
+                print(str(exc))
+                return str(exc)
+            return redirect(next_page) if next_page else redirect(url_for('user.user_profile'))
+        elif user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('user.user_profile'))
