@@ -119,42 +119,54 @@
     </div>
     <h3>Наши бренды</h3>
     <div class="brand-list">
-        <div class="brand">
-            <img class="dontact" src="/static/img/stores/slonparket-gs.svg" />
-            <img class="act" src="/static/img/stores/slonparket.svg" />
-            <h4>Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений для отделки пола</h4>
-            <p><a href="https://slonparket.ru" target="_blank">slonparket.ru</a></p>
-        </div>
-        <div class="brand">
-            <img class="dontact" src="/static/img/stores/rd-gs.svg" />
-            <img class="act" src="/static/img/stores/rd.svg" />
-            <h4>Большой ассортимент межкомнатных дверей с разными покрытиями: шпон, эмаль, массив</h4>
-            <p><a href="https://realdoor.ru" target="_blank">realdoor.ru</a></p>
-        </div>
-        <div class="brand" style="border-right: none;">
-            <img class="dontact" src="/static/img/stores/lp-gs.svg" />
-            <img class="act" src="/static/img/stores/lp.svg" />
-            <h4>В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене.</h4>
-            <p><a href="https://lenplitka.ru" target="_blank">lenplitka.ru</a></p>
-        </div>
-        <div class="brand" style="border-bottom: none;">
-            <img class="dontact" src="/static/img/stores/cp1-gs.svg" />
-            <img class="act" src="/static/img/stores/cp1.svg" />
-            <h4>Огромный выбор качественного напольного покрытия.</h4>
-            <p><a href="https://cp1.ru" target="_blank">cp1.ru</a></p>
-        </div>
-        <div class="brand" style="border-bottom: none;">
-            <img class="dontact" src="/static/img/stores/pd-gs.svg" />
-            <img class="act" src="/static/img/stores/pd.svg" />
-            <h4>Широкий выбор дверей из экошпона и алюминия.</h4>
-            <p><a href="https://profildoors.sale" target="_blank">profildoors.sale</a></p>
-        </div>
-        <div class="brand" style="border-right: none; border-bottom: none;">
-            <img class="dontact" src="/static/img/stores/parket1703-gs.svg" />
-            <img class="act" src="/static/img/stores/parket1703.svg" />
-            <h4>Большой выбор напольных покрытий квартир, так и для частных домов</h4>
-            <p><a href="https://parket1703.ru" target="_blank">parket1703.ru</a></p>
-        </div>
+        <a href="https://slonparket.ru" target="_blank" class="brand">
+            <div>
+                <img class="dontact" src="/static/img/stores/slonparket-gs.svg" />
+                <img class="act" src="/static/img/stores/slonparket.svg" />
+                <h4>Магазин напольных покрытий СЛОНПАРКЕТ предлагает тысячи решений для отделки пола</h4>
+                <p>slonparket.ru</p>
+            </div>
+        </a>
+        <a href="https://realdoor.ru" target="_blank" class="brand">
+            <div>
+                <img class="dontact" src="/static/img/stores/rd-gs.svg" />
+                <img class="act" src="/static/img/stores/rd.svg" />
+                <h4>Большой ассортимент межкомнатных дверей с разными покрытиями: шпон, эмаль, массив</h4>
+                <p>realdoor.ru</p>
+            </div>
+        </a>
+        <a href="https://lenplitka.ru" target="_blank" class="brand" style="border-right: none;">
+            <div>
+                <img class="dontact" src="/static/img/stores/lp-gs.svg" />
+                <img class="act" src="/static/img/stores/lp.svg" />
+                <h4>В магазине представлен большой выбор керамической плитки и керамогранита по доступной цене.</h4>
+                <p>lenplitka.ru</p>
+            </div>
+        </a>
+        <a href="https://cp1.ru" target="_blank" class="brand" style="border-bottom: none;">
+            <div>
+                <img class="dontact" src="/static/img/stores/cp1-gs.svg" />
+                <img class="act" src="/static/img/stores/cp1.svg" />
+                <h4>Огромный выбор качественного напольного покрытия.</h4>
+                <p>cp1.ru</p>
+            </div>
+        </a>
+        <a href="https://profildoors.sale" target="_blank" class="brand" style="border-bottom: none;">
+            <div>
+                <img class="dontact" src="/static/img/stores/pd-gs.svg" />
+                <img class="act" src="/static/img/stores/pd.svg" />
+                <h4>Широкий выбор дверей из экошпона и алюминия.</h4>
+                <p>profildoors.sale</p>
+            </div>
+        </a>
+        <a href="https://parket1703.ru" target="_blank" class="brand" style="border-right: none; border-bottom: none;">
+            <div>
+                <img class="dontact" src="/static/img/stores/parket1703-gs.svg" />
+                <img class="act" src="/static/img/stores/parket1703.svg" />
+                <h4>Большой выбор напольных покрытий квартир, так и для частных домов</h4>
+                <p>parket1703.ru</p>
+            </div>
+        </a>
     </div>
 </section>
 
@@ -167,7 +179,7 @@
         </div>
     </div>
     <div class="partners-image">
-        <img class="partners-people" src="{{ url_for('static', filename='img/imgs/ban2.png') }}" />
+        <img class="partners-people" src="/static/img/imgs/partneram.png" />
     </div>
 </section>
 
@@ -417,4 +429,27 @@
 {% block js %}
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=longlat;apikey=7e29b517-febf-4789-9368-769cf7e911eb" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+    <script>
+        let elem = document.getElementById("partners");
+        var c = elem.getBoundingClientRect();
+        elemtop = window.pageYOffset + c.top - 40,
+        elemleft = window.pageXOffset + c.left - 100;
+        bottom = elem.offsetHeight + 80;
+
+        let paint6 = document.getElementById("paint6");
+        paint6.setAttribute('style', 'width: 200px;height:'+bottom+'px;top:'+elemtop+'px;left:'+elemleft+'px');
+
+        let paint7 = document.getElementById("paint7");
+        paint7.setAttribute('style', 'width: 200px;height:'+bottom+'px;top:'+elemtop+'px;right:'+elemleft+'px');
+
+        let infobrands = document.getElementById("infobrands");
+        var d = infobrands.getBoundingClientRect(),
+        infotop = d.top - 40,
+        inforight = elemleft + 40;
+        infobottom = infobrands.offsetHeight + 40;
+
+        let paint8 = document.getElementById("paint8");
+        paint8.setAttribute('style', 'width: 120px;height:'+infobottom+'px;top:'+infotop+'px;right:'+inforight+'px');
+    </script>
 {% endblock %}

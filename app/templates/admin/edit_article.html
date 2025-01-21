@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Редактировать новость{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+
+{% block content %}
+
+{{ ckeditor.load() }}
+
+<div class="static">
+  <h2>Редактировать новость</h2>
+  <form class="form-add-user" method="post">
+    <div class="form-add-user-el">
+      <input id="title" name="title" type="text" placeholder="Название новости" value="{{ article.title }}">
+    </div>
+    <div class="form-add-user-el">
+      {{ ckeditor.create(value=article.content) }}
+    </div>
+    <div class="form-add-user-el">
+      <label for="article_date">Дата</label>
+      <input id="article_date" name="article_date" type="date" placeholder="Дата" value="{{ article.date }}">
+    </div>
+    <input type="submit" class="btn btn-confirm">
+  </form>
+</div>
+{% endblock %}

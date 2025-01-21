@@ -8,6 +8,7 @@ from app.models.orders import Orders
 from app.models.items import Items
 from app.models.prizes import Prizes
 from app.models.ref import Ref
+from app.models.news import News
 from app.forms import UserEditForm, UserLogin, Callback, MakeOrder, Feedback
 from app.functions import save_picture
 from app.email import user_callback_email, user_feedback_email, user_make_order_email
@@ -55,6 +56,7 @@ def user_login():
 def user_profile():
     user_in_lk = True if request.base_url.endswith('/user/') else False
     refs = db.session.query(Ref).order_by(Ref.id.desc()).filter_by(referer_card=current_user.card).all()
+    news = db.session.query(News).order_by(News.id.desc()).all()
     for ref in refs:
         card = ref.referral_card
         print(card)
@@ -117,7 +119,7 @@ def user_profile():
         text = form_make_order.make_order_phone.data
         user_make_order_email(current_user.card, name, phone, text)
 
-    return render_template('user/index.html', orders=orders, stats=stats, refs=refs, user_in_lk=user_in_lk, prizes=user_prizes,
+    return render_template('user/index.html', orders=orders, stats=stats, refs=refs, user_in_lk=user_in_lk, prizes=user_prizes, news=news,
                            form=form, form_callback=form_callback, form_make_order=form_make_order, form_feedback=form_feedback)
 
 

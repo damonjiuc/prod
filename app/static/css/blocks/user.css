@@ -359,7 +359,7 @@ label {
     left: 13px;
 }
 
-.stats .statimg .circle {
+.stats .statimg .statcircle {
     position: absolute;
     top: 0;
     left: 0;
@@ -804,3 +804,25 @@ label {
     }
 }
 /* end заказы */
+
+/* news */
+
+
+article.news-article {
+    border-radius: 8px;
+    background: var(--ultra-light);
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.news-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.news-date {
+    font-weight: lighter;
+    font-size: 0.8em;
+    text-align: right;
+}
+/* end news */

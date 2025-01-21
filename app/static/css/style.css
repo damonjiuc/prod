@@ -634,11 +634,11 @@ section.content p {
     display: none;
 }
 
-.brands .brand-list .brand:hover > .act {
+.brands .brand-list .brand:hover > div .act {
     display: block;
 }
 
-.brands .brand-list .brand:hover > .dontact {
+.brands .brand-list .brand:hover > div .dontact {
     display: none;
 }
 
@@ -921,7 +921,7 @@ section.content p {
 
 .map .tab > label, .retail-net .tab > label {
     display: flex;
-    padding: 0.5rem 1rem;
+    padding: 1.5rem 1rem;
     cursor: pointer;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
     text-decoration: none;
@@ -938,6 +938,10 @@ section.content p {
     filter: grayscale(100%);
     margin: 0 auto;
     max-height: 43px;
+}
+
+.map .tab label:hover img, .retail-net .tab label:hover img {
+
 }
 
 .map .tab > input[type="radio"]:checked + label, .retail-net .tab > input[type="radio"]:checked + label {

@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+
+{% block content %}
+<div class="static">
+  <table class="table-users">
+    <thead>
+      <tr>
+        <th>Дата</th>
+        <th>Название</th>
+        <th>Действие</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in news %}
+      <tr>
+        <td>{{ article.date }}</td>
+        <td>{{ article.title }}</td>
+        <td>
+          <a class="btn" href="{{ url_for('admin.edit_article', id=article.id) }}">Редактировать</a>
+          /
+          <a class="btn" href="{{ url_for('admin.delete_article', id=article.id) }}">Удалить</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

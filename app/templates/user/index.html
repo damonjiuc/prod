@@ -109,7 +109,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                {% for article in news %}
+                    <article class="news-article">
+                        <h3 class="news-title">{{ article.title }}</h3>
+                        <div class="article-content">
+                            {{ article.content|replace('"', '')|safe }}
+                        </div>
+                        <p class="news-date">{{ article.date }}</p>
+                    </article>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -163,6 +171,7 @@
 
                 - Двери Стальная Линия
                 - Двери Дива
+                - Двери Vitory
 
                 <b>Фурнитура</b>
 
@@ -296,7 +305,7 @@
                         {{ stats['orders_count'] }}
                         <div class="statimg">
                             <img src="/static/img/user/zakazy.svg">
-                            <img class="circle" src="/static/img/user/circle.svg">
+                            <img class="statcircle" src="/static/img/user/circle.svg">
                         </div>
                     </div>
                     <div>Кол-во заказов</div>
@@ -306,7 +315,7 @@
                         {{ stats['bonus_to_pay'] }} ₽
                         <div class="statimg">
                             <img src="/static/img/user/ozhidaet.svg">
-                            <img class="circle" src="/static/img/user/circle.svg">
+                            <img class="statcircle" src="/static/img/user/circle.svg">
                         </div>
                     </div>
                     <div>Ожидает выплаты</div>
@@ -316,7 +325,7 @@
                         {{ stats['money_earned'] }} ₽
                         <div class="statimg">
                             <img src="/static/img/user/zarabotano.svg">
-                            <img class="circle" src="/static/img/user/circle.svg">
+                            <img class="statcircle" src="/static/img/user/circle.svg">
                         </div>
                     </div>
                     <div>Заработали</div>
@@ -458,13 +467,13 @@
             update({{ current_user.lvl + 1 }});
 
             function update(currentActive) {
-            stepCircles.forEach((circle, i) => {
-            if (i < currentActive) {
-              circle.classList.add("active");
-            } else {
-              circle.classList.remove("active");
-            }
-            });
+				stepCircles.forEach((circle, i) => {
+					if (i < currentActive) {
+					  circle.classList.add("active");
+					} else {
+					  circle.classList.remove("active");
+					}
+				});
 
             const activeCircles = document.querySelectorAll(".active");
             progress.style.width = ((activeCircles.length - 1) / (stepCircles.length - 1)) * 100 + "%";

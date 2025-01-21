@@ -96,3 +96,11 @@ body {
     color: red;
 }
 
+#cke_ckeditor {
+    margin: auto;
+    width: 100%;
+}
+
+#title {
+    width: 100%;
+}

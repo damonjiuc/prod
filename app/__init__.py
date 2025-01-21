@@ -2,7 +2,7 @@ from flask import Flask
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.extensions import db, login_manager, mail
+from app.extensions import db, login_manager, mail, ckeditor
 from app.config import Config
 
 from app.routes.main import main
@@ -23,6 +23,7 @@ def create_app(config_class=Config):
     db.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
+    ckeditor.init_app(app)
 
     # LOGIN MANAGER
     login_manager.login_view = 'user.user_login'
