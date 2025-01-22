@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, flash, url_for, request
 from flask_login import login_user, logout_user, login_required, current_user
 from passlib.hash import phpass
+from jinja2 import Template
 
 from app.extensions import db, bcrypt
 from app.models.users import Users

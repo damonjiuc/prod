@@ -237,7 +237,7 @@ def all_news():
 def add_article():
     if request.method == 'POST':
         title = request.form.get('title')
-        content = cleanify(request.form.get('ckeditor'))
+        content = request.form.get('ckeditor')
         article_date = request.form.get('article_date')
 
         article = News(title=title, content=content, date=article_date)
@@ -263,15 +263,12 @@ def edit_article(id):
     article = db.session.query(News).get(id)
     if request.method == 'POST':
         article.title = request.form.get('title')
-        article.content = cleanify(request.form.get('ckeditor'))
+        article.content = request.form.get('ckeditor')
         article.date = request.form.get('article_date')
         try:
             db.session.commit()
-            if order.bonus_paid == 1:
-                user = Users.query.filter(Users.card.contains(order.card_num)).first()
-                email = user.email
-                bonus_paid(email=email, order_num=order.order_num, bonus=order.bonus)
-            return redirect(url_for('admin.edit_order', order_id=order.order_id))
+            flash('Новость изменена', category='success')
+            return redirect(url_for('admin.edit_article', id=article.id))
         except Exception as exc:
             print(str(exc))
             return str(exc)

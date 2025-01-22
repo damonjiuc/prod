@@ -20,11 +20,11 @@
     <div class="col-1 col-sm-1 col-lg-1 col-xl-6">
       <nav>
         <ul class="menu">
-          <li><a href="/">ГЛАВНАЯ</a></li>
-          <li><a href="/retail">МАГАЗИНЫ</a></li>
-          <li><a href="/partners">ПАРТНЕРСТВО</a></li>
-          <li><a href="/trading">ОПТ</a></li>
-          <li><a href="/contacts">КОНТАКТЫ</a></li>
+          <li><a href="/" class="{% if active_page == 'index' %}active{% endif %}">ГЛАВНАЯ</a></li>
+          <li><a href="/retail" class="{% if active_page == 'retail' %}active{% endif %}">МАГАЗИНЫ</a></li>
+          <li><a href="/partners" class="{% if active_page == 'partners' %}active{% endif %}">ПАРТНЕРСТВО</a></li>
+          <li><a href="/trading" class="{% if active_page == 'trading' %}active{% endif %}">ОПТ</a></li>
+          <li><a href="/contacts" class="{% if active_page == 'contacts' %}active{% endif %}">КОНТАКТЫ</a></li>
         </ul>
       </nav>
     </div>

@@ -16,7 +16,7 @@ def index():
             response = make_response(redirect('/'))
             response.set_cookie('ref', str(ref), max_age=60 * 60 * 24 * 365 * 2)
             return response
-    return render_template('main/index.html')
+    return render_template('main/index.html', active_page='index')
 
 @main.route('/cookie')
 def cookie(ref):
@@ -35,7 +35,7 @@ def partners():
         ref = form.ref.data
         send_partnership_email(name, phone, ref)
 
-    return render_template('main/partners.html', form=form)
+    return render_template('main/partners.html', form=form, active_page='partners')
 
 
 @main.route('/trading')
@@ -47,12 +47,12 @@ def trading():
         ref = form.ref.data
         send_partnership_email(name, phone, ref)
 
-    return render_template('main/trading.html', form=form)
+    return render_template('main/trading.html', form=form, active_page='trading')
 
 
 @main.route('/retail')
 def retail():
-    return render_template('main/retail.html')
+    return render_template('main/retail.html', active_page='retail')
 
 
 @main.route('/contacts', methods=['POST', 'GET'])
@@ -65,7 +65,7 @@ def contacts():
         message = form.message.data
         ref = form.ref.data
         send_contacts_email(name, phone, email, message, ref)
-    return render_template('main/contacts.html', form=form)
+    return render_template('main/contacts.html', form=form, active_page='contacts')
 
 @main.route('/policy')
 def policy():

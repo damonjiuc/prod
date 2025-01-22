@@ -5,7 +5,7 @@
 <div class="row banner-group">
     <div class="col-12 col-sm-5 col-md-5">
         <div class="banner-group-banner">
-            <video id="vid-desk-2" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" class="home-main--video vid-home vid-desk" style="opacity: 0.648521;">
+            <video id="vid-desk-2" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" class="home-main--video vid-home vid-desk">
                 <source type="video/mp4" src="/static/video/ind.mp4">
               </video>
             <!--<img src="{{ url_for('static', filename='img/imgs/ban.jpg') }}"/>-->
@@ -81,7 +81,7 @@
                 <h2 style="margin-top: 17px">Наши салоны оформлены в современном стиле и предлагают посетителям тысячи образцов.</h2>
                 <p>Мы предлагаем лучший сервис и широкий выбор сопутствующих товаров и услуг, предлагая полный цикл обслуживания клиента.</p>
                 <div class="button-container">
-                    <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r.svg') }}" alt="Icon"/></button>
+                    <button class="discover-btn" onclick="document.location='/retail'">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r.svg') }}" alt="Icon"/></button>
                 </div>
             </div>
         </div>
@@ -175,7 +175,7 @@
         <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
         <p>Узнайте о лучших условиях для партнеров</p>
         <div class="button-container">
-            <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
+            <button class="discover-btn" onclick="document.location='/partners'">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
         </div>
     </div>
     <div class="partners-image">
@@ -189,7 +189,7 @@
         
         <p>Узнайте о лучших условиях для партнеров</p>
         <div class="button-container">
-            <button class="discover-btn">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
+            <button class="discover-btn" onclick="document.location='/partners'">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
         </div>
     </div>
 </section>
@@ -199,7 +199,7 @@
     <div class="advantages-flex">
         <div class="advantages-block">
             <div>
-                <img src="{{ url_for('static', filename='img/imgs/adv1.jpg') }}" alt="" />
+                <img src="{{ url_for('static', filename='img/prem2.svg') }}" alt="" />
             </div>
             <div>
                 <h5>Бонусы за партнера</h5>
@@ -207,37 +207,14 @@
             </div>
         </div>
         <div class="advantages-block">
-            <div><img src="{{ url_for('static', filename='img/imgs/adv2.jpg') }}" alt="" /></div>
+            <div><img src="{{ url_for('static', filename='img/prem3.svg') }}" alt="" /></div>
             <div>
                 <h5>20+ Салонов</h5>
                 <p>Мы крупнейшая сеть<br />в Санкт-Петербурге.</p>
             </div>
         </div>
         <div class="advantages-block">
-            <div><img src="{{ url_for('static', filename='img/imgs/adv3.jpg') }}" alt="" /></div>
-            <div>
-                <h5>Бонусы</h5>
-                <p>Бонус при заказе до 15%. <br />Рост процента бонуса <br />с объёмом продаж.</p>
-            </div>
-        </div>
-        <div class="advantages-block">
-            <div>
-                <img src="{{ url_for('static', filename='img/imgs/adv1.jpg') }}" alt="" />
-            </div>
-            <div>
-                <h5>Бонусы за партнера</h5>
-                <p>Бонусы за приглашённых<br />вами партнёров.</p>
-            </div>
-        </div>
-        <div class="advantages-block">
-            <div><img src="{{ url_for('static', filename='img/imgs/adv2.jpg') }}" alt="" /></div>
-            <div>
-                <h5>20+ Салонов</h5>
-                <p>Мы крупнейшая сеть<br />в Санкт-Петербурге.</p>
-            </div>
-        </div>
-        <div class="advantages-block">
-            <div><img src="{{ url_for('static', filename='img/imgs/adv3.jpg') }}" alt="" /></div>
+            <div><img src="{{ url_for('static', filename='img/prem1.svg') }}" alt="" /></div>
             <div>
                 <h5>Бонусы</h5>
                 <p>Бонус при заказе до 15%. <br />Рост процента бонуса <br />с объёмом продаж.</p>
@@ -256,7 +233,7 @@
             <img src="/static/img/stores/parket1703.svg" />-->
     <div class="tab">
         <input checked id="tab-btn-1" name="tab-btn" type="radio" value="">
-        <label for="tab-btn-1"><img src="/static/img/stores/slonparket.svg" /></label>
+        <label class="no-l-padding" for="tab-btn-1"><img src="/static/img/stores/slonparket.svg" /></label>
         <input id="tab-btn-2" name="tab-btn" type="radio" value="">
         <label for="tab-btn-2"><img src="/static/img/stores/rd.svg" /></label>
         <input id="tab-btn-3" name="tab-btn" type="radio" value="">
@@ -266,7 +243,7 @@
         <input id="tab-btn-5" name="tab-btn" type="radio" value="">
         <label for="tab-btn-5"><img src="/static/img/stores/pd.svg" /></label>
         <input id="tab-btn-6" name="tab-btn" type="radio" value="">
-        <label for="tab-btn-6"><img src="/static/img/stores/parket1703.svg" /></label>
+        <label class="no-r-padding" for="tab-btn-6"><img src="/static/img/stores/parket1703.svg" /></label>
 
         <div class="tab-content" id="content-sp">
             <div class="row">
@@ -445,8 +422,8 @@
 
         let infobrands = document.getElementById("infobrands");
         var d = infobrands.getBoundingClientRect(),
-        infotop = d.top - 40,
-        inforight = elemleft + 40;
+        infotop = window.pageYOffset + d.top - 40,
+        inforight = window.pageXOffset + elemleft + 40;
         infobottom = infobrands.offsetHeight + 40;
 
         let paint8 = document.getElementById("paint8");
