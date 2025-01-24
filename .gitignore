@@ -7,6 +7,7 @@
 # Конфиг
 /.env
 /.env_off
+/app/firebase_credentials.json
 
 # Git
 /.idea

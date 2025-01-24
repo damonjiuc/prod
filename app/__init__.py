@@ -1,13 +1,12 @@
 from flask import Flask
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
-from app.extensions import db, login_manager, mail, ckeditor
+from app.extensions import db, login_manager, mail, ckeditor, init_firebase
 from app.config import Config
 
 from app.routes.main import main
 from app.routes.admin import admin
 from app.routes.user import user
+from app.routes.firebase import firebase
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -19,11 +18,13 @@ def create_app(config_class=Config):
     app.register_blueprint(main)
     app.register_blueprint(admin)
     app.register_blueprint(user)
+    app.register_blueprint(firebase)
 
     db.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
     ckeditor.init_app(app)
+    init_firebase()(app)
 
     # LOGIN MANAGER
     login_manager.login_view = 'user.user_login'

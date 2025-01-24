@@ -28,3 +28,7 @@ class Config(object):
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 # end mail
+
+# firebase
+    FIREBASE_CREDENTIALS = os.path.join(ROOT, 'firebase_credentials.json')
+# end firebase
