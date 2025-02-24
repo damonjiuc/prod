@@ -30,9 +30,8 @@ class UserEditForm(FlaskForm):
     phone = TelField('Телефон', validators=[DataRequired()], default=lambda: current_user.phone)
     email = EmailField('E-mail', validators=[DataRequired()], default=lambda: current_user.email)
     birthday = DateField('Дата рождения', validators=[DataRequired()], default=lambda: current_user.birthday)
-    password = PasswordField('Пароль', validators=[DataRequired()])
-    confirm_password = PasswordField('Подтвердите пароль', validators=[DataRequired(), EqualTo('password')])
-    avatar = FileField('Загрузите аватар', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
+    password = PasswordField('Пароль', validators=[DataRequired()], render_kw={"autocomplete": "off"})
+    avatar = FileField('Загрузить', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
     submit = SubmitField('Изменить')
 
 

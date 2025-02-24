@@ -1,7 +1,6 @@
-from flask import Blueprint, render_template, redirect, flash, url_for, request
+from flask import Blueprint, render_template, redirect, flash, url_for, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from passlib.hash import phpass
-from jinja2 import Template
 
 from app.extensions import db, bcrypt
 from app.models.users import Users
@@ -31,7 +30,7 @@ def user_login():
             user = db.session.query(Users).filter_by(email=login).first()
         if user.active == 0:
             flash('Ваш доступ в личный кабинет заблокирован', category='error')
-            return redirect(url_for('main.index'))
+            return redirect('user/login')
         if user.password.startswith('$P$B') and user and phpass.verify(form.password.data, user.password):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
@@ -43,11 +42,11 @@ def user_login():
             except Exception as exc:
                 print(str(exc))
                 return str(exc)
-            return redirect(next_page) if next_page else redirect(url_for('user.user_profile'))
+            return redirect(next_page) if next_page else redirect('/user/')
         elif user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('user.user_profile'))
+            return redirect(next_page) if next_page else redirect('/user/')
         else:
             flash('Некорректные данные', category='error')
     return render_template('user/login.html', form=form)
@@ -56,6 +55,9 @@ def user_login():
 @login_required
 def user_profile():
     user_in_lk = True if request.base_url.endswith('/user/') else False
+    # Гет запрос для фильтрации заказов
+    query = request.args.get('query')
+
     refs = db.session.query(Ref).order_by(Ref.id.desc()).filter_by(referer_card=current_user.card).all()
     news = db.session.query(News).order_by(News.id.desc()).all()
     for ref in refs:
@@ -72,9 +74,10 @@ def user_profile():
     user_prizes = set()
     for prize in prizes:
         user_prizes.add(prize.type)
-    orders = db.session.query(Orders).order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all() # .limit(6)
-    stats = {'orders_count': 0, 'bonus_to_pay': 0, 'money_earned': 0}
 
+    orders = db.session.query(Orders).order_by(Orders.order_date.desc()).filter_by(card_num=current_user.card).all()
+
+    stats = {'orders_count': 0, 'bonus_to_pay': 0, 'money_earned': 0}
     count_orders = 0
     for order in orders:
         count_orders += 1
@@ -89,6 +92,28 @@ def user_profile():
             print(f'Дата доставки: {order.shipment_date} \t Дата выплаты: {order.payment_date}')
 
     orders = orders[:6]
+
+    if query:
+        orders = db.session.query(Orders).order_by(Orders.order_date.desc()).filter_by(
+            card_num=current_user.card).filter(
+            (Orders.customer_name.like(f'%{query}%')) |
+            (Orders.address.like(f'%{query}%'))
+        ).all()
+
+
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':  # Проверяем, что запрос от AJAX
+        order_data = [{
+            'order_num': order.order_num,
+            'customer_name': order.customer_name,
+            'address': order.address,
+            'order_date': order.order_date,
+            'shipment_date': order.shipment_date,
+            'order_sum': order.order_sum,
+            'bonus': order.bonus,
+            'bonus_paid': order.bonus_paid
+        } for order in orders]
+        print(order_data)
+        return jsonify({'orders': order_data})
 
     if form.validate_on_submit():
         user = db.session.query(Users).get(form.id.data)
@@ -105,7 +130,7 @@ def user_profile():
         except Exception as exc:
             print(str(exc))
             flash('Некорректные данные', category='error')
-        return redirect(url_for('user.user_login'))
+        return redirect('/user/login')
     if form_callback.validate_on_submit():
         name = form_callback.callback_name.data
         phone = form_callback.callback_phone.data
@@ -139,4 +164,4 @@ def user_orders():
 @login_required
 def user_logout():
     logout_user()
-    return redirect(url_for('main.index'))
+    return redirect('/user/login')

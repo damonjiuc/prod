@@ -9,10 +9,11 @@ class Orders(db.Model):
     shipment_date = db.Column(db.Date)
     payment_date = db.Column(db.Date)
     bonus = db.Column(db.Integer)
-    customer_name = db.Column(db.String(64))
+    customer_name = db.Column(db.String(64)) #
     order_sum = db.Column(db.Float)
     card_num = db.Column(db.Integer)
     card_was_given = db.Column(db.Date)
-    address = db.Column(db.String(128))
+    address = db.Column(db.String(128)) #
     shop = db.Column(db.String(128))
-    bonus_paid = db.Column(db.Integer)
+    bonus_paid = db.Column(db.Boolean)
+    manual_add = db.Column(db.Boolean)

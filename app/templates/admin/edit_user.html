@@ -2,7 +2,13 @@
 
 {% block title %}Изменить данные партнера #{{ user.card }} ({{ user.surname }} {{ user.name }}) // последняя авторизация: {{ user.lastauth }} {% endblock %}
 
-{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
+    <style>
+        span.orders-tbl-el { margin: auto;}
+    </style>
+{% endblock %}
 
 {% block content %}
 <div class="static">
@@ -38,7 +44,7 @@
     <div class="form-add-user-group">Реквизиты</div>
     <div class="form-add-user-el">
       <label for="bankcard">Номер банковской карты</label>
-      <input id="bankcard" name="bankcard" type="number" placeholder="Номер банковской карты" value="{{ '%16d' % user.bankcard }}">
+      <input id="bankcard" name="bankcard" type="text" placeholder="Номер банковской карты" value="{{ user.bankcard }}">
     </div>
     <div class="form-add-user-el">
       <label for="bankname">Название банка</label>
@@ -62,8 +68,8 @@
       <input id="active" name="active" type="number" placeholder="1 - active, 0 - off" value="{{ user.active }}">
     </div>
     <div class="form-add-user-el">
-      <label for="role">Роль (1-админ, 2-юзер)</label>
-      <input id="role" name="role" type="number" placeholder="1 - admin, 2 - dis" value="{{ user.role }}">
+      <label for="role">Роль (1-админ, 9-юзер)</label>
+      <input id="role" name="role" type="number" placeholder="1 - admin, 9 - dis" value="{{ user.role }}">
     </div>
     <div class="form-add-user-group">Не трогать, ОПАСНОСТЬ!</div>
     <div class="form-add-user-el">
@@ -84,7 +90,7 @@
     </div>-->
 
 
-    <input value="UpdateUser" name="action" type="submit" class="btn btn-confirm">
+    <input value="Обновить данные" name="action" type="submit" class="btn btn-confirm">
   </form>
   <div>
     <a class="btn btn-confirm" href="{{ url_for('admin.edit_user_pwd', id=user.id) }}">Сменить пароль</a>
@@ -94,6 +100,9 @@
   </div>
   <div>
     <a class="btn btn-confirm" href="{{ url_for('admin.edit_user_ref', card=user.card) }}">Рефералы</a>
+  </div>
+  <div>
+    <a class="btn btn-confirm" href="{{ url_for('admin.add_order', id=user.id) }}">Добавить заказ</a>
   </div>
   <div class="sales-data">
     <h2>Продажи юзера {{ '%04d' % user.card }}</h2>
@@ -131,34 +140,39 @@
     </div>
   </div>
 
-  <table class="table-users">
-    <thead>
-      <tr>
-        <th style="width: 152px;">№ Заказа</th>
-        <th>ФИО Клиента</th>
-        <th>Адрес</th>
-        <th>Дата заказа</th>
-        <th>Дата отгрузки</th>
-        <th>Сумма</th>
-        <th>Бонус</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for order in orders %}
-      <tr>
-        <td>
-          {% if order.bonus_paid %}<span class="green">✔</span>{% else %}<span class="red">✘</span>{% endif %}
-          <a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a>
-        </td>
-        <td>{{ order.customer_name }}</td>
-        <td style="max-width: 500px;">{{ order.address }}</td>
-        <td>{{ order.order_date }}</td>
-        <td>{{ order.shipment_date }}</td>
-        <td>{{ order.order_sum }}</td>
-        <td>{{ order.bonus }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+    <div class="cab-block orders">
+        <h2>Заказы</h2>
+        <div class="orders-tbl">
+            <div class="orders-tbl-section orders-tbl-header">
+                <div class="orders-tbl-el tbl-order-num">№ Заказа</div>
+                <div class="orders-tbl-el tbl-order-fio">ФИО Клиента</div>
+                <div class="orders-tbl-el tbl-order-address">Адрес</div>
+                <div class="orders-tbl-el tbl-order-date">Дата заказа</div>
+                <div class="orders-tbl-el tbl-order-del-date">Отгрузка</div>
+                <div class="orders-tbl-el tbl-order-sum">Сумма</div>
+                <div class="orders-tbl-el tbl-order-bonus">Бонус</div>
+            </div>
+            <div id="orderList" class="desctoporders">
+                {% for order in orders %}
+                <div class="orders-tbl-order">
+                    <div class="orders-tbl-section">
+                        <span class="orders-tbl-el tbl-order-num">
+                            {% if order.bonus_paid %}<span class="green">✔</span>{% else %}<span class="red">✘</span>{% endif %}
+                            <a href="{{ url_for('admin.edit_order', order_id=order.order_id) }}">{{ order.order_num }}</a>
+                        </span>
+                        <span class="orders-tbl-el tbl-order-fio">{{ order.customer_name }}</span>
+                        <span class="orders-tbl-el tbl-order-address">{{ order.address }}</span>
+                        <span class="orders-tbl-el tbl-order-date">{{ order.order_date }}</span>
+                        <span class="orders-tbl-el tbl-order-del-date">{{ order.shipment_date }}</span>
+                        <span class="orders-tbl-el tbl-order-sum">{{ order.order_sum }} ₽</span>
+                        <span class="orders-tbl-el tbl-order-bonus">
+                            <div style="align-content: end;">{{ order.bonus }} ₽</div>
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

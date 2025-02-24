@@ -2,35 +2,45 @@
 
 {% block title %}Партнеры{% endblock %}
 
-{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
+    <style>
+        span.orders-tbl-el { margin: auto;}
+    </style>
+{% endblock %}
 
 {% block content %}
 <div class="static">
-  <table class="table-users">
-    <thead>
-      <tr>
-        <th>Карта</th>
-        <th>Имя</th>
-        <th>Мэйл</th>
-        <th>Роль</th>
-        <th>Действие</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for user in users %}
-      <tr>
-        <td>{{ '%04d' % user.card }}</td>
-        <td>{{ user.surname }} {{ user.name }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.role }}</td>
-        <td>
-          <a class="btn" href="{{ url_for('admin.edit_user', id=user.id) }}">Редактировать</a>
-          /
-          <a class="btn" href="{{ url_for('admin.delete_user', id=user.id) }}">Удалить</a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+    <div class="orders">
+        <div class="orders-tbl">
+            <div class="orders-tbl-section orders-tbl-header">
+                <div class="orders-tbl-el tbl-order-num">Карта</div>
+                <div class="orders-tbl-el tbl-order-fio">Имя</div>
+                <div class="orders-tbl-el tbl-order-sum">Комментарий</div>
+                <div class="orders-tbl-el tbl-order-address">Телефон</div>
+                <div class="orders-tbl-el tbl-order-date">Уровень</div>
+                <div class="orders-tbl-el tbl-order-del-date">Сумма заказов</div>
+                <div class="orders-tbl-el tbl-order-bonus">Действие</div>
+            </div>
+            <div id="orderList" class="desctoporders">
+                {% for user in users %}
+                <div class="orders-tbl-order">
+                    <div class="orders-tbl-section">
+                        <span class="orders-tbl-el tbl-order-num">{{ '%04d' % user.card }}</span>
+                        <span class="orders-tbl-el tbl-order-fio">{{ user.surname }} {{ user.name }}</span>
+                        <span class="orders-tbl-el tbl-order-sum">{{ user.comment }}</span>
+                        <span class="orders-tbl-el tbl-order-address">{{ user.phone }}</span>
+                        <span class="orders-tbl-el tbl-order-date">{{ user.lvl }}</span>
+                        <span class="orders-tbl-el tbl-order-del-date">{{ user.totalmoney }}</span>
+                        <span class="orders-tbl-el tbl-order-bonus">
+                            <a class="btn" href="{{ url_for('admin.edit_user', id=user.id) }}">Редактировать</a>
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

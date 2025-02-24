@@ -17,15 +17,3 @@
 </section>
 
 {% endblock %}
-
-{% block js %}
-    <script>
-        function sendUserIdToReact() {
-            if(window.ReactNativeWebView) { // ensure window.ReactNativeWebView is there, otherwise, web app might crash if is not there
-                window.ReactNativeWebView.postMessage('{"user_id":<?=$wp_user->ID?>, "_wpnonce":"<?=$_wpnonce?>"}')
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", sendUserIdToReact);
-    </script>
-{% endblock %}

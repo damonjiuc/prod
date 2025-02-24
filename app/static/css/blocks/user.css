@@ -1,9 +1,28 @@
 @import url('../var.css');
 
 
+body {
+    background-color: #F6F6F8;
+    color: #7B7B84;
+}
+
+.cab-block {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+    font-weight: 500;
+    color: #7B7B84;
+}
+
 h2 {
     margin-top: 0;
     text-align: left;
+}
+
+h2, h3, .orders-tbl-header, .statelem, .prizes-txt {
+    color: #333;
+}
+
+.hello {
+    line-height: 80px;
 }
 
 label {
@@ -25,13 +44,57 @@ label {
     text-align: left;
 }
 
+.parent {
+    position: relative;
+}
+
+.btn-min {
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    z-index: 4;
+}
+
+.btn-arrow {
+    display: block;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 5px;
+    background-color: #eeeef3;
+    background-image: url(/static/img/icon_arrow_up.svg);
+    background-size: 12px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: .33s;
+    transform: rotate(180deg) !important;
+}
+
+#ava-label {
+    background-image: url(/static/img/icon_edit.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    background-size: 24px auto;
+    cursor: pointer;
+    margin-top: 28px;
+}
+
 .usermenumob {
     display: none;
 }
 
 .usermenu {
     background-color: #fff;
-    color: #332225;
+    color: #7B7B83;
     padding: 5px;
     border-radius: 16px;
     margin-top: 20px;
@@ -84,7 +147,7 @@ label {
 
 .info {
     background-color: #fff;
-    color: #332225;
+    color: #7B7B83;
     padding: 20px;
     border-radius: 16px;
     margin-top: 20px;
@@ -94,7 +157,7 @@ label {
     text-align: left;
     font-weight: 600;
     line-height: 48px;
-    color: var(--forh);
+    color: #333;
     font-weight: bold;
 }
 
@@ -104,15 +167,37 @@ label {
 
 .info .avatar img {
     border-radius: 50%;
-    width: 80px;
+    max-width: 80px;
+    height: 80px;
 }
 
-.info input[type="text"],.info input[type="tel"],.info input[type="email"],.info input[type="date"],.info input[type="password"] {
-    border: 1px solid var(--forh);
-    padding: 12px;
+#ava-label {
+    display: inline-block;
+    line-height: 80px;
+}
+
+#filterForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-search {
+    min-width: 300px;
+    text-align: center;
+    margin-left: 40px;
+}
+
+.btn-filter {
+    margin: 10px 40px 10px 10px;
+}
+
+.info input[type="text"],.info input[type="tel"],.info input[type="email"],.info input[type="date"] {
+    padding: 0;
     border-radius: 8px;
     margin: 0 0 20px 0;
-    width: 100%;
+    font-weight: 700;
+    color: #333;
 }
 
 .info input[type="file"] {
@@ -122,7 +207,7 @@ label {
 }
 
 .info input[type="file"]::file-selector-button {
-    border: 1px solid var(--forh);
+    border: 1px solid #333;
     border-radius: 8px;
     padding: 5px 12px;
 }
@@ -132,7 +217,19 @@ label {
 }
 
 .info label {
-    width: 100%;
+    display: block;
+    font-weight: 500;
+    color: #7B7B83;
+}
+
+input#avatar {
+    display: none;
+}
+
+input#password {
+    margin: 0;
+    padding-left: 0;
+    border-radius: 0;
 }
 
 .info .card {
@@ -151,7 +248,7 @@ label {
 
 .shops {
     background-color: #fff;
-    color: #332225;
+    color: #7B7B83;
     padding: 20px 20px 40px;
     border-radius: 16px;
     margin-top: 20px;
@@ -162,8 +259,11 @@ label {
     justify-content: space-between;
 }
 
+.shops .our-stores > div {
+    margin-bottom: 20px;
+}
+
 .shops .our-stores-store {
-    box-shadow: 0px 0px 16px 0px rgba(29, 29, 27, 0.32);
     border-radius: 8px;
     padding: 16px;
     text-align: center;
@@ -191,7 +291,7 @@ label {
 
 .bonus {
     background-color: #fff;
-    color: #332225;
+    color: #7B7B83;
     padding: 20px;
     border-radius: 16px;
     margin-top: 20px;
@@ -199,14 +299,14 @@ label {
 
 .progress {
     background-color: #fff;
-    color: #332225;
+    color: #7B7B83;
     padding: 2px;
     border-radius: 8px;
 }
 
 .prizes {
     background-color: #fff;
-    color: #332225;
+    color: #7B7B83;
     padding: 20px;
     border-radius: 16px;
     margin-top: 20px;
@@ -267,7 +367,7 @@ label {
     display: flex;
     justify-content: space-between;
     position: relative;
-    margin: 30px auto;
+    margin: 40px auto;
     max-width: 100%;
 }
 
@@ -287,6 +387,35 @@ label {
 
 .bonus .progress-container .circle.active {
     border-color: #34A646;
+}
+
+.after {
+    position: absolute;
+    font-size: 14px;
+    color: #7B7B83;
+}
+
+.after.even {
+    top: -30px;
+}
+
+.after.odd {
+    bottom: -30px;
+}
+
+.have-left {
+    display: none;
+    text-align: center;
+}
+
+@media (max-width: 1023px) {
+    .after, .have b, .left b {
+        display: none;
+    }
+
+    .have-left {
+        display: block;
+    }
 }
 
 /* Прогресс текущего уровня */
@@ -330,7 +459,7 @@ label {
 /* Данные о заказах */
 .stats {
     background-color: #fff;
-    color: #332225;
+    color: #7B7B83;
     padding: 20px;
     border-radius: 16px;
     margin-top: 20px;
@@ -373,6 +502,10 @@ label {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
     margin-top: 20px;
     padding: 0 10px;
+}
+
+.stats .orders-tbl-header {
+    font-weight: bold;
 }
 
 .stats .refs .orders-tbl {
@@ -444,7 +577,7 @@ label {
 /* заказы */
 .orders {
     background-color: #fff;
-    color: var(--forh);
+    color: #333;
     padding: 20px;
     border-radius: 16px;
     margin-top: 20px;
@@ -473,17 +606,18 @@ label {
 }
 
 .orders .orders-tbl-order {
-    background-color: #f0f0f0;
     border-radius: 8px;
     box-shadow: 0px 3px 5px 0px rgba(29, 29, 27, 0.32);
     margin-bottom: 18px;
 }
 
 .orders .orders-tbl-order:last-child {
-    border-radius: 0 0 8px 8px;
+    border-radius: 8px;
 }
 
 .orders .orders-tbl-order .orders-tbl-section {
+    background-color: #fcfcfc;
+    border-radius: 8px;
     display: grid;
     grid-template-columns: 10% 20% 20% 10% 10% 10% 10% 5%;
     gap: 8px;
@@ -523,7 +657,7 @@ label {
 }
 
 .orders .orders-tbl-order .orders-tbl-items .orders-tbl-items-header {
-    border-top: 1px solid #ccc;
+    background-color: #f0f0f0;
     display: grid;
     grid-template-columns: 55% 15% 15% 15%;
     gap: 8px;
@@ -614,7 +748,7 @@ label {
 }
 
 .modal-body input[type="text"], .modal-body input[type="tel"], .modal-body input[type="email"], .modal-body input[type="date"], .modal-body input[type="password"] {
-    border: 1px solid var(--forh);
+    border: 1px solid #333;
     padding: 12px;
     border-radius: 8px;
     margin: 0 0 20px 0;

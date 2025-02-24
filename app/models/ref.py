@@ -8,4 +8,4 @@ class Ref(db.Model):
     referer_card = db.Column(db.Integer, db.ForeignKey('users.card'), nullable=False)
     request = db.relationship('Users', backref=backref('users', uselist=False))
     referral_card = db.Column(db.Integer, nullable=False)
-    paid = db.Column(db.Integer, nullable=False)
+    paid = db.Column(db.Boolean, nullable=False)

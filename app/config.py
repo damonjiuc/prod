@@ -32,3 +32,5 @@ class Config(object):
 # firebase
     FIREBASE_CREDENTIALS = os.path.join(ROOT, 'firebase_credentials.json')
 # end firebase
+
+    JSONIFY_PRETTYPRINT_REGULAR = False

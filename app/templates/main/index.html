@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row banner-group">
-    <div class="col-12 col-sm-5 col-md-5">
+    <div class="col-12 col-sm-6 col-md-6">
         <div class="banner-group-banner">
             <video id="vid-desk-2" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" class="home-main--video vid-home vid-desk">
                 <source type="video/mp4" src="/static/video/ind.mp4">
@@ -11,38 +11,17 @@
             <!--<img src="{{ url_for('static', filename='img/imgs/ban.jpg') }}"/>-->
         </div>
     </div>
-    <div class="col-12 col-sm-7 col-md-7">
-        <div class="row">
-            <div class="col-12">
-                <a href="/retail">
-                    <div class="banner-group-dir dir-dark">
+    <div class="col-12 col-sm-6 col-md-6">
+        <div class="row one">
+            <div class="col-12 col-md-6  col-xl-6">
+                <a href="/partners">
+                    <div class="banner-group-dir dir-white">
                         <div class="after">
                             01
                         </div>
                         <div class="banner">
                             <div class="content-block">
-                                <h1>Самая крупная сеть салонов<br/>отделочных материалов</h1>
-                                <p>Напольные покрытия, двери, плитка</p>
-                                Адреса магазинов
-                            </div>
-                        </div>
-                        <div class="arrow">
-                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-6  col-xl-6">
-                <a href="/partners">
-                    <div class="banner-group-dir dir-white">
-                        <div class="after">
-                            02
-                        </div>
-                        <div class="banner">
-                            <div class="content-block">
-                                <h1>Лучшая партнерская программа</h1>
+                                <h2><span>Мы:</span>Лучшая партнерская программа</h2>
                                 <p>Для дизайнеров <br>и строителей</p>
                             </div>
                         </div>
@@ -56,12 +35,33 @@
                 <a href="/trading">
                     <div class="banner-group-dir dir-red">
                         <div class="after">
+                            02
+                        </div>
+                        <div class="banner">
+                            <div class="content-block">
+                                <h2><span>И еще мы:</span>Производство и оптовое направление</h2>
+                                <p>Union, Decospan<br>другие бренды</p>
+                            </div>
+                        </div>
+                        <div class="arrow">
+                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row two">
+            <div class="col-12">
+                <a href="/retail">
+                    <div class="banner-group-dir dir-dark">
+                        <div class="after">
                             03
                         </div>
                         <div class="banner">
                             <div class="content-block">
-                                <h1> Производство<br/>и оптовое направление  </h1>
-                                <p>Union, Decospan<br>другие бренды</p>
+                                <h2><span>А вообще мы:</span>Самая крупная сеть салонов<br/>отделочных материалов</h2>
+                                <p>Напольные покрытия, двери, плитка<br>
+                                Адреса магазинов</p>
                             </div>
                         </div>
                         <div class="arrow">
@@ -372,6 +372,11 @@
                         Ленинский проспект, дом 140А,
                         <br>
                         ТЦ «Загородный дом 2», 13 модуль
+                    </div>
+                    <div class="shop">
+                        ул. Железноводская, д.3,
+                        <br>
+                        ТЦ "Василеостровский", 2 этаж, секция 102
                     </div>
                 </div>
                 <div class="col-12 col-xl-9">

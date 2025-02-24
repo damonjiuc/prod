@@ -53,9 +53,9 @@ def add_user():
             db.session.add(user)
             db.session.commit()
             flash('Пользователь добавлен!', category='success')
-            if name and email and phone and card and password:
-                send_registration_email(name, email, phone, card, password)
-            return redirect(url_for('admin.users'))
+            # if name and email and phone and card and password:
+            #     send_registration_email(name, email, phone, card, password)
+            return redirect(url_for('admin.all_users'))
         except Exception as exc:
             flash('Некорректно введены данные!', category='error')
             print(str(exc))
@@ -104,7 +104,7 @@ def edit_user(id):
 @login_required
 @role_required(1)
 def edit_user_pwd(id):
-    user = db.session.query(Users).query.get(id)
+    user = db.session.query(Users).get(id)
     if request.method == 'POST':
         password = request.form.get('password')
         user.password = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -160,7 +160,7 @@ def edit_order(order_id):
 @login_required
 @role_required(1)
 def add_prize(id):
-    user = db.session.query(Users).query.get(id)
+    user = db.session.query(Users).get(id)
     user_card = user.card
     if request.method == 'POST':
         user_card = request.form.get('user_card')
@@ -182,6 +182,43 @@ def add_prize(id):
 
     else:
         return render_template('admin/add_prize.html', id=id, user_card=user_card)
+
+
+@admin.route('/admin/add_order/<int:id>', methods=['POST', 'GET'])
+@login_required
+@role_required(1)
+def add_order(id):
+    user = db.session.query(Users).get(id)
+    user_card = user.card
+    if request.method == 'POST':
+        card = request.form.get('CARD_NUM')
+        order_num = request.form.get('order_num')
+        order_date = request.form.get('ORDER_DATE')
+        shipment_date = request.form.get('SHIPMENT_DATE')
+        payment_date = request.form.get('PAYMENT_DATE')
+        bonus = request.form.get('BONUS')
+        customer_name = request.form.get('CUSTOMER_NAME')
+        order_sum = request.form.get('ORDER_SUM')
+        address = request.form.get('ADDRESS')
+        shop = request.form.get('SHOP')
+        bonus_paid = False
+        manual_add = True
+
+        order = Orders(card_num=card, order_num=order_num, order_date=order_date, shipment_date=shipment_date, payment_date=payment_date,
+                       bonus=bonus, customer_name=customer_name, order_sum=order_sum, address=address, shop=shop, bonus_paid=bonus_paid, manual_add=manual_add)
+
+        try:
+            db.session.add(order)
+            db.session.commit()
+            flash('Заказ добавлен!', category='success')
+            return redirect(url_for('admin.edit_user', id=id))
+        except Exception as exc:
+            flash('Некорректно введены данные!', category='error')
+            print(str(exc))
+            print('беда')
+
+    else:
+        return render_template('admin/add_order.html', id=id, user_card=user_card)
 
 
 @admin.route('/admin/edit_user_ref/<int:card>', methods=['POST', 'GET'])
@@ -211,7 +248,7 @@ def edit_user_ref(card):
 @login_required
 @role_required(1)
 def ref_paid(id):
-    ref = db.session.query(Ref).query.get(id)
+    ref = db.session.query(Ref).get(id)
     ref.paid = 1 if ref.paid == 0 else 0
     print(ref.id, ref.referer_card, ref.referral_card, ref.paid)
     try:
