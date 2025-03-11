@@ -6,3 +6,5 @@ document.querySelector('#hamburger-btn').addEventListener('click', () => {
 document.querySelector('#close-menu').addEventListener('click', () => {
     document.querySelector('#hamburger-menu').classList.remove('active');
 });
+
+document.getElementById("ckeditor").classList.add("ckeditor");

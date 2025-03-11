@@ -21,6 +21,21 @@ class Config(object):
 
 # end DB
 
+# CKEditor
+
+    CKEDITOR_SERVE_LOCAL = True  # Использовать локальную версию CKEditor
+    CKEDITOR_PKG_TYPE = 'full'
+    CKEDITOR_HEIGHT = 400
+    CKEDITOR_FILE_UPLOADER = '/admin/upload_image'  # Маршрут для загрузки файлов
+    CKEDITOR_EXTRA_PLUGINS = ['uploadimage']  # Подключение плагинов
+    CKEDITOR_CONFIG = {
+        'disableAutoInlineSecurityWarning': True,  # Отключаем предупреждение
+        'extraPlugins': 'uploadimage',  # Активируем плагин
+        'uploadUrl': '/admin/upload_image',  # URL для загрузки изображений
+    }
+
+# end CKEditor
+
 # mail
     MAIL_SERVER = os.environ.get('MAIL_SERVER')
     MAIL_PORT = int(os.environ.get('MAIL_PORT') or 465)

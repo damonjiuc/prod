@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify, send_from_directory
+from flask_ckeditor import upload_fail, upload_success
 from flask_login import login_required
-from flask_ckeditor.utils import cleanify
+import os
+from app.config import Config
 
 from app.extensions import db, bcrypt
 from app.models.users import Users
@@ -274,8 +276,10 @@ def all_news():
 def add_article():
     if request.method == 'POST':
         title = request.form.get('title')
-        content = request.form.get('ckeditor')
+        content = request.form.get('content')
         article_date = request.form.get('article_date')
+
+        print(f"📝 Полученные данные: title={title}, content={content}, date={article_date}")
 
         article = News(title=title, content=content, date=article_date)
 
@@ -325,3 +329,39 @@ def delete_article(id):
     except Exception as exc:
         print(str(exc))
         return str(exc)
+
+@admin.route('/admin/upload_image', methods=['POST'])
+@login_required
+@role_required(1)
+def upload_image():
+    # if 'upload' not in request.files:
+    #     return jsonify({'error': 'No file part'}), 400
+    #
+    # file = request.files['upload']
+    #
+    # if file.filename == '':
+    #     return jsonify({'error': 'No selected file'}), 400
+    #
+    # if file:
+    #     filename = file.filename
+    #     filepath = os.path.join(Config.UPLOAD_PATH_FULL, filename)
+    #     file.save(filepath)
+    #     url = f"/admin/uploads/{filename}"
+    #     return jsonify({'url': url})
+
+    f = request.files.get('upload')
+    if not f:
+        return upload_fail(message="Файл не загружен.")  # Ошибка, если файл не передан
+
+    # Сохраняем файл
+    filepath = os.path.join(Config.UPLOAD_PATH_FULL, f.filename)
+    f.save(filepath)
+
+    # 📌 Формируем URL загруженного файла
+    file_url = url_for('admin.uploaded_file', filename=f.filename, _external=True)
+
+    return upload_success(file_url, filename=f.filename)  # Возвращаем JSON с URL
+
+@admin.route('/admin/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(Config.UPLOAD_PATH_FULL, filename)

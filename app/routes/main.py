@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, send_from_directory, current_app, make_response, request, redirect
 import os
+import socket
 from app.forms import Partnership, Contacts
 from app.email import send_partnership_email, send_contacts_email
 from app.main import update
-import socket
+from app.extensions import db
+from app.models.news import News
 
 
 main = Blueprint('main', __name__)
@@ -70,6 +72,13 @@ def contacts():
 @main.route('/policy')
 def policy():
     return render_template('main/policy.html')
+
+@main.route('/blog', methods = ['GET', 'POST'])
+@main.route('/blog/<int:page>', methods = ['GET', 'POST'])
+def blog(page = 1):
+    posts = db.session.query(News).order_by(News.id.desc()).paginate(page=page, per_page=1, error_out=False)
+    title = f'PRO Дизайн - Блог - Страница #{page}'
+    return render_template('main/blog.html', title=title, posts=posts)
 
 @main.route('/upd')
 def update_orders():

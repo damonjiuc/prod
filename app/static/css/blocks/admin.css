@@ -10,6 +10,39 @@ body {
     display: none;
 }
 
+.admin-panel {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #242630;
+}
+
+.admin-panel .menu {
+    display: flex;
+    border-bottom: 3px solid #242630;
+    border-top: 2px solid #242630;
+    padding: 0 0 0 16px;
+    height: 36px;
+    align-items: center;
+    background-color: #45464f;
+    border-radius: 10px;
+    margin: 0 3px;
+}
+
+.admin-panel .menu a {
+    color: var(--ultra-light);
+    border-left: 2px solid var(--ultra-light);
+    border-right: 2px solid var(--ultra-light);
+    padding: 0 6px 2px;
+    border-radius: 8px;
+    background-color: #31333c;
+    font-weight: 500;
+    margin-right: 16px;
+}
+
+main.content {
+    margin-top: 44px;
+}
 /* Юзеры добавить */
 
 .form-add-user, .sales-data {

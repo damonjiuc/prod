@@ -50,9 +50,7 @@
         <p class="number"><a target="_blank" href="tel:+7(812)213-03-00">+7 (812) 213–03–00</a></p>
       </div>
       <div class="contact-info">
-      {% if current_user.role == 1 %}
         <button class="footer-button" onclick="document.location='/partners'">Стать партнером<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r.svg') }}" alt="Icon"/></button>
-      {% endif %}
       </div>
 	  <small style="display: none;">&copy; Разработано Damon-dev (damon-dev.ru) 1С-Bitrix ID 23051992</small>
     </div>

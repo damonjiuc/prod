@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/blog.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="salons about-partners">
+    <div class="post">
+        {% for article in posts.items %}
+            <article class="news-article">
+                <h3 class="news-title">{{ article.title }}</h3>
+                <div class="article-content">
+                    {{ article.content|safe }}
+                </div>
+                <p class="news-date">{{ article.date }}</p>
+            </article>
+        {% endfor %}
+    </div>
+    <div class="pag">
+        {% if posts.has_prev %}
+            <a href="{{ url_for('main.blog', page = posts.prev_num) }}"><< Предыдущая страница</a>
+        {% else %}
+            << Предыдущая страница
+        {% endif %}
+        |
+        {% for page_num in posts.iter_pages() %}
+            {% if page_num %}
+                {% if page_num == posts.page %}
+                    <strong>{{ page_num }}</strong>
+                {% else %}
+                    <a href="{{ url_for('main.blog', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                <span>...</span>
+            {% endif %}
+        {% endfor %}
+        |
+        {% if posts.has_next %}
+            <a href="{{ url_for('main.blog', page = posts.next_num) }}">Следующая страница >></a>
+        {% else %}
+            Следующая страница >>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

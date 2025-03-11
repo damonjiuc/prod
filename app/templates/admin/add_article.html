@@ -5,7 +5,6 @@
 {% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
 
 {% block content %}
-
 {{ ckeditor.load() }}
 
 <div class="static">
@@ -15,7 +14,8 @@
       <input id="title" name="title" type="text" placeholder="Название новости">
     </div>
     <div class="form-add-user-el">
-      {{ ckeditor.create() }}
+      {{ ckeditor.create(name='content') }}
+      {{ ckeditor.config(name='content', upload_url='/admin/upload_image') }}
     </div>
     <div class="form-add-user-el">
       <label for="article_date">Дата</label>

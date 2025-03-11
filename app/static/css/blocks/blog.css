@@ -1,0 +1,16 @@
+.news-article {
+    border: 1px #000 solid;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    padding: 8px;
+}
+
+.news-title {
+    color: #000;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.pag {
+    color: #000;
+}

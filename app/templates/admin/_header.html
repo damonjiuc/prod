@@ -1,0 +1,28 @@
+{% if current_user.is_authenticated and current_user.role == 1 %}
+<div class="admin-panel">
+  <ul class="menu">
+      <li><a href="{{ url_for('admin.add_user') }}">Добавить партнера</a></li>
+      <li><a href="{{ url_for('admin.all_users') }}">Партнеры</a></li>
+      <li><a href="{{ url_for('admin.all_news') }}">Новости</a></li>
+      <li><a href="{{ url_for('admin.add_article') }}">Добавить новость</a></li>
+      <li style="margin-left: auto;">
+        <div class="login-btn">
+          {% if current_user.is_authenticated and user_in_lk %}
+            <a href="{{ url_for('user.user_logout') }}">
+              {{ '%04d' % current_user.card }} / Выход
+            </a>
+          {% elif current_user.is_authenticated %}
+            <a href="{{ url_for('user.user_profile') }}">
+              {{ '%04d' % current_user.card }} / Личный кабинет
+            </a>
+          {% else %}
+            <a href="{{ url_for('user.user_login') }}">
+              Вход в ЛК <img src="/static/img/icon_login.svg" />
+            </a>
+          {% endif %}
+        </div>
+      </li>
+  </ul>
+</div>
+{% endif %}
+

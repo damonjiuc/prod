@@ -13,7 +13,7 @@
     </div>
     <div class="col-12 col-sm-6 col-md-6">
         <div class="row one">
-            <div class="col-12 col-md-6  col-xl-6">
+            <div class="col-12 col-md-6 col-xl-6">
                 <a href="/partners">
                     <div class="banner-group-dir dir-white">
                         <div class="after">
@@ -21,17 +21,18 @@
                         </div>
                         <div class="banner">
                             <div class="content-block">
-                                <h2><span>Мы:</span>Лучшая партнерская программа</h2>
-                                <p>Для дизайнеров <br>и строителей</p>
+                                <span class="under">Мы</span>
+                                <h2>Крупнейшая сеть салонов отделочных материалов</h2>
+                                <p><b>25+</b> магазинов напольных покрытий, дверей и керамической плитки</p>
                             </div>
                         </div>
                         <div class="arrow">
-                            <img src="{{ url_for('static', filename='img/icon_arrow_rt_red.svg') }}"/>
+                            <img src="/static/img/arrow-gray-d.svg"/>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-12 col-md-6  col-xl-6">
+            <div class="col-12 col-md-6 col-xl-6">
                 <a href="/trading">
                     <div class="banner-group-dir dir-red">
                         <div class="after">
@@ -39,12 +40,13 @@
                         </div>
                         <div class="banner">
                             <div class="content-block">
-                                <h2><span>И еще мы:</span>Производство и оптовое направление</h2>
-                                <p>Union, Decospan<br>другие бренды</p>
+                                <span class="under">А еще мы</span>
+                                <h2>Производитель <br>и поставщик</h2>
+                                <p>Наши бренды и партнеры: <b>Union, Decospan, Amorim</b> и другие.</p>
                             </div>
                         </div>
                         <div class="arrow">
-                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                            <img src="/static/img/arrow-gray-l.svg"/>
                         </div>
                     </div>
                 </a>
@@ -59,13 +61,13 @@
                         </div>
                         <div class="banner">
                             <div class="content-block">
-                                <h2><span>А вообще мы:</span>Самая крупная сеть салонов<br/>отделочных материалов</h2>
-                                <p>Напольные покрытия, двери, плитка<br>
-                                Адреса магазинов</p>
+                                <span class="under">И вообще мы </span><span>;)</span>
+                                <h2>Лучшая партнерская <br>программа</h2>
+                                <p>Для дизайнеров, строителей и <br>архитекторов</p>
                             </div>
                         </div>
                         <div class="arrow">
-                            <img src="{{ url_for('static', filename='img/icon_arrow_rt.svg') }}"/>
+                            <img src="/static/img/arrow-gray-d.svg"/>
                         </div>
                     </div>
                 </a>
@@ -78,8 +80,8 @@
     <div class="row">
         <div class="col-12 col-sm-6 col-md-5">
             <div class="inform" style="text-align: left;">
-                <h2 style="margin-top: 17px">Наши салоны оформлены в современном стиле и предлагают посетителям тысячи образцов.</h2>
-                <p>Мы предлагаем лучший сервис и широкий выбор сопутствующих товаров и услуг, предлагая полный цикл обслуживания клиента.</p>
+               <h2 style="margin-top: 17px;line-height: 1.3em;"><span style="color: #bb2334;">PRO</span> дизайн<br>группа компаний со смыслом</h2>
+                <p>Группа компаний «PRO дизайн» была основана в 2015 году. Начиная с небольшого салона напольных покрытий, мы стали крупнейшей сетью в регионе и единственной компанией с магазинами в трёх ключевых направлениях: напольные покрытия, двери и керамическая плитка. Сегодня мы — это более 25 салонов в Санкт-Петербурге и Москве, оптовые поставки и производство собственных торговых марок.</p>
                 <div class="button-container">
                     <button class="discover-btn" onclick="document.location='/retail'">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r.svg') }}" alt="Icon"/></button>
                 </div>
@@ -90,22 +92,19 @@
                 <div class="col-12 col-md-4">
                     <div class="decor-block">
                         <img src="{{ url_for('static', filename='img/imgs/salon1.jpg') }}" />
-                        <h3 class="decor-text">Деревяные напольные покрытия</h3>
-                        <p class="decor-about"> кварц-виниловая плитка, паркет, ламинат, массивная доска и др.</p>
+                        <h3 class="decor-text">Новинки производства</h3>
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="decor-block">
                         <img src="{{ url_for('static', filename='img/imgs/salon2.jpg') }}" />
-                        <h3 class="decor-text">Керамическая плитка и керамогранит</h3>
-                        <p class="decor-about"></p>
+                        <h3 class="decor-text">26-й салон открыт!</h3>
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="decor-block">
                         <img src="{{ url_for('static', filename='img/imgs/salon3.jpg') }}" />
-                        <h3 class="decor-text">Межкомнатные и входные двери</h3>
-                        <p class="decor-about">серийные и под заказ</p>
+                        <h3 class="decor-text">Розыгрыш автомобиля</h3>
                     </div>
                 </div>
             </div>
@@ -115,7 +114,7 @@
 
 <section class="brands">
     <div id="infobrands" class="info">
-        <h4>Мы гарантируем самую низкую цену на весь предлагаемый ассортимент и будем рады видеть вас в наших салонах.</h4>
+        <p>Мы делаем, пока другие обещают.</p>
     </div>
     <h3>Наши бренды</h3>
     <div class="brand-list">
@@ -172,8 +171,9 @@
 
 <section id="partners" class="partners">
     <div class="partners-text">
-        <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
-        <p>Узнайте о лучших условиях для партнеров</p>
+        <h4>Партнерская программа</h4>
+        <p>дизайнерам, строителям, архитекторам</p>
+        <p>личный кабинет - повышенный бонус - регулярные выплаты</p>
         <div class="button-container">
             <button class="discover-btn" onclick="document.location='/partners'">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
         </div>
@@ -185,9 +185,9 @@
 
 <section class="partners-mob">
     <div class="partners-text">
-        <h4>Приглашаем дизайнеров и строителей стать нашими партнерами</h4>
-        
-        <p>Узнайте о лучших условиях для партнеров</p>
+        <h4>Партнерская программа</h4>
+        <p>дизайнерам, строителям, архитекторам</p>
+        <p>личный кабинет - повышенный бонус - регулярные выплаты</p>
         <div class="button-container">
             <button class="discover-btn" onclick="document.location='/partners'">Подробнее<img class="button-icon" src="{{ url_for('static', filename='img/icon_arrow_r_red.svg') }}" alt="Icon"/></button>
         </div>
