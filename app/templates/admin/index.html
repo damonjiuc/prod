@@ -1,0 +1,22 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Админка{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<ul class="menu admin-menu">
+  <li><a href="{{ url_for('admin.all_users') }}">Партнеры</a></li>
+  <li><a href="{{ url_for('admin.add_user') }}">Добавить партнера</a></li>
+  <li><a href="{{ url_for('admin.all_news') }}">Новости</a></li>
+  <li><a href="{{ url_for('admin.add_article') }}">Добавить новость</a></li>
+</ul>
+<div class="static">
+    <div class="orders">
+    </div>
+</div>
+{% endblock %}

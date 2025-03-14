@@ -11,16 +11,52 @@ from app.models.items import Items
 from app.models.prizes import Prizes
 from app.models.ref import Ref
 from app.models.news import News
-from app.functions import role_required
+from app.functions import role_required, save_picture
 from app.email import send_registration_email, bonus_paid
 
 admin = Blueprint('admin', __name__)
 
-@admin.route('/admin/users', methods=['POST', 'GET'])
+@admin.route('/admin', methods=['POST', 'GET'])
+@admin.route('/admin/', methods=['POST', 'GET'])
+@admin.route('/admin/index', methods=['POST', 'GET'])
 @login_required
 @role_required(1)
-def all_users():
-    users = db.session.query(Users).order_by(Users.id.desc()).all()
+def admin_dash():
+    return render_template('admin/index.html')
+
+@admin.route('/admin/users', methods=['POST', 'GET'])
+@admin.route('/admin/users/<int:page>', methods = ['GET', 'POST'])
+@login_required
+@role_required(1)
+def all_users(page = 1):
+    # Гет запрос для фильтрации заказов
+    query = request.args.get('query')
+
+    users = db.session.query(Users).order_by(Users.card.desc()).paginate(page=page, per_page=25, error_out=False)
+
+    if query:
+        users = db.session.query(Users).order_by(Users.card.desc()).filter(
+            (Users.card.like(f'%{query}%')) |
+            (Users.phone.like(f'%{query}%')) |
+            (Users.surname.like(f'%{query}%')) |
+            (Users.name.like(f'%{query}%'))
+        ).paginate(page=page, per_page=25, error_out=False)
+
+
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':  # Проверяем, что запрос от AJAX
+        order_data = [{
+            'card': user.card,
+            'surname': user.surname,
+            'name': user.name,
+            'comment': user.comment,
+            'phone': user.phone,
+            'lvl': user.lvl,
+            'totalmoney': user.totalmoney,
+            'id': user.id
+        } for user in users]
+        print(order_data)
+        return jsonify({'users': order_data})
+
     return render_template('admin/users.html', users=users)
 
 
@@ -275,23 +311,28 @@ def all_news():
 @role_required(1)
 def add_article():
     if request.method == 'POST':
-        title = request.form.get('title')
-        content = request.form.get('content')
-        article_date = request.form.get('article_date')
+        file = request.files['image']
+        if file:
+            img = save_picture(file)
+            title = request.form.get('title')
+            type = request.form.get('type')
+            description = request.form.get('description')
+            content = request.form.get('content')
+            article_date = request.form.get('article_date')
 
-        print(f"📝 Полученные данные: title={title}, content={content}, date={article_date}")
+            print(f"📝 Полученные данные: title={title}, content={content}, date={article_date}")
 
-        article = News(title=title, content=content, date=article_date)
+            article = News(title=title, type=type, description=description, img=img, content=content, date=article_date)
 
-        try:
-            db.session.add(article)
-            db.session.commit()
-            flash('Новость добавлена', category='success')
-            return redirect(url_for('admin.all_news'))
-        except Exception as exc:
-            flash('Некорректно введены данные!', category='error')
-            print(str(exc))
-            return str(exc)
+            try:
+                db.session.add(article)
+                db.session.commit()
+                flash('Новость добавлена', category='success')
+                return redirect(url_for('admin.all_news'))
+            except Exception as exc:
+                flash('Некорректно введены данные!', category='error')
+                print(str(exc))
+                return str(exc)
 
     else:
         return render_template('admin/add_article.html')

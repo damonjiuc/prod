@@ -1,8 +1,11 @@
-{% extends 'main/base.html' %}
+{% extends 'admin/base.html' %}
 
 {% block title %}Изменить данные заказа {{ order.order_num }} {% endblock %}
 
-{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
+{% endblock %}
 
 {% block content %}
 <div class="static">

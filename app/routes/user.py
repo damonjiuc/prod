@@ -59,7 +59,7 @@ def user_profile():
     query = request.args.get('query')
 
     refs = db.session.query(Ref).order_by(Ref.id.desc()).filter_by(referer_card=current_user.card).all()
-    news = db.session.query(News).order_by(News.id.desc()).all()
+    news = db.session.query(News).filter(News.type == 'dis').order_by(News.id.desc()).all()
     for ref in refs:
         card = ref.referral_card
         print(card)

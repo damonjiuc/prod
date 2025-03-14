@@ -76,9 +76,15 @@ def policy():
 @main.route('/blog', methods = ['GET', 'POST'])
 @main.route('/blog/<int:page>', methods = ['GET', 'POST'])
 def blog(page = 1):
-    posts = db.session.query(News).order_by(News.id.desc()).paginate(page=page, per_page=1, error_out=False)
+    posts = db.session.query(News).filter(News.type == 'main').order_by(News.id.desc()).paginate(page=page, per_page=10, error_out=False)
     title = f'PRO Дизайн - Блог - Страница #{page}'
-    return render_template('main/blog.html', title=title, posts=posts)
+    return render_template('main/blog.html', title=title, posts=posts, active_page='blog')
+
+@main.route('/blog-post/<int:id>', methods = ['GET', 'POST'])
+def blog_post(id):
+    article = db.session.query(News).filter(News.id == id).first()
+    title = f'PRO Дизайн - Блог - {article.title}'
+    return render_template('main/blog-post.html', title=title, article=article, active_page='blog')
 
 @main.route('/upd')
 def update_orders():

@@ -12,9 +12,10 @@
     <div class="post">
         {% for article in posts.items %}
             <article class="news-article">
-                <h3 class="news-title">{{ article.title }}</h3>
-                <div class="article-content">
-                    {{ article.content|safe }}
+                <img src="/static/upload/{{ article.img }}">
+                <h3 class="news-title"><a href="/blog-post/{{ article.id }}">{{ article.title }}</a></h3>
+                <div class="article-description">
+                    {{ article.description }}
                 </div>
                 <p class="news-date">{{ article.date }}</p>
             </article>

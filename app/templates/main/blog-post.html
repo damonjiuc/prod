@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/blog.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="salons about-partners">
+    <div class="post">
+        <article class="news-article">
+            <img src="/static/upload/{{ article.img }}">
+            <h3 class="news-title">{{ article.title }}</h3>
+            <div class="article-description">
+                {{ article.description }}
+            </div>
+            <div class="article-content">
+                {{ article.content|safe }}
+            </div>
+            <p class="news-date">{{ article.date }}</p>
+        </article>
+    </div>
+
+</section>
+{% endblock %}

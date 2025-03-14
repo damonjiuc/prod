@@ -5,14 +5,16 @@
 {% block style %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
-    <style>
-        span.orders-tbl-el { margin: auto;}
-    </style>
 {% endblock %}
 
 {% block content %}
 <div class="static">
     <div class="orders">
+        <form id="filterForm">
+            <h2>Партнеры</h2>
+            <input class="filter-search" type="text" id="query" name="query" placeholder="Поиск..." value="{{ request.args.get('query', '') }}">
+            <button type="submit" class="btn btn-filter">Фильтровать</button>
+        </form>
         <div class="orders-tbl">
             <div class="orders-tbl-section orders-tbl-header">
                 <div class="orders-tbl-el tbl-order-num">Карта</div>
@@ -42,5 +44,75 @@
             </div>
         </div>
     </div>
+    <div class="pag">
+        {% if users.has_prev %}
+            <a href="{{ url_for('admin.all_users', page = users.prev_num) }}"><< Предыдущая страница</a>
+        {% else %}
+            << Предыдущая страница
+        {% endif %}
+        |
+        {% for page_num in users.iter_pages() %}
+            {% if page_num %}
+                {% if page_num == users.page %}
+                    <strong>{{ page_num }}</strong>
+                {% else %}
+                    <a href="{{ url_for('admin.all_users', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                <span>...</span>
+            {% endif %}
+        {% endfor %}
+        |
+        {% if users.has_next %}
+            <a href="{{ url_for('admin.all_users', page = users.next_num) }}">Следующая страница >></a>
+        {% else %}
+            Следующая страница >>
+        {% endif %}
+    </div>
 </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        document.getElementById('filterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const query = document.getElementById('query').value;
+
+            // Отправляем запрос через AJAX
+            fetch(`/admin/users?query=${query}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Обновляем список заказов
+                const orderList = document.getElementById('orderList');
+                orderList.innerHTML = '';  // Очищаем старые заказы
+
+                // Добавляем новые заказы
+                data.users.forEach(user => {
+                    const orderItem = document.createElement('div');
+                    orderItem.className = 'orders-tbl-order';
+                    orderItem.innerHTML = `
+                        <div class="orders-tbl-section">
+                            <span class="orders-tbl-el tbl-order-num">${String(user.card).padStart(4, '0')}</span>
+                            <span class="orders-tbl-el tbl-order-fio">${user.surname} ${user.name}</span>
+                            <span class="orders-tbl-el tbl-order-sum">${user.comment}</span>
+                            <span class="orders-tbl-el tbl-order-address">${user.phone}</span>
+                            <span class="orders-tbl-el tbl-order-date">${user.lvl}</span>
+                            <span class="orders-tbl-el tbl-order-del-date">${user.totalmoney}</span>
+                            <span class="orders-tbl-el tbl-order-bonus">
+                                <a class="btn" href="/admin/edit_user/${user.id}">Редактировать</a>
+                            </span>
+                        </div>
+                    `;
+                    orderList.appendChild(orderItem);
+                });
+            })
+            .catch(error => console.error('Ошибка:', error));
+        });
+    </script>
 {% endblock %}

@@ -2,16 +2,35 @@
 
 {% block title %}Добавить новость{% endblock %}
 
-{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/user.css') }}">
+{% endblock %}
 
 {% block content %}
 {{ ckeditor.load() }}
 
 <div class="static">
   <h2>Добавить новость</h2>
-  <form class="form-add-user" method="post">
+  <form class="form-add-user" method="post" enctype="multipart/form-data">
     <div class="form-add-user-el">
       <input id="title" name="title" type="text" placeholder="Название новости">
+    </div>
+    <div class="form-add-user-el">
+      <label>Тип новости:</label>
+      <label for="type_dis">
+        Dis <input id="type_dis" name="type" type="radio" value="dis" checked>
+      </label>
+      <label for="type_main">
+        Main <input id="type_main" name="type" type="radio" value="main">
+      </label>
+    </div>
+    <div class="form-add-user-el">
+      <label for="image">Изображение превью:</label>
+      <input id="image" name="image" type="file" accept="image/*">
+    </div>
+    <div class="form-add-user-el">
+      <textarea id="description" name="description" placeholder="Анонс"></textarea>
     </div>
     <div class="form-add-user-el">
       {{ ckeditor.create(name='content') }}
